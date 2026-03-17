@@ -1,0 +1,85 @@
+{
+  "examples": [
+    {
+      "domain": "finite_ars",
+      "example_id": "E001_diamond_flat",
+      "nf_outcome_mismatch_count": 0,
+      "nonjoinable_count": 0,
+      "nontrivial_count": 0,
+      "trivial_count": 1,
+      "two_cell_count": 1
+    },
+    {
+      "domain": "finite_ars",
+      "example_id": "E002_fork_curved",
+      "nf_outcome_mismatch_count": 1,
+      "nonjoinable_count": 1,
+      "nontrivial_count": 1,
+      "trivial_count": 0,
+      "two_cell_count": 1
+    },
+    {
+      "domain": "string_rewrite",
+      "example_id": "E007_completion_before",
+      "nf_outcome_mismatch_count": 1,
+      "nonjoinable_count": 1,
+      "nontrivial_count": 1,
+      "trivial_count": 0,
+      "two_cell_count": 1
+    },
+    {
+      "domain": "string_rewrite",
+      "example_id": "E008_completion_after",
+      "nf_outcome_mismatch_count": 0,
+      "nonjoinable_count": 0,
+      "nontrivial_count": 0,
+      "trivial_count": 1,
+      "two_cell_count": 1
+    },
+    {
+      "domain": "term_rewrite",
+      "example_id": "TRS003_nested_overlap_nonconfluent",
+      "nf_outcome_mismatch_count": 1,
+      "nonjoinable_count": 1,
+      "nontrivial_count": 1,
+      "trivial_count": 0,
+      "two_cell_count": 1
+    },
+    {
+      "domain": "term_rewrite",
+      "example_id": "TRS004_nested_overlap_joinable",
+      "nf_outcome_mismatch_count": 0,
+      "nonjoinable_count": 0,
+      "nontrivial_count": 0,
+      "trivial_count": 1,
+      "two_cell_count": 1
+    }
+  ],
+  "findings": {
+    "all_defective_two_cells_nontrivial": true,
+    "all_joinable_two_cells_trivial": true,
+    "all_selected_examples_generated": true,
+    "string_pair_holonomy_elimination_observed": true,
+    "trs_pair_holonomy_elimination_observed": true
+  },
+  "kind": "reduction_two_complex_summary",
+  "pair_deltas": [
+    {
+      "after_example_id": "E008_completion_after",
+      "after_nontrivial_count": 0,
+      "before_example_id": "E007_completion_before",
+      "before_nontrivial_count": 1,
+      "holonomy_elimination_observed": true,
+      "pair_id": "string_completion_pair"
+    },
+    {
+      "after_example_id": "TRS004_nested_overlap_joinable",
+      "after_nontrivial_count": 0,
+      "before_example_id": "TRS003_nested_overlap_nonconfluent",
+      "before_nontrivial_count": 1,
+      "holonomy_elimination_observed": true,
+      "pair_id": "trs_nested_overlap_pair"
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,136 @@
+schema_version: 1
+kind: claim_support_matrix
+claims:
+  - claim_id: CSM001_elementary_flatness_iff_local_confluence_core
+    label: elementary flatness iff local confluence (core)
+    exact_hypotheses:
+      - ARS core definitions and elementary peak predicate
+      - theorem at definition level (not full TRS theorem package)
+    evidence:
+      - evidence_type: lean_proved
+        strongest_artifact_paths:
+          - ConfluenceFlat/Core.lean
+    status: proved
+
+  - claim_id: CSM002_confluence_plus_normalizing_implies_exists_unique_normal_form_from_start
+    label: confluence plus normalizing implies exists unique normal form from start
+    exact_hypotheses:
+      - confluence on reachability relation
+      - normalizing for each start state
+    evidence:
+      - evidence_type: lean_proved
+        strongest_artifact_paths:
+          - ConfluenceFlat/UniqueNormalForm.lean
+    status: proved
+
+  - claim_id: CSM003_finite_terminating_local_flatness_implies_confluence
+    label: finite terminating local flatness implies confluence
+    exact_hypotheses:
+      - finite ARS
+      - terminating
+      - local flatness/local confluence condition
+    evidence:
+      - evidence_type: exhaustive_computational
+        strongest_artifact_paths:
+          - results/audits/exhaustive_finite_ars_n_le_4_summary.json
+          - results/audits/exhaustive_finite_ars_n_le_4_counterexamples.json
+    status: empirically_supported
+
+  - claim_id: CSM004_finite_terminating_confluence_iff_unique_reachable_normal_forms
+    label: finite terminating confluence iff unique reachable normal forms
+    exact_hypotheses:
+      - finite ARS
+      - terminating
+    evidence:
+      - evidence_type: exhaustive_computational
+        strongest_artifact_paths:
+          - results/audits/exhaustive_finite_ars_n_le_4_summary.json
+          - results/audits/exhaustive_finite_ars_n_le_4_rows.csv
+    status: empirically_supported
+
+  - claim_id: CSM005_bare_graph_flatness_is_inadequate_without_2cells
+    label: bare graph flatness inadequate without 2-cells
+    exact_hypotheses:
+      - bare graph directed-loop proxy only
+      - no plaquette/critical-pair 2-cell layer
+    evidence:
+      - evidence_type: curated_term_level
+        strongest_artifact_paths:
+          - results/audits/naive_graph_flatness_audit.json
+          - results/audits/naive_graph_flatness_audit.csv
+    status: empirically_supported
+
+  - claim_id: CSM006_reachable_string_critical_pair_defects_capture_local_obstructions
+    label: reachable string critical-pair defects capture local obstructions
+    exact_hypotheses:
+      - curated bounded-complete string examples
+      - reachable critical pairs from selected starts
+      - comparison against explored local peaks
+    evidence:
+      - evidence_type: curated_term_level
+        strongest_artifact_paths:
+          - results/critical_pairs/summary.json
+          - results/audits/critical_pair_curvature_audit.json
+    status: empirically_supported
+
+  - claim_id: CSM007_string_completion_eliminates_local_defects
+    label: string completion eliminates local defects
+    exact_hypotheses:
+      - explicit before/after pair
+      - manual rule addition x -> y
+    evidence:
+      - evidence_type: curated_term_level
+        strongest_artifact_paths:
+          - results/case_studies/CS001_manual_completion_ab_to_xy.json
+          - results/audits/critical_pair_curvature_audit.json
+          - results/two_complex/summary.json
+    status: empirically_supported
+
+  - claim_id: CSM008_left_linear_trs_reachable_critical_pairs_capture_local_obstructions
+    label: left-linear TRS reachable critical pairs capture local obstructions
+    exact_hypotheses:
+      - curated left-linear TRS examples
+      - reachable critical pairs
+      - nonroot overlap support
+    evidence:
+      - evidence_type: curated_term_level
+        strongest_artifact_paths:
+          - results/term_rewrite/summary.json
+          - results/term_rewrite/TRS003_nested_overlap_nonconfluent.json
+          - results/term_rewrite/TRS004_nested_overlap_joinable.json
+    status: empirically_supported
+
+  - claim_id: CSM009_reduction_2complex_elementary_holonomy_layer_is_explicit
+    label: reduction 2-complex elementary holonomy layer explicit
+    exact_hypotheses:
+      - representative ARS/string/TRS examples
+      - machine-readable 0/1/2-cell layer
+      - elementary holonomy status on generators
+    evidence:
+      - evidence_type: structural_artifact
+        strongest_artifact_paths:
+          - results/two_complex/summary.json
+          - results/two_complex/E007_completion_before.json
+          - results/two_complex/TRS004_nested_overlap_joinable.json
+    status: empirically_supported
+
+  - claim_id: CSM010_full_confluence_equals_flatness_theorem_for_finite_terminating_left_linear_trs
+    label: full confluence equals flatness theorem for finite terminating left-linear TRS
+    exact_hypotheses:
+      - finite
+      - terminating
+      - left-linear TRS
+      - explicit reduction 2-complex and 2-connection theorem phrasing
+      - full theorem package not yet formalized in repo
+    evidence:
+      - evidence_type: lean_proved
+        strongest_artifact_paths:
+          - ConfluenceFlat/Core.lean
+          - ConfluenceFlat/UniqueNormalForm.lean
+      - evidence_type: curated_term_level
+        strongest_artifact_paths:
+          - results/term_rewrite/summary.json
+      - evidence_type: structural_artifact
+        strongest_artifact_paths:
+          - results/two_complex/summary.json
+    status: deferred_to_paper_theorem

@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+
+\input{macros}
+
+\title{To Flatten a Stone with Six Birds:\\[4pt]
+Critical Pairs, Holonomy, and Confluence\\
+in Rewriting Systems}
+\newcommand{\orcidauthorA}{0009-0009-7659-5964}
+\author{Ioannis Tsiokos\,\orcidA{}}
+\date{17 March 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firstpage}
+
+\begin{abstract}
+\noindent
+Confluence is usually read as order-independence of reduction, while flatness is usually read as path-independence of transport.
+This paper argues that their local cores coincide once rewriting is equipped with its missing two-dimensional cells.
+The relevant object is not the bare reduction graph but a reduction 2-complex whose $0$-cells are states, whose $1$-cells are one-step rewrites, and whose generating $2$-cells are local peaks or, in structured rewriting settings, reachable critical pairs.
+In that setting, elementary flatness is exactly local confluence.
+We prove this core equivalence and record the supporting fact that confluence plus normalization yields a unique normal form from a chosen start state.
+We then show computationally that the corrected local/global picture survives exhaustive finite-ARS stress tests in the terminating regime, curated string-rewriting examples, and a curated left-linear term-rewriting bridge with genuine nonroot overlap.
+These experiments also show that bare graph-flatness surrogates fail, while reachable critical-pair defects align with the observed local obstruction layer.
+Finally, explicit before/after examples show that completion can be read as holonomy elimination: the local generator persists while its defect disappears.
+The full finite terminating left-linear TRS theorem package remains to be written in full generality, but the correct object, local generators, and evidence boundary are now fixed.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_preliminaries_scope}
+\input{sections/03_bare_graph_not_enough}
+\input{sections/04_reduction_two_complex}
+\input{sections/05_core_theorem}
+\input{sections/06_critical_pairs_curvature_generators}
+\input{sections/07_computational_bridge}
+\input{sections/08_completion_holonomy_elimination}
+\input{sections/09_proved_supported_deferred}
+\input{sections/10_conclusion}
+
+\appendix
+
+\input{appendices/A_lean_formal_core}
+\input{appendices/B_computational_protocol}
+\input{appendices/C_artifact_guide}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,6 @@
+name = "confluenceflat"
+defaultTargets = ["ConfluenceFlat"]
+
+[[lean_lib]]
+name = "ConfluenceFlat"
+root = "ConfluenceFlat"

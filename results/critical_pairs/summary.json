@@ -1,0 +1,42 @@
+{
+  "examples": [
+    {
+      "defective_critical_pair_count": 0,
+      "example_id": "E005_string_sort_confluent",
+      "graph_peak_count": 1,
+      "reachable_critical_pair_count": 1,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 0,
+      "system_critical_pair_count": 1
+    },
+    {
+      "defective_critical_pair_count": 2,
+      "example_id": "E006_string_overlap_nonconfluent",
+      "graph_peak_count": 1,
+      "reachable_critical_pair_count": 1,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 1,
+      "system_critical_pair_count": 2
+    },
+    {
+      "defective_critical_pair_count": 1,
+      "example_id": "E007_completion_before",
+      "graph_peak_count": 1,
+      "reachable_critical_pair_count": 1,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 1,
+      "system_critical_pair_count": 1
+    },
+    {
+      "defective_critical_pair_count": 0,
+      "example_id": "E008_completion_after",
+      "graph_peak_count": 1,
+      "reachable_critical_pair_count": 1,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 0,
+      "system_critical_pair_count": 1
+    }
+  ],
+  "kind": "string_critical_pair_summary",
+  "schema_version": 1
+}

@@ -1,0 +1,160 @@
+schema_version: 1
+kind: figure_table_plan
+figures:
+  - slot_id: F1_dictionary_bridge
+    target_section: sec:introduction
+    title_stub: dictionary bridge from confluence language to flatness language
+    artifact_sources:
+      - results/freeze/final_experiment_summary.json
+      - project/claim_support_matrix.yaml
+      - results/two_complex/summary.json
+    asset_status: derive_from_artifact
+    priority: main
+    notes: likely schematic assembled from frozen claims and two-complex summary
+  - slot_id: F2_bare_graph_failure
+    target_section: sec:bare-graph-not-enough
+    title_stub: bare graph flatness proxy fails on a defective fork
+    artifact_sources:
+      - results/audits/naive_graph_flatness_audit.json
+      - results/diagrams/E002_fork_curved/reduction_graph.dot
+      - results/diagrams/E002_fork_curved/defective_plaquette.dot
+    asset_status: existing_asset
+    priority: main
+    notes: pair existing diagram with audit outcome
+  - slot_id: F3_reduction_two_complex_schematic
+    target_section: sec:reduction-two-complex
+    title_stub: reduction 2-complex with explicit 0-cells 1-cells and 2-cells
+    artifact_sources:
+      - results/two_complex/E001_diamond_flat.json
+      - results/two_complex/E002_fork_curved.json
+      - results/two_complex/summary.json
+    asset_status: derive_from_artifact
+    priority: main
+    notes: derive a clean schematic from machine-readable two-cell boundaries
+  - slot_id: F4_trivial_vs_nontrivial_holonomy
+    target_section: sec:reduction-two-complex
+    title_stub: trivial versus nontrivial elementary holonomy on representative generators
+    artifact_sources:
+      - results/two_complex/E008_completion_after.json
+      - results/two_complex/TRS003_nested_overlap_nonconfluent.json
+      - results/two_complex/TRS004_nested_overlap_joinable.json
+    asset_status: derive_from_artifact
+    priority: main
+    notes: contrast joinable and defective cells with canonical witnesses
+  - slot_id: F5_string_overlap_nonconfluent
+    target_section: sec:critical-pairs-curvature
+    title_stub: reachable string critical pair and observed local obstruction
+    artifact_sources:
+      - results/string_rewrite/E006_string_overlap_nonconfluent.json
+      - results/critical_pairs/E006_string_overlap_nonconfluent.json
+      - results/diagrams/E006_string_overlap_nonconfluent/critical_pair_focus.dot
+    asset_status: existing_asset
+    priority: main
+    notes: existing string example focus asset plus JSON provenance
+  - slot_id: F6_trs_nested_overlap_pair
+    target_section: sec:critical-pairs-curvature
+    title_stub: left-linear TRS nested overlap pair as critical-pair bridge
+    artifact_sources:
+      - results/term_rewrite/TRS003_nested_overlap_nonconfluent.json
+      - results/term_rewrite/TRS004_nested_overlap_joinable.json
+      - results/term_rewrite/summary.json
+    asset_status: derive_from_artifact
+    priority: main
+    notes: likely rendered later from TRS artifacts rather than existing diagram assets
+  - slot_id: F7_string_completion_before_after
+    target_section: sec:completion-holonomy
+    title_stub: string completion before and after defect elimination
+    artifact_sources:
+      - results/case_studies/CS001_manual_completion_ab_to_xy.json
+      - results/two_complex/E007_completion_before.json
+      - results/two_complex/E008_completion_after.json
+      - results/diagrams/E007_completion_before/critical_pair_focus.dot
+      - results/diagrams/E008_completion_after/critical_pair_focus.dot
+    asset_status: mixed
+    priority: main
+    notes: combine existing focus diagrams with case-study delta data
+  - slot_id: F8_trs_completion_before_after
+    target_section: sec:completion-holonomy
+    title_stub: TRS nested overlap before and after holonomy elimination
+    artifact_sources:
+      - results/two_complex/TRS003_nested_overlap_nonconfluent.json
+      - results/two_complex/TRS004_nested_overlap_joinable.json
+      - results/term_rewrite/TRS003_nested_overlap_nonconfluent.json
+      - results/term_rewrite/TRS004_nested_overlap_joinable.json
+    asset_status: derive_from_artifact
+    priority: main
+    notes: derive paired TRS panel from before-after artifacts
+tables:
+  - slot_id: T1_claim_ladder
+    target_section: sec:introduction
+    title_stub: proved supported and deferred claim ladder
+    artifact_sources:
+      - project/claim_support_matrix.yaml
+      - results/freeze/final_experiment_summary.json
+    priority: main
+    notes: compact opening table orienting the paper boundary
+  - slot_id: T2_bare_graph_flatness_mismatch
+    target_section: sec:bare-graph-not-enough
+    title_stub: mismatch between bare graph flatness proxy and confluence outcomes
+    artifact_sources:
+      - results/audits/naive_graph_flatness_audit.csv
+      - results/audits/naive_graph_flatness_audit.json
+    priority: main
+    notes: likely small audit extract rather than full table dump
+  - slot_id: T3_elementary_holonomy_summary
+    target_section: sec:reduction-two-complex
+    title_stub: elementary holonomy summary across representative 2-cells
+    artifact_sources:
+      - results/two_complex/summary.csv
+      - results/two_complex/summary.json
+    priority: main
+    notes: summarize trivial and nontrivial counts by example
+  - slot_id: T4_system_vs_reachable_cp_vs_graph_peak
+    target_section: sec:critical-pairs-curvature
+    title_stub: system versus reachable critical pairs versus graph peaks
+    artifact_sources:
+      - results/critical_pairs/summary.json
+      - results/audits/critical_pair_curvature_audit.json
+      - results/term_rewrite/summary.json
+    priority: main
+    notes: should combine string and TRS bridge in one compact table if space allows
+  - slot_id: T5_exhaustive_finite_ars_summary
+    target_section: sec:computational-bridge
+    title_stub: exhaustive finite ARS summary at frozen search bound
+    artifact_sources:
+      - results/audits/exhaustive_finite_ars_n_le_4_rows.csv
+      - results/audits/exhaustive_finite_ars_n_le_4_summary.json
+    priority: main
+    notes: use the frozen bound explicitly in the title or caption later
+  - slot_id: T6_curated_string_summary
+    target_section: sec:computational-bridge
+    title_stub: curated string examples and critical-pair audit outcomes
+    artifact_sources:
+      - results/string_rewrite/summary.json
+      - results/audits/critical_pair_curvature_audit.json
+    priority: main
+    notes: summary table only, not per-example detail dump
+  - slot_id: T7_curated_trs_summary
+    target_section: sec:computational-bridge
+    title_stub: curated TRS bridge examples and reachable critical-pair outcomes
+    artifact_sources:
+      - results/term_rewrite/summary.json
+    priority: main
+    notes: include nonroot-overlap bridge rows
+  - slot_id: T8_holonomy_elimination_deltas
+    target_section: sec:completion-holonomy
+    title_stub: before-after holonomy elimination deltas for string and TRS pairs
+    artifact_sources:
+      - results/case_studies/CS001_manual_completion_ab_to_xy.csv
+      - results/two_complex/summary.json
+      - results/term_rewrite/summary.json
+    priority: main
+    notes: combine string case-study deltas with TRS before-after two-cell status
+  - slot_id: T9_claim_support_matrix
+    target_section: sec:proved-supported-deferred
+    title_stub: final claim support matrix for the paper boundary
+    artifact_sources:
+      - project/claim_support_matrix.yaml
+      - results/freeze/final_experiment_summary.json
+    priority: main
+    notes: likely direct condensation of the frozen matrix

@@ -1,0 +1,29 @@
+\section{Computational Protocol}
+\label{app:computational-protocol}
+
+This appendix summarizes the computational protocol used to generate the evidence layers cited throughout the paper. The purpose of the protocol is reproducibility and claim discipline rather than algorithmic novelty.
+The implementation repository for the experiments and code is \url{https://github.com/ioannist/six-birds-confluence}.
+
+\subsection{Finite-ARS exhaustive protocol}
+
+The finite-ARS audit enumerates every labeled directed rewriting relation on $n$ states for $n \leq 4$, including self-loops. This yields a total search space of
+\[
+2^1 + 2^4 + 2^9 + 2^{16} = 66066
+\]
+systems. Terminating systems are identified by directed-acyclicity of the finite reduction graph. For each terminating system, the repository computes local peak counts, nonjoinability defect counts, normal-form mismatch counts, local confluence, confluence, and uniqueness of reachable normal forms. The resulting summary and row-level artifacts are stored under \texttt{results/audits/}.
+
+\subsection{Bounded string-rewriting protocol}
+
+The string-rewriting examples are explored from designated start words under explicit depth, state-count, and word-length bounds. The exploration records a completeness flag so that the paper can distinguish complete explored closures from genuinely truncated ones. In the curated examples used here, the chosen bounds are sufficient for complete exploration. The repository computes graph-level local peaks, system critical pairs, reachable critical pairs relative to the designated starts, and the corresponding defect counts and signature comparisons.
+
+\subsection{Bounded term-rewriting protocol}
+
+The term-rewriting bridge uses a bounded first-order rewriting prototype with explicit start terms and exploration bounds. The critical-pair generator supports the left-linear overlap regime needed for the curated examples, including nonroot nonvariable-position overlaps. As in the string layer, the repository compares reachable critical-pair signatures with graph-peak signatures in the explored reduction graph and records whether the comparison is exact.
+
+\subsection{Deterministic witness and filler selection}
+
+Across the plaquette, critical-pair, and two-complex layers, witnesses and filler paths are selected deterministically. The policy is: minimize total branch-to-witness distance, break ties lexicographically on the witness, and then choose lexicographically smallest shortest paths from each branch to the chosen witness. This policy ensures that the machine-readable artifacts are stable across runs and that the resulting local generators can be compared reliably across domains.
+
+\subsection{Regression and artifact generation}
+
+The repository includes a regression harness that runs the unit tests, the curated finite-ARS checks, the curated structured rewriting checks, the small exhaustive audit, the diagram-generation step, and the results-ledger refresh. The frozen evidence boundary used in this paper is recorded by the final experiment summary, the claim-support matrix, and the central results ledger under \code{results/index.json} and \code{results/summary.csv}.

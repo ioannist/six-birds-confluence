@@ -1,0 +1,15 @@
+{
+  "counterexamples": {
+    "local_flatness_vs_local_confluence": [],
+    "terminating_confluent_not_unique_reachable_normal_forms": [],
+    "terminating_local_flatness_not_confluent": [],
+    "terminating_unique_reachable_normal_forms_not_confluent": []
+  },
+  "kind": "exhaustive_finite_ars_counterexamples",
+  "schema_version": 1,
+  "search_space": {
+    "include_self_loops": true,
+    "max_states": 4,
+    "state_naming": "s0..s{n-1}"
+  }
+}

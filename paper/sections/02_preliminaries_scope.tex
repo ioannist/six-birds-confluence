@@ -1,0 +1,45 @@
+\section{Preliminaries and Scope}
+\label{sec:preliminaries-scope}
+
+This section fixes the paper's minimal vocabulary and, just as importantly, its boundary. The formal theorem layer is intentionally narrower than the eventual full theorem package suggested by the paper's central slogan, while the computational layer is intentionally broader than a toy demonstration. Keeping those two levels distinct is essential for the paper's claim discipline.
+
+\subsection{Rewriting and transport viewpoints}
+
+We work throughout with rewriting systems presented at three levels of structure. The base level is abstract rewriting: states and a one-step relation. The second level is structured rewriting, where local branchings arise from overlaps of rules and are recorded by critical pairs \cite{KnuthBendix1970,BaaderNipkow1998,Terese2003}. The third level is the geometric packaging introduced in \Cref{sec:reduction-two-complex}, where states become $0$-cells, one-step rewrites become $1$-cells, and local peaks or reachable critical pairs become generating $2$-cells.
+
+At the abstract level, the central notions are reachability, joinability, local confluence, confluence, and normal form. These are defined formally in \Cref{sec:core-theorem} and are standard in rewriting theory \cite{BaaderNipkow1998,Huet1980,DershowitzJouannaud1990,Terese2003}. At the structured level, the central question is how the relevant elementary branchings are generated. In the string and term-rewriting settings used here, the correct generator layer is the layer of reachable critical pairs relative to chosen starts and exploration bounds. At the geometric level, the same question is rephrased as a local path-dependence problem: does a generating branching cell admit a filler to a common witness, or does a genuine elementary route mismatch remain?
+
+\subsection{Six Birds placement}
+\label{subsec:six-birds-placement}
+
+\begin{remark}[Six Birds primitives and the present paper]
+\label{rem:six-birds-primitives}
+We use the Six Birds vocabulary of closure mechanics introduced in \cite{Tsiokos2026SixBirdsFoundations}. The six primitives are:
+\begin{enumerate}
+    \item \textbf{P1}: operator rewrite,
+    \item \textbf{P2}: constraints or feasibility gating,
+    \item \textbf{P3}: route mismatch / holonomy,
+    \item \textbf{P4}: staging,
+    \item \textbf{P5}: packaging,
+    \item \textbf{P6}: accounting / audit.
+\end{enumerate}
+The present paper is primarily a \textbf{P3} paper. Its central object is local route mismatch in rewriting systems. \textbf{P5} and \textbf{P6} play supporting roles by packaging the rewriting layers and by keeping the defect structure explicit in machine-readable artifacts and audits. The mathematical development below is otherwise self-contained.
+\end{remark}
+
+Within the internal line of work, the present paper should be read as a mathematics-facing sequel to \cite{Tsiokos2026CountStone}. The broad finite-state and coarse-graining lineage developed in \cite{Tsiokos2026LayStone} is relevant background, but it is not re-explained here. The paper uses that background only to situate its scope; its main task is narrower, namely to isolate the correct local geometric object for confluence.
+
+\subsection{Scope and evidence boundary}
+
+The paper works in three complementary regimes.
+
+First, it proves a core theorem at the level of abstract rewriting systems: elementary flatness is equivalent to local confluence, and confluence together with normalization yields a unique normal form from a chosen start state. This is the theorem-level core of the paper.
+
+Second, it stress-tests the resulting local/global picture in a finite computational regime. On the finite-ARS side, the repository exhaustively checks all labeled systems up to four states in the terminating regime. On the structured rewriting side, it studies curated bounded string and left-linear term-rewriting examples. These examples are not treated as substitutes for general theorems. They are treated as bridge evidence that the corrected local object and the corrected local generators are the right ones.
+
+Third, it makes the two-dimensional structure explicit. The repository now contains reduction 2-complex / elementary holonomy artifacts that package the relevant $0$-cells, $1$-cells, generating $2$-cells, boundary data, canonical fillers, and defect labels. This means that the geometric language used in the paper is operational rather than merely analogical.
+
+Two scope restrictions are worth making explicit. The first is negative: the paper does not read flatness from the bare reduction graph, and it does not identify ordinary graph-loop structure with the local obstruction to confluence. The second is positive: the paper's final general target is the finite terminating left-linear term-rewriting setting, but that target is not yet claimed here as a fully general theorem. What is claimed here is the proved abstract core, together with a strong computational and structural bridge that fixes the correct object and the correct local generators.
+
+\subsection{Guide to the remaining sections}
+
+With this scope fixed, the logic of the paper is straightforward. \Cref{sec:bare-graph-not-enough} rules out the wrong graph-only formulation. \Cref{sec:reduction-two-complex} introduces the corrected local geometric object. \Cref{sec:core-theorem} proves the theorem-level core. \Cref{sec:critical-pairs-curvature} identifies reachable critical pairs as the relevant structured rewriting generators. \Cref{sec:computational-bridge} records the stress tests that now close the experimental side of the project, and \Cref{sec:completion-holonomy} shows how explicit before/after rule additions can be read as holonomy elimination. The final section, \Cref{sec:proved-supported-deferred}, states cleanly what the manuscript has proved, what it has strongly supported, and what still remains theorem-writing work.

@@ -1,0 +1,10 @@
+digraph E006_explored_reduction_graph {
+  rankdir=LR;
+  "a" [shape=doublecircle];
+  "aa" [shape=doublecircle];
+  "ab" [shape=ellipse];
+  "aba" [shape=ellipse, style="filled,bold", fillcolor="#e8f0fe"];
+  "ab" -> "a";
+  "aba" -> "aa";
+  "aba" -> "ab";
+}

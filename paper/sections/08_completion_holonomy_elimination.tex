@@ -1,0 +1,113 @@
+\section{Completion as Holonomy Elimination}
+\label{sec:completion-holonomy}
+
+The preceding sections identify the local generators and show that their defect status aligns with observed confluence behavior. This section packages that local picture into the paper's most operational reading: in explicit before/after examples, a hand-specified completion step removes a local obstruction, and the corresponding elementary holonomy disappears. In this sense, completion can be read as \emph{holonomy elimination}.
+
+The point is deliberately modest. The paper is not claiming an algorithmic completion theorem in geometric language \cite{KnuthBendix1970}. It is claiming that, in explicit finite examples, the addition of the right rule changes a previously nontrivial generating $2$-cell into a trivial one. The local defect disappears, and the global behavior changes with it.
+
+\subsection{String before/after pair}
+\label{subsec:string-completion-holonomy}
+
+The string pair $E007$--$E008$ is the cleanest instance of this pattern. Before the added rule, the system has the two rules
+\[
+ab \to x,
+\qquad
+ab \to y.
+\]
+From the chosen start word \texttt{ab}, the explored reduction graph has one local peak, one reachable critical pair, and two normal forms, namely \texttt{x} and \texttt{y}. The corresponding generating $2$-cell has nontrivial elementary holonomy: there is no filler to a common witness, the local peak is defective, and the explored system is nonconfluent.
+
+After the additional rule
+\[
+x \to y
+\]
+is added, the local branching source and branch words remain exactly the same. The generating $2$-cell is not removed; it is \emph{resolved}. The branch \texttt{x} now reduces to \texttt{y}, so the local branching admits a filler with join witness \texttt{y}. The elementary holonomy of the corresponding $2$-cell becomes trivial, the local defect counts drop to zero, and the explored system becomes confluent with unique normal form \texttt{y}.
+
+\begin{figure}[t]
+    \centering
+    \fbox{%
+        \parbox{0.82\linewidth}{%
+            \centering
+            \begin{tabular}{c@{\qquad}c}
+            \textbf{Before} & \textbf{After} \\
+            $\texttt{ab} \to \texttt{x}$ & $\texttt{ab} \to \texttt{x} \to \texttt{y}$ \\
+            $\texttt{ab} \to \texttt{y}$ & $\texttt{ab} \to \texttt{y}$
+            \end{tabular}
+            \medskip
+            The generator persists while the filler $\texttt{x} \to \texttt{y}$ becomes available.
+        }%
+    }
+    \caption{Before/after string completion pair. The generator at $ab$ with branches $x$ and $y$ is nontrivial before the added rule and trivial after it, with join witness $y$ in the resolved case.}
+    \label{fig:string-completion-before-after}
+\end{figure}
+
+\subsection{Term-rewriting before/after pair}
+\label{subsec:trs-completion-holonomy}
+
+The same operational pattern appears in the left-linear term-rewriting bridge. In $TRS003$, the nested overlap between
+\[
+f(g(x)) \to p(x)
+\qquad\text{and}\qquad
+g(a) \to b
+\]
+produces a reachable critical pair with source term $f(g(a))$ and branch terms $p(a)$ and $f(b)$. In the chosen explored closure, this local branching is defective: there is no filler to a common witness, the associated generating $2$-cell has nontrivial elementary holonomy, and the explored system is nonconfluent from the chosen start term.
+
+In $TRS004$, the additional rule
+\[
+f(b) \to p(a)
+\]
+resolves the same local branching. The critical-pair source and branch terms remain the same as in $TRS003$, but the branch $f(b)$ now reduces to $p(a)$. The corresponding generating $2$-cell therefore acquires a filler with join witness $p(a)$. Its elementary holonomy becomes trivial, its defect disappears, and the explored system becomes confluent from the chosen start term.
+
+\begin{figure}[t]
+    \centering
+    \fbox{%
+        \parbox{0.84\linewidth}{%
+            \centering
+            \begin{tabular}{c@{\qquad}c}
+            \textbf{Before} & \textbf{After} \\
+            $f(g(a)) \to p(a)$ & $f(g(a)) \to p(a)$ \\
+            $f(g(a)) \to f(b)$ & $f(g(a)) \to f(b) \to p(a)$
+            \end{tabular}
+            \medskip
+            The generator remains, but the added rule $f(b) \to p(a)$ supplies a filler.
+        }%
+    }
+    \caption{Before/after term-rewriting completion pair. The generator at $f(g(a))$ with branches $f(b)$ and $p(a)$ is nontrivial before the added rule and trivial after it, with join witness $p(a)$ in the resolved case.}
+    \label{fig:trs-completion-before-after}
+\end{figure}
+
+\begin{table}[t]
+    \caption{Before/after deltas for the explicit completion pairs. In both the string and term-rewriting cases, the generating cell persists while its defect count drops to zero and confluence is restored.}
+    \label{tab:holonomy-elimination-deltas}
+    \centering
+    \smallskip
+    \input{tables/T8_holonomy_elimination_deltas}
+\end{table}
+
+\subsection{What is eliminated}
+\label{subsec:what-is-eliminated}
+
+The key point in both pairs is that completion does not eliminate the local generator itself. The branching source remains, and the local comparison remains. What changes is the existence of a filler. In the language of this paper, the generating $2$-cell remains present while its elementary holonomy changes from nontrivial to trivial.
+
+This is exactly why the phrase \emph{holonomy elimination} is the right operational reading. The local generator survives as a $2$-cell in the reduction complex, but the route mismatch disappears. Measured in the computational artifacts, the count of generating cells does not have to drop; the count of \emph{defective} generating cells drops to zero.
+
+\begin{proposition}[Completion as holonomy elimination in the explicit before/after pairs]
+\label{prop:completion-as-holonomy-elimination}
+In the explicit string pair $E007$--$E008$ and the explicit term-rewriting pair $TRS003$--$TRS004$, the added rule leaves the local generator intact while eliminating its defect. In both cases:
+\begin{enumerate}
+    \item the relevant local branching source persists;
+    \item the generating $2$-cell changes from nontrivial elementary holonomy to trivial elementary holonomy;
+    \item the local defect counts drop to zero;
+    \item the explored system changes from nonconfluent to confluent.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Audit summary]
+For the string pair, the source word \texttt{ab} and the branch words \texttt{x} and \texttt{y} occur both before and after the added rule. The before-system has one reachable critical pair, one defective local peak, one nontrivial generating $2$-cell, and nonconfluence. The after-system has the same reachable critical-pair source and branch words, but the branch \texttt{x} now reaches \texttt{y}. The corresponding generating $2$-cell is therefore fillable, its elementary holonomy becomes trivial, the local defect counts vanish, and the system is confluent.
+
+For the term-rewriting pair, the source term $f(g(a))$ and the branch terms $p(a)$ and $f(b)$ likewise occur both before and after the added rule. In $TRS003$, the reachable critical pair is defective and the corresponding generating $2$-cell has nontrivial elementary holonomy. In $TRS004$, the additional rule $f(b) \to p(a)$ supplies a filler with witness $p(a)$. The local defect vanishes, the elementary holonomy becomes trivial, and the explored system becomes confluent from the chosen start term. Thus the local generator persists while its defect is eliminated in both before/after pairs.
+\end{proof}
+
+\begin{remark}[Boundary of the claim]
+\label{rem:completion-boundary}
+Nothing in this section is meant to identify completion in full generality with a geometric algorithm on reduction complexes. The claim is narrower. In the explicit case studies implemented here, the added rule removes a local route mismatch carried by a generating $2$-cell, and that removal coincides with restoration of confluence in the explored system. This is enough to justify the operational reading of completion as holonomy elimination, and no stronger algorithmic statement is needed for the paper.
+\end{remark}

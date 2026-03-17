@@ -1,0 +1,10 @@
+digraph E002_defective_plaquette {
+  rankdir=LR;
+  "A" [shape=ellipse, style="filled,bold", fillcolor="#fff3cd"];
+  "B" [shape=ellipse, style="filled", fillcolor="#fde2e2"];
+  "C" [shape=ellipse, style="filled", fillcolor="#fde2e2"];
+  "A" -> "B" [penwidth=2];
+  "A" -> "C" [penwidth=2];
+  "B" -> "B" [style=dashed, color=red, label=defect];
+  "C" -> "C" [style=dashed, color=red, label=defect];
+}

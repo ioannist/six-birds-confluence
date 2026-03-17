@@ -1,0 +1,8 @@
+kind: finite_ars
+id: E002_fork_curved
+label: fork_curved
+states: [A, B, C, D]
+edges:
+  - [A, B]
+  - [A, C]
+  - [B, D]

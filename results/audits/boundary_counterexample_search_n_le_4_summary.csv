@@ -1,0 +1,7 @@
+overclaim_id,status,witness_id,system_id,n_states,edge_count,terminating,normalizing,local_flatness,locally_confluent,confluent,unique_reachable_normal_forms,naive_nf_peak_flatness,naive_directed_loop_flat
+O001_local_flatness_implies_confluence_without_termination,found,W001,N04_M00090,4,4,False,True,True,True,False,False,False,False
+O002_confluence_implies_normalizing,found,W002,N01_M1,1,1,False,False,True,True,True,True,True,False
+O003_unique_reachable_normal_forms_implies_confluence_without_termination,found,W003,N03_M022,3,3,False,False,False,False,False,True,False,False
+O004_naive_nf_peak_flatness_implies_local_flatness_without_termination,found,W004,N03_M209,3,4,False,False,False,False,False,True,True,False
+O005_naive_graph_flatness_false_positive,found,W005,N03_M006,3,2,True,True,False,False,False,False,False,True
+O006_naive_graph_flatness_false_negative,found,W006,N01_M1,1,1,False,False,True,True,True,True,True,False

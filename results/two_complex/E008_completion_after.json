@@ -1,0 +1,66 @@
+{
+  "domain": "string_rewrite",
+  "example_id": "E008_completion_after",
+  "holonomy_counts": {
+    "nf_outcome_mismatch": 0,
+    "nonjoinable": 0,
+    "nontrivial": 0,
+    "trivial": 1
+  },
+  "kind": "reduction_two_complex",
+  "one_cells": [
+    {
+      "one_cell_id": "C1_0001",
+      "source": "ab",
+      "target": "x"
+    },
+    {
+      "one_cell_id": "C1_0002",
+      "source": "ab",
+      "target": "y"
+    },
+    {
+      "one_cell_id": "C1_0003",
+      "source": "x",
+      "target": "y"
+    }
+  ],
+  "schema_version": 1,
+  "two_cell_count": 1,
+  "two_cells": [
+    {
+      "boundary": {
+        "left_edge_path_states": [
+          "ab",
+          "x"
+        ],
+        "left_filler_path_states": [
+          "x",
+          "y"
+        ],
+        "right_edge_path_states": [
+          "ab",
+          "y"
+        ],
+        "right_filler_path_states": [
+          "y"
+        ]
+      },
+      "elementary_holonomy_status": "trivial",
+      "generator_kind": "reachable_critical_pair",
+      "holonomy_defect_kind": null,
+      "join_witness": "y",
+      "left_branch_0cell": "x",
+      "nf_outcome_mismatch": false,
+      "nonjoinability_defect": false,
+      "right_branch_0cell": "y",
+      "source_0cell": "ab",
+      "two_cell_id": "C2_0001"
+    }
+  ],
+  "zero_cells": [
+    "ab",
+    "x",
+    "y"
+  ]
+}

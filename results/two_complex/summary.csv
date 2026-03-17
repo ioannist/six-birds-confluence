@@ -1,0 +1,7 @@
+example_id,domain,two_cell_count,trivial_count,nontrivial_count,nonjoinable_count,nf_outcome_mismatch_count
+E001_diamond_flat,finite_ars,1,1,0,0,0
+E002_fork_curved,finite_ars,1,0,1,1,1
+E007_completion_before,string_rewrite,1,0,1,1,1
+E008_completion_after,string_rewrite,1,1,0,0,0
+TRS003_nested_overlap_nonconfluent,term_rewrite,1,0,1,1,1
+TRS004_nested_overlap_joinable,term_rewrite,1,1,0,0,0

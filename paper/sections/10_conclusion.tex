@@ -1,0 +1,12 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+The paper began from a tempting but incorrect slogan: perhaps confluence can be read as flatness on the bare reduction graph. The repository evidence shows that this is the wrong level of structure. The reduction graph by itself does not remember the elementary local branchings whose agreement confluence tests. The correct object is a reduction 2-complex whose generating $2$-cells are local peaks in the finite-ARS setting and reachable critical pairs in the structured rewriting settings studied here.
+
+Once that correction is made, the local picture becomes clean. Elementary flatness is exactly local confluence. Defective local generators---concretely, reachable critical pairs in the structured settings studied here---carry nontrivial elementary holonomy. Completion, in explicit before/after examples, acts as elimination of that elementary holonomy: the generator remains, but the filler becomes available, the defect disappears, and confluence is restored.
+
+The repository now supports this picture at three levels. The formal core is proved and mirrored in Lean. The finite-ARS regime has been stress-tested exhaustively in the terminating case. The string and left-linear term-rewriting bridges show that reachable critical-pair defects match the observed local obstruction layer in the explored reduction complex, while the reduction 2-complex artifacts make the two-dimensional structure explicit.
+
+The final full theorem package for finite terminating left-linear term rewriting systems remains to be written in that exact generality. But the experimental and structural side of the project is now closed. The correct local object has been identified, the wrong graph-only surrogates have been ruled out, the local generators have been isolated, and the operational meaning of defect elimination has been made explicit.
+
+The paper's central message can therefore be stated without exaggeration. Order-independence of reduction is path-independence of transport, but only after rewriting is given its missing $2$-dimensional cells. In that corrected setting, local peaks and, in the structured settings studied here, reachable critical pairs are the local generators on which curvature lives.

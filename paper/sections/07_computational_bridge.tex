@@ -1,0 +1,68 @@
+\section{Computational Bridge and Stress Tests}
+\label{sec:computational-bridge}
+
+The preceding sections isolate the corrected geometric object and the theorem-level local core. This section records how that picture survives the implemented stress tests. The evidence comes in three layers:
+\begin{enumerate}
+    \item an exhaustive audit of all labeled finite abstract rewriting systems on up to four states in the terminating regime;
+    \item curated bounded string-rewriting examples;
+    \item a curated left-linear term-rewriting bridge with genuine nonroot overlap.
+\end{enumerate}
+The role of this section is not to replace theorem-writing. Its role is to show that once the object and the local generators are chosen correctly, the expected local/global relationships remain stable across every computational regime implemented in the repository.
+
+\subsection{Exhaustive finite-ARS audit}
+\label{subsec:exhaustive-finite-ars-audit}
+
+The cleanest stress test is the exhaustive finite-ARS audit. The search space contains every labeled directed rewriting relation on $n$ states for $n \leq 4$, including self-loops. This yields
+\[
+2^1 + 2^4 + 2^9 + 2^{16} = 66066
+\]
+systems in total. Of these, $572$ are terminating.
+
+\begin{proposition}[Exhaustive finite-ARS stress test]
+\label{prop:exhaustive-finite-ars-stress-test}
+Within the terminating finite-ARS search space on up to four states, the four target discrepancy classes tracked in the repository are empty.
+\end{proposition}
+
+\begin{proof}[Audit summary]
+The search checks $2$, $16$, $512$, and $65536$ labeled systems at sizes $1$, $2$, $3$, and $4$ respectively, for a total of $66066$. The terminating counts are $1$, $3$, $25$, and $543$, for a total of $572$ terminating systems. On this terminating subset, the discrepancy counts
+\[
+\begin{aligned}
+&\texttt{local\_flatness\_vs\_local\_confluence},\\
+&\texttt{terminating\_local\_flatness\_not\_confluent},\\
+&\texttt{terminating\_confluent\_not\_unique\_reachable\_normal\_forms},\\
+&\texttt{terminating\_unique\_reachable\_normal\_forms\_not\_confluent}
+\end{aligned}
+\]
+are all zero. Equivalently, on the terminating finite-ARS regime explored here, the local peak picture survives every system in the search space while the naive graph-only flatness surrogates do not.
+\end{proof}
+
+\input{tables/T5_exhaustive_finite_ars_summary}
+
+The same finite-ARS infrastructure was also used outside the safe theorem hypotheses. Within the same small search bound, the boundary-counterexample search found explicit witnesses to the weakened claims obtained by dropping termination or replacing joinability-based local flatness with naive graph or normal-form surrogates. The positive finite-ARS results are therefore not an artifact of an impoverished search space; they are specific to the correct hypotheses.
+
+\subsection{Curated string systems}
+\label{subsec:curated-string-systems}
+
+The string layer provides the first structured rewriting bridge. All four curated string examples explored completely under their chosen bounds, and all four exhibit the expected relation between global confluence, local peak defects, and reachable critical-pair defects.
+
+\input{tables/T6_curated_string_summary}
+
+The sorting example $E005$ explores completely to a six-state, six-edge reduction graph with one local peak, one reachable critical pair, zero local defects, zero reachable critical-pair defects, and unique normal form \texttt{abc}. The overlap example $E006$ explores completely to a four-state, three-edge reduction graph with one local peak, two system critical pairs, one reachable critical pair, and normal forms \texttt{a} and \texttt{aa}; its local peak defect counts and reachable critical-pair defect counts are both nonzero, and the explored system is nonconfluent. The completion-before example $E007$ explores completely to a three-state, two-edge reduction graph with normal forms \texttt{x} and \texttt{y}; it has one local peak, one reachable critical pair, nonzero local defects, nonzero reachable critical-pair defects, and nonconfluence. The completion-after example $E008$ explores completely to a three-state, three-edge reduction graph with unique normal form \texttt{y}; it has one local peak, one reachable critical pair, zero local defects, zero reachable critical-pair defects, and confluence.
+
+Taken together, the string examples do not merely show that some nonconfluent systems have bad critical pairs. They show the tighter statement needed for the paper: on the curated examples, the reachable critical-pair defect layer and the observed graph-peak defect layer agree exactly, and both align with the global confluence behavior of the explored system.
+
+\subsection{Curated left-linear term-rewriting bridge}
+\label{subsec:curated-trs-bridge}
+
+The left-linear term-rewriting prototype extends the same local/global pattern to a genuine first-order setting. All four curated examples explore completely under their chosen bounds.
+
+\input{tables/T7_curated_trs_summary}
+
+The Peano-addition smoke test $TRS001$ explores completely to a three-state, two-edge reduction graph with unique normal form \texttt{s(s(z))} and no critical pairs. The root-overlap example $TRS002$ explores completely to a three-state, two-edge reduction graph with one reachable critical pair, one graph peak, normal forms \texttt{g(b)} and \texttt{h(a)}, and a nontrivial reachable defect. The nested-overlap nonconfluent example $TRS003$ explores completely to a three-state, two-edge reduction graph with one reachable critical pair, one graph peak, normal forms \texttt{f(b)} and \texttt{p(a)}, and a nontrivial reachable defect. The nested-overlap resolved example $TRS004$ explores completely to a three-state, three-edge reduction graph with one reachable critical pair, one graph peak, unique normal form \texttt{p(a)}, and zero reachable defects.
+
+The term-rewriting bridge therefore reproduces the same operational pattern seen in the string layer. The local generator persists, but its defect status changes. In the defective case the explored system is nonconfluent from the chosen start term; in the resolved case the explored system is confluent. Moreover, the reachability cross-check between critical-pair signatures and graph-peak signatures is exact on all curated TRS examples.
+
+\begin{remark}[What the computational bridge does and does not establish]
+\label{rem:computational-bridge-scope}
+The computational evidence in this section is strong enough to fix the correct local geometric picture. It is not, by itself, the final theorem package for finite terminating left-linear term rewriting systems in full generality. What it does establish is that the corrected local/global story survives every implemented stress test: exhaustive finite ARS search in the terminating regime, curated string overlaps and completion pairs, and curated left-linear term-rewriting examples with genuine nonroot overlap.
+\end{remark}

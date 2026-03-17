@@ -1,0 +1,11 @@
+kind: term_rewrite_system
+id: TRS002_left_linear_overlap
+label: left_linear_overlap
+rules:
+  - ["f(a, ?y)", "g(?y)"]
+  - ["f(?x, b)", "h(?x)"]
+start_terms: ["f(a,b)"]
+bounds:
+  max_depth: 4
+  max_states: 16
+  max_term_nodes: 64

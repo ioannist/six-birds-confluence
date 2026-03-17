@@ -1,0 +1,55 @@
+\section{Lean Formal Core}
+\label{app:lean-formal-core}
+
+The repository contains a small Lean development whose purpose is to secure the paper's formal core, not to formalize the entire computational bridge. The Lean package is rooted at \texttt{ConfluenceFlat} and currently consists of two substantive files: \code{ConfluenceFlat/Core.lean} and \code{ConfluenceFlat/UniqueNormalForm.lean}.
+
+\subsection{Formalized definitions}
+
+The file \code{ConfluenceFlat/Core.lean} formalizes the abstract rewriting notions used in \Cref{sec:core-theorem}. These include:
+\begin{itemize}
+    \item finite abstract rewriting systems,
+    \item reflexive-transitive reachability,
+    \item joinability,
+    \item normal forms,
+    \item local confluence,
+    \item elementary peaks,
+    \item elementary flatness.
+\end{itemize}
+
+The file \code{ConfluenceFlat/UniqueNormalForm.lean} adds the supporting global notions used later in \Cref{sec:core-theorem}, including:
+\begin{itemize}
+    \item confluence,
+    \item normalization,
+    \item uniqueness of normal form from a chosen start state,
+    \item existence and uniqueness of normal form under confluence and normalization.
+\end{itemize}
+
+\subsection{Formalized theorem layer}
+
+The formal core currently proves the following results by name.
+\begin{sloppypar}
+\begin{itemize}[leftmargin=1.5em]
+    \item In \code{ConfluenceFlat/Core.lean}:
+    \begin{itemize}[leftmargin=1.5em]
+        \item \code{ConfluenceFlat.FiniteARS.joinable_refl},
+        \item \code{ConfluenceFlat.FiniteARS.elementaryFlat_of_localConfluent},
+        \item \code{ConfluenceFlat.FiniteARS.localConfluent_of_elementaryFlat},
+        \item \code{ConfluenceFlat.FiniteARS.elementaryFlat_iff_localConfluent}.
+    \end{itemize}
+    \item In \code{ConfluenceFlat/UniqueNormalForm.lean}:
+    \begin{itemize}[leftmargin=1.5em]
+        \item \code{ConfluenceFlat.FiniteARS.reachable_eq_of_normalForm},
+        \item \code{ConfluenceFlat.FiniteARS.eq_of_joinable_normalForms},
+        \item \code{ConfluenceFlat.FiniteARS.uniqueNormalFormFrom_of_confluent},
+        \item \mbox{\texttt{ConfluenceFlat.FiniteARS.existsUnique}}\penalty0\texttt{NormalFormFrom\_of\_confluent\_normalizing}.
+    \end{itemize}
+\end{itemize}
+\end{sloppypar}
+
+\subsection{Correspondence to the main text}
+
+These Lean theorems mirror the theorem-level commitments made in the main text. The equivalence
+\[
+\text{elementary flatness} \iff \text{local confluence}
+\]
+is the formal counterpart of \Cref{thm:elementary-flatness-iff-local-confluence}. The existence-and-uniqueness result under confluence and normalization is the formal counterpart of \Cref{prop:confluence-normalization-unique-normal-form}. The Lean layer therefore secures the paper's proved core while leaving the computational bridge, artifact layer, and full deferred TRS theorem package outside the scope of formalization.

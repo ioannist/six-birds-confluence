@@ -1,0 +1,160 @@
+{
+  "diagrams": [
+    {
+      "critical_pair_id": null,
+      "diagram_id": "D0001",
+      "diagram_kind": "reduction_graph",
+      "domain": "finite_ars",
+      "dot_path": "results/diagrams/E001_diamond_flat/reduction_graph.dot",
+      "example_id": "E001_diamond_flat",
+      "feature_status": "full_graph",
+      "focus_branches": null,
+      "focus_source": null,
+      "focus_witness": null,
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": null,
+      "diagram_id": "D0002",
+      "diagram_kind": "join_diamond",
+      "domain": "finite_ars",
+      "dot_path": "results/diagrams/E001_diamond_flat/join_diamond.dot",
+      "example_id": "E001_diamond_flat",
+      "feature_status": "joinable",
+      "focus_branches": [
+        "B",
+        "C"
+      ],
+      "focus_source": "A",
+      "focus_witness": "D",
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": null,
+      "diagram_id": "D0003",
+      "diagram_kind": "reduction_graph",
+      "domain": "finite_ars",
+      "dot_path": "results/diagrams/E002_fork_curved/reduction_graph.dot",
+      "example_id": "E002_fork_curved",
+      "feature_status": "full_graph",
+      "focus_branches": null,
+      "focus_source": null,
+      "focus_witness": null,
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": null,
+      "diagram_id": "D0004",
+      "diagram_kind": "defective_plaquette",
+      "domain": "finite_ars",
+      "dot_path": "results/diagrams/E002_fork_curved/defective_plaquette.dot",
+      "example_id": "E002_fork_curved",
+      "feature_status": "defective",
+      "focus_branches": [
+        "B",
+        "C"
+      ],
+      "focus_source": "A",
+      "focus_witness": null,
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": null,
+      "diagram_id": "D0005",
+      "diagram_kind": "join_diamond",
+      "domain": "finite_ars",
+      "dot_path": "results/diagrams/E003_delayed_join_flat/join_diamond.dot",
+      "example_id": "E003_delayed_join_flat",
+      "feature_status": "joinable",
+      "focus_branches": [
+        "B",
+        "C"
+      ],
+      "focus_source": "A",
+      "focus_witness": "F",
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": null,
+      "diagram_id": "D0006",
+      "diagram_kind": "explored_reduction_graph",
+      "domain": "string_rewrite",
+      "dot_path": "results/diagrams/E006_string_overlap_nonconfluent/explored_reduction_graph.dot",
+      "example_id": "E006_string_overlap_nonconfluent",
+      "feature_status": "full_graph",
+      "focus_branches": null,
+      "focus_source": null,
+      "focus_witness": null,
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": "CP0001",
+      "diagram_id": "D0007",
+      "diagram_kind": "critical_pair_focus",
+      "domain": "string_rewrite",
+      "dot_path": "results/diagrams/E006_string_overlap_nonconfluent/critical_pair_focus.dot",
+      "example_id": "E006_string_overlap_nonconfluent",
+      "feature_status": "defective",
+      "focus_branches": [
+        "aa",
+        "ab"
+      ],
+      "focus_source": "aba",
+      "focus_witness": null,
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": "CP0001",
+      "diagram_id": "D0008",
+      "diagram_kind": "critical_pair_focus",
+      "domain": "string_rewrite",
+      "dot_path": "results/diagrams/E007_completion_before/critical_pair_focus.dot",
+      "example_id": "E007_completion_before",
+      "feature_status": "defective",
+      "focus_branches": [
+        "x",
+        "y"
+      ],
+      "focus_source": "ab",
+      "focus_witness": null,
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    },
+    {
+      "critical_pair_id": "CP0001",
+      "diagram_id": "D0009",
+      "diagram_kind": "critical_pair_focus",
+      "domain": "string_rewrite",
+      "dot_path": "results/diagrams/E008_completion_after/critical_pair_focus.dot",
+      "example_id": "E008_completion_after",
+      "feature_status": "joinable",
+      "focus_branches": [
+        "x",
+        "y"
+      ],
+      "focus_source": "ab",
+      "focus_witness": "y",
+      "png_path": null,
+      "render_status": "dot_only",
+      "svg_path": null
+    }
+  ],
+  "graphviz_dot_available": false,
+  "kind": "diagram_asset_index",
+  "schema_version": 1
+}

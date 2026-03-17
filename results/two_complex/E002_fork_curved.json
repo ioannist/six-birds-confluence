@@ -1,0 +1,62 @@
+{
+  "domain": "finite_ars",
+  "example_id": "E002_fork_curved",
+  "holonomy_counts": {
+    "nf_outcome_mismatch": 1,
+    "nonjoinable": 1,
+    "nontrivial": 1,
+    "trivial": 0
+  },
+  "kind": "reduction_two_complex",
+  "one_cells": [
+    {
+      "one_cell_id": "C1_0001",
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "one_cell_id": "C1_0002",
+      "source": "A",
+      "target": "C"
+    },
+    {
+      "one_cell_id": "C1_0003",
+      "source": "B",
+      "target": "D"
+    }
+  ],
+  "schema_version": 1,
+  "two_cell_count": 1,
+  "two_cells": [
+    {
+      "boundary": {
+        "left_edge_path_states": [
+          "A",
+          "B"
+        ],
+        "left_filler_path_states": [],
+        "right_edge_path_states": [
+          "A",
+          "C"
+        ],
+        "right_filler_path_states": []
+      },
+      "elementary_holonomy_status": "nontrivial",
+      "generator_kind": "local_peak",
+      "holonomy_defect_kind": "nonjoinable",
+      "join_witness": null,
+      "left_branch_0cell": "B",
+      "nf_outcome_mismatch": true,
+      "nonjoinability_defect": true,
+      "right_branch_0cell": "C",
+      "source_0cell": "A",
+      "two_cell_id": "C2_0001"
+    }
+  ],
+  "zero_cells": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ]
+}

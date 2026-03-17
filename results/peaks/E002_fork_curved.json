@@ -1,0 +1,32 @@
+{
+  "defect_counts": {
+    "nf_outcome_mismatch": 1,
+    "nonjoinability_defect": 1
+  },
+  "edge_count": 3,
+  "example_id": "E002_fork_curved",
+  "kind": "finite_ars_peak_analysis",
+  "peak_count": 1,
+  "peaks": [
+    {
+      "joinable": false,
+      "left": "B",
+      "left_reachable_normal_forms": [
+        "D"
+      ],
+      "nf_outcome_mismatch": true,
+      "nf_symmetric_difference_size": 2,
+      "nonjoinability_defect": true,
+      "right": "C",
+      "right_reachable_normal_forms": [
+        "C"
+      ],
+      "shortest_join_witness_total_distance": null,
+      "shortest_join_witnesses": [],
+      "source": "A"
+    }
+  ],
+  "schema_version": 1,
+  "state_count": 4,
+  "terminating": true
+}

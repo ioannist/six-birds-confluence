@@ -1,0 +1,147 @@
+# Details
+
+Date : 2026-03-13 20:29:40
+
+Directory /home/repos/six-birds-confluence
+
+Total : 132 files,  10160 codes, 78 comments, 1363 blanks, all 11601 lines
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
+
+## Files
+| filename | language | code | comment | blank | total |
+| :--- | :--- | ---: | ---: | ---: | ---: |
+| [Makefile](/Makefile) | Makefile | 22 | 0 | 8 | 30 |
+| [data/examples/E001\_diamond\_flat.yaml](/data/examples/E001_diamond_flat.yaml) | YAML | 9 | 0 | 1 | 10 |
+| [data/examples/E002\_fork\_curved.yaml](/data/examples/E002_fork_curved.yaml) | YAML | 8 | 0 | 1 | 9 |
+| [data/examples/E003\_delayed\_join\_flat.yaml](/data/examples/E003_delayed_join_flat.yaml) | YAML | 10 | 0 | 1 | 11 |
+| [data/examples/E004\_bare\_graph\_counterexample\_target.yaml](/data/examples/E004_bare_graph_counterexample_target.yaml) | YAML | 10 | 0 | 1 | 11 |
+| [data/examples/E005\_string\_sort\_confluent.yaml](/data/examples/E005_string_sort_confluent.yaml) | YAML | 12 | 0 | 1 | 13 |
+| [data/examples/E006\_string\_overlap\_nonconfluent.yaml](/data/examples/E006_string_overlap_nonconfluent.yaml) | YAML | 11 | 0 | 1 | 12 |
+| [data/examples/E007\_completion\_before.yaml](/data/examples/E007_completion_before.yaml) | YAML | 11 | 0 | 1 | 12 |
+| [data/examples/E008\_completion\_after.yaml](/data/examples/E008_completion_after.yaml) | YAML | 12 | 0 | 1 | 13 |
+| [data/examples/term\_rewrite/TRS001\_add\_peano.yaml](/data/examples/term_rewrite/TRS001_add_peano.yaml) | YAML | 11 | 0 | 1 | 12 |
+| [data/examples/term\_rewrite/TRS002\_left\_linear\_overlap.yaml](/data/examples/term_rewrite/TRS002_left_linear_overlap.yaml) | YAML | 11 | 0 | 1 | 12 |
+| [data/examples/term\_rewrite/TRS003\_nested\_overlap\_nonconfluent.yaml](/data/examples/term_rewrite/TRS003_nested_overlap_nonconfluent.yaml) | YAML | 11 | 0 | 1 | 12 |
+| [data/examples/term\_rewrite/TRS004\_nested\_overlap\_joinable.yaml](/data/examples/term_rewrite/TRS004_nested_overlap_joinable.yaml) | YAML | 12 | 0 | 1 | 13 |
+| [lake-manifest.json](/lake-manifest.json) | JSON | 5 | 0 | 1 | 6 |
+| [paper/appendices/A\_lean\_formal\_core.tex](/paper/appendices/A_lean_formal_core.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/appendices/B\_computational\_protocol.tex](/paper/appendices/B_computational_protocol.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/appendices/C\_artifact\_guide.tex](/paper/appendices/C_artifact_guide.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/macros.tex](/paper/macros.tex) | LaTeX | 26 | 0 | 4 | 30 |
+| [paper/main.tex](/paper/main.tex) | LaTeX | 26 | 1 | 11 | 38 |
+| [paper/references.bib](/paper/references.bib) | BibTeX | 1 | 0 | 1 | 2 |
+| [paper/sections/01\_introduction.tex](/paper/sections/01_introduction.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/02\_preliminaries\_scope.tex](/paper/sections/02_preliminaries_scope.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/03\_bare\_graph\_not\_enough.tex](/paper/sections/03_bare_graph_not_enough.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/04\_reduction\_two\_complex.tex](/paper/sections/04_reduction_two_complex.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/05\_core\_theorem.tex](/paper/sections/05_core_theorem.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/06\_critical\_pairs\_curvature\_generators.tex](/paper/sections/06_critical_pairs_curvature_generators.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/07\_computational\_bridge.tex](/paper/sections/07_computational_bridge.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/08\_completion\_holonomy\_elimination.tex](/paper/sections/08_completion_holonomy_elimination.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/09\_proved\_supported\_deferred.tex](/paper/sections/09_proved_supported_deferred.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [paper/sections/10\_conclusion.tex](/paper/sections/10_conclusion.tex) | LaTeX | 2 | 1 | 1 | 4 |
+| [project/case\_studies/CS001\_manual\_completion\_ab\_to\_xy.yaml](/project/case_studies/CS001_manual_completion_ab_to_xy.yaml) | YAML | 12 | 0 | 1 | 13 |
+| [project/claim\_registry.yaml](/project/claim_registry.yaml) | YAML | 110 | 0 | 1 | 111 |
+| [project/claim\_support\_matrix.yaml](/project/claim_support_matrix.yaml) | YAML | 127 | 0 | 10 | 137 |
+| [project/example\_catalog.yaml](/project/example_catalog.yaml) | YAML | 100 | 0 | 1 | 101 |
+| [results/audits/boundary\_counterexample\_search\_n\_le\_4.json](/results/audits/boundary_counterexample_search_n_le_4.json) | JSON | 407 | 0 | 1 | 408 |
+| [results/audits/critical\_pair\_curvature\_audit.json](/results/audits/critical_pair_curvature_audit.json) | JSON | 209 | 0 | 1 | 210 |
+| [results/audits/exhaustive\_finite\_ars\_n\_le\_4\_counterexamples.json](/results/audits/exhaustive_finite_ars_n_le_4_counterexamples.json) | JSON | 15 | 0 | 1 | 16 |
+| [results/audits/exhaustive\_finite\_ars\_n\_le\_4\_summary.json](/results/audits/exhaustive_finite_ars_n_le_4_summary.json) | JSON | 62 | 0 | 1 | 63 |
+| [results/audits/naive\_graph\_flatness\_audit.json](/results/audits/naive_graph_flatness_audit.json) | JSON | 70 | 0 | 1 | 71 |
+| [results/case\_studies/CS001\_manual\_completion\_ab\_to\_xy.json](/results/case_studies/CS001_manual_completion_ab_to_xy.json) | JSON | 122 | 0 | 1 | 123 |
+| [results/critical\_pairs/E005\_string\_sort\_confluent.json](/results/critical_pairs/E005_string_sort_confluent.json) | JSON | 67 | 0 | 1 | 68 |
+| [results/critical\_pairs/E006\_string\_overlap\_nonconfluent.json](/results/critical_pairs/E006_string_overlap_nonconfluent.json) | JSON | 112 | 0 | 1 | 113 |
+| [results/critical\_pairs/E007\_completion\_before.json](/results/critical_pairs/E007_completion_before.json) | JSON | 67 | 0 | 1 | 68 |
+| [results/critical\_pairs/E008\_completion\_after.json](/results/critical_pairs/E008_completion_after.json) | JSON | 67 | 0 | 1 | 68 |
+| [results/critical\_pairs/summary.json](/results/critical_pairs/summary.json) | JSON | 42 | 0 | 1 | 43 |
+| [results/diagrams/index.json](/results/diagrams/index.json) | JSON | 160 | 0 | 1 | 161 |
+| [results/freeze/claim\_support\_matrix.json](/results/freeze/claim_support_matrix.json) | JSON | 206 | 0 | 1 | 207 |
+| [results/freeze/final\_experiment\_summary.json](/results/freeze/final_experiment_summary.json) | JSON | 49 | 0 | 1 | 50 |
+| [results/index.json](/results/index.json) | JSON | 743 | 0 | 1 | 744 |
+| [results/peaks/E001\_diamond\_flat.json](/results/peaks/E001_diamond_flat.json) | JSON | 34 | 0 | 1 | 35 |
+| [results/peaks/E002\_fork\_curved.json](/results/peaks/E002_fork_curved.json) | JSON | 32 | 0 | 1 | 33 |
+| [results/peaks/summary.json](/results/peaks/summary.json) | JSON | 20 | 0 | 1 | 21 |
+| [results/plaquettes/E001\_diamond\_flat.json](/results/plaquettes/E001_diamond_flat.json) | JSON | 41 | 0 | 1 | 42 |
+| [results/plaquettes/E002\_fork\_curved.json](/results/plaquettes/E002_fork_curved.json) | JSON | 30 | 0 | 1 | 31 |
+| [results/plaquettes/E003\_delayed\_join\_flat.json](/results/plaquettes/E003_delayed_join_flat.json) | JSON | 42 | 0 | 1 | 43 |
+| [results/plaquettes/E004\_bare\_graph\_counterexample\_target.json](/results/plaquettes/E004_bare_graph_counterexample_target.json) | JSON | 45 | 0 | 1 | 46 |
+| [results/plaquettes/summary.json](/results/plaquettes/summary.json) | JSON | 34 | 0 | 1 | 35 |
+| [results/string\_rewrite/E005\_string\_sort\_confluent.json](/results/string_rewrite/E005_string_sort_confluent.json) | JSON | 72 | 0 | 1 | 73 |
+| [results/string\_rewrite/E006\_string\_overlap\_nonconfluent.json](/results/string_rewrite/E006_string_overlap_nonconfluent.json) | JSON | 59 | 0 | 1 | 60 |
+| [results/string\_rewrite/E007\_completion\_before.json](/results/string_rewrite/E007_completion_before.json) | JSON | 54 | 0 | 1 | 55 |
+| [results/string\_rewrite/E008\_completion\_after.json](/results/string_rewrite/E008_completion_after.json) | JSON | 58 | 0 | 1 | 59 |
+| [results/string\_rewrite/summary.json](/results/string_rewrite/summary.json) | JSON | 56 | 0 | 1 | 57 |
+| [results/term\_rewrite/TRS001\_add\_peano.json](/results/term_rewrite/TRS001_add_peano.json) | JSON | 32 | 0 | 1 | 33 |
+| [results/term\_rewrite/TRS002\_left\_linear\_overlap.json](/results/term_rewrite/TRS002_left_linear_overlap.json) | JSON | 54 | 0 | 1 | 55 |
+| [results/term\_rewrite/TRS003\_nested\_overlap\_nonconfluent.json](/results/term_rewrite/TRS003_nested_overlap_nonconfluent.json) | JSON | 56 | 0 | 1 | 57 |
+| [results/term\_rewrite/TRS004\_nested\_overlap\_joinable.json](/results/term_rewrite/TRS004_nested_overlap_joinable.json) | JSON | 55 | 0 | 1 | 56 |
+| [results/term\_rewrite/summary.json](/results/term_rewrite/summary.json) | JSON | 66 | 0 | 1 | 67 |
+| [results/two\_complex/E001\_diamond\_flat.json](/results/two_complex/E001_diamond_flat.json) | JSON | 73 | 0 | 1 | 74 |
+| [results/two\_complex/E002\_fork\_curved.json](/results/two_complex/E002_fork_curved.json) | JSON | 62 | 0 | 1 | 63 |
+| [results/two\_complex/E007\_completion\_before.json](/results/two_complex/E007_completion_before.json) | JSON | 56 | 0 | 1 | 57 |
+| [results/two\_complex/E008\_completion\_after.json](/results/two_complex/E008_completion_after.json) | JSON | 66 | 0 | 1 | 67 |
+| [results/two\_complex/TRS003\_nested\_overlap\_nonconfluent.json](/results/two_complex/TRS003_nested_overlap_nonconfluent.json) | JSON | 56 | 0 | 1 | 57 |
+| [results/two\_complex/TRS004\_nested\_overlap\_joinable.json](/results/two_complex/TRS004_nested_overlap_joinable.json) | JSON | 66 | 0 | 1 | 67 |
+| [results/two\_complex/summary.json](/results/two_complex/summary.json) | JSON | 85 | 0 | 1 | 86 |
+| [scripts/build\_results\_ledger.py](/scripts/build_results_ledger.py) | Python | 12 | 2 | 8 | 22 |
+| [scripts/finite\_ars\_smoke\_check.py](/scripts/finite_ars_smoke_check.py) | Python | 28 | 2 | 12 | 42 |
+| [scripts/generate\_diagram\_assets.py](/scripts/generate_diagram_assets.py) | Python | 16 | 2 | 8 | 26 |
+| [scripts/generate\_peak\_artifacts.py](/scripts/generate_peak_artifacts.py) | Python | 40 | 2 | 15 | 57 |
+| [scripts/generate\_plaquette\_artifacts.py](/scripts/generate_plaquette_artifacts.py) | Python | 42 | 2 | 15 | 59 |
+| [scripts/package\_repo\_snapshot.sh](/scripts/package_repo_snapshot.sh) | Shell Script | 239 | 1 | 34 | 274 |
+| [scripts/run\_boundary\_counterexample\_search.py](/scripts/run_boundary_counterexample_search.py) | Python | 73 | 2 | 15 | 90 |
+| [scripts/run\_completion\_case\_study.py](/scripts/run_completion_case_study.py) | Python | 65 | 2 | 13 | 80 |
+| [scripts/run\_critical\_pair\_analysis.py](/scripts/run_critical_pair_analysis.py) | Python | 59 | 2 | 13 | 74 |
+| [scripts/run\_critical\_pair\_curvature\_audit.py](/scripts/run_critical_pair_curvature_audit.py) | Python | 105 | 2 | 14 | 121 |
+| [scripts/run\_exhaustive\_finite\_ars\_audit.py](/scripts/run_exhaustive_finite_ars_audit.py) | Python | 48 | 2 | 14 | 64 |
+| [scripts/run\_final\_freeze.py](/scripts/run_final_freeze.py) | Python | 16 | 2 | 8 | 26 |
+| [scripts/run\_naive\_graph\_flatness\_audit.py](/scripts/run_naive_graph_flatness_audit.py) | Python | 49 | 2 | 14 | 65 |
+| [scripts/run\_regression\_harness.py](/scripts/run_regression_harness.py) | Python | 42 | 2 | 12 | 56 |
+| [scripts/run\_string\_rewrite\_examples.py](/scripts/run_string_rewrite_examples.py) | Python | 114 | 2 | 19 | 135 |
+| [scripts/run\_term\_rewrite\_prototype.py](/scripts/run_term_rewrite_prototype.py) | Python | 58 | 2 | 12 | 72 |
+| [scripts/run\_two\_complex\_generation.py](/scripts/run_two_complex_generation.py) | Python | 22 | 2 | 8 | 32 |
+| [src/rewriteflat/\_\_init\_\_.py](/src/rewriteflat/__init__.py) | Python | 96 | 1 | 3 | 100 |
+| [src/rewriteflat/\_\_main\_\_.py](/src/rewriteflat/__main__.py) | Python | 5 | 1 | 6 | 12 |
+| [src/rewriteflat/boundary\_counterexamples.py](/src/rewriteflat/boundary_counterexamples.py) | Python | 202 | 1 | 38 | 241 |
+| [src/rewriteflat/cli.py](/src/rewriteflat/cli.py) | Python | 49 | 1 | 18 | 68 |
+| [src/rewriteflat/completion\_case\_study.py](/src/rewriteflat/completion_case_study.py) | Python | 170 | 1 | 25 | 196 |
+| [src/rewriteflat/critical\_pair\_curvature\_audit.py](/src/rewriteflat/critical_pair_curvature_audit.py) | Python | 218 | 1 | 35 | 254 |
+| [src/rewriteflat/critical\_pairs.py](/src/rewriteflat/critical_pairs.py) | Python | 223 | 2 | 30 | 255 |
+| [src/rewriteflat/diagram\_generator.py](/src/rewriteflat/diagram_generator.py) | Python | 445 | 6 | 53 | 504 |
+| [src/rewriteflat/example\_io.py](/src/rewriteflat/example_io.py) | Python | 88 | 1 | 25 | 114 |
+| [src/rewriteflat/exhaustive\_finite\_ars\_audit.py](/src/rewriteflat/exhaustive_finite_ars_audit.py) | Python | 161 | 1 | 31 | 193 |
+| [src/rewriteflat/finite\_ars.py](/src/rewriteflat/finite_ars.py) | Python | 102 | 2 | 26 | 130 |
+| [src/rewriteflat/freeze\_summary.py](/src/rewriteflat/freeze_summary.py) | Python | 171 | 3 | 38 | 212 |
+| [src/rewriteflat/naive\_graph\_audit.py](/src/rewriteflat/naive_graph_audit.py) | Python | 82 | 1 | 20 | 103 |
+| [src/rewriteflat/peak\_analysis.py](/src/rewriteflat/peak_analysis.py) | Python | 77 | 1 | 18 | 96 |
+| [src/rewriteflat/plaquettes.py](/src/rewriteflat/plaquettes.py) | Python | 90 | 1 | 24 | 115 |
+| [src/rewriteflat/project\_config.py](/src/rewriteflat/project_config.py) | Python | 124 | 2 | 40 | 166 |
+| [src/rewriteflat/regression\_harness.py](/src/rewriteflat/regression_harness.py) | Python | 179 | 1 | 20 | 200 |
+| [src/rewriteflat/results\_ledger.py](/src/rewriteflat/results_ledger.py) | Python | 199 | 1 | 46 | 246 |
+| [src/rewriteflat/string\_rewriting.py](/src/rewriteflat/string_rewriting.py) | Python | 187 | 1 | 31 | 219 |
+| [src/rewriteflat/term\_rewriting.py](/src/rewriteflat/term_rewriting.py) | Python | 532 | 1 | 112 | 645 |
+| [src/rewriteflat/two\_complex.py](/src/rewriteflat/two_complex.py) | Python | 366 | 1 | 57 | 424 |
+| [tests/conftest.py](/tests/conftest.py) | Python | 7 | 0 | 3 | 10 |
+| [tests/test\_boundary\_counterexamples.py](/tests/test_boundary_counterexamples.py) | Python | 78 | 0 | 18 | 96 |
+| [tests/test\_cli.py](/tests/test_cli.py) | Python | 30 | 0 | 9 | 39 |
+| [tests/test\_completion\_case\_study.py](/tests/test_completion_case_study.py) | Python | 63 | 0 | 16 | 79 |
+| [tests/test\_critical\_pair\_curvature\_audit.py](/tests/test_critical_pair_curvature_audit.py) | Python | 60 | 0 | 16 | 76 |
+| [tests/test\_critical\_pairs.py](/tests/test_critical_pairs.py) | Python | 61 | 0 | 18 | 79 |
+| [tests/test\_diagram\_generator.py](/tests/test_diagram_generator.py) | Python | 75 | 0 | 26 | 101 |
+| [tests/test\_example\_io.py](/tests/test_example_io.py) | Python | 26 | 0 | 12 | 38 |
+| [tests/test\_exhaustive\_finite\_ars\_audit.py](/tests/test_exhaustive_finite_ars_audit.py) | Python | 44 | 0 | 15 | 59 |
+| [tests/test\_finite\_ars.py](/tests/test_finite_ars.py) | Python | 32 | 0 | 9 | 41 |
+| [tests/test\_freeze\_summary.py](/tests/test_freeze_summary.py) | Python | 52 | 0 | 16 | 68 |
+| [tests/test\_naive\_graph\_audit.py](/tests/test_naive_graph_audit.py) | Python | 57 | 0 | 19 | 76 |
+| [tests/test\_peak\_analysis.py](/tests/test_peak_analysis.py) | Python | 49 | 0 | 16 | 65 |
+| [tests/test\_plaquettes.py](/tests/test_plaquettes.py) | Python | 43 | 0 | 17 | 60 |
+| [tests/test\_project\_config.py](/tests/test_project_config.py) | Python | 22 | 0 | 11 | 33 |
+| [tests/test\_regression\_harness.py](/tests/test_regression_harness.py) | Python | 49 | 0 | 14 | 63 |
+| [tests/test\_results\_ledger.py](/tests/test_results_ledger.py) | Python | 70 | 0 | 23 | 93 |
+| [tests/test\_string\_rewriting.py](/tests/test_string_rewriting.py) | Python | 121 | 0 | 29 | 150 |
+| [tests/test\_term\_rewriting.py](/tests/test_term_rewriting.py) | Python | 85 | 0 | 22 | 107 |
+| [tests/test\_two\_complex.py](/tests/test_two_complex.py) | Python | 57 | 0 | 21 | 78 |
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

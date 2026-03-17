@@ -1,0 +1,87 @@
+\section{Reduction 2-Complexes and Elementary Holonomy}
+\label{sec:reduction-two-complex}
+
+The bare reduction graph records states and one-step rewrites, but it does not yet record the local two-route data on which confluence is tested. The guiding correction in this paper is that the relevant geometric object is therefore not the graph alone, but a \emph{reduction 2-complex}: a directed $1$-skeleton together with generating $2$-cells for the local branching patterns that matter. In the finite abstract rewriting systems used earlier in the paper, those generating $2$-cells are local peaks. In the string and term-rewriting examples used later, they are reachable critical pairs. The common point is that each generating $2$-cell compares two admissible one-step branches from a common source.
+
+\subsection{From reduction graphs to reduction 2-complexes}
+
+\begin{definition}[Reduction 2-complex]
+\label{def:reduction-two-complex}
+For the purposes of this paper, a \emph{reduction 2-complex} associated to a rewriting system $R$ consists of the following data.
+\begin{enumerate}
+    \item A set of \emph{$0$-cells}, namely the states, words, or terms under consideration.
+    \item A set of directed \emph{$1$-cells}, namely the one-step rewrites $x \to y$.
+    \item A set of generating \emph{$2$-cells}, each attached to a local two-route branching pattern with common source. In the finite-ARS setting these are local peaks. In the string and term-rewriting settings used in this paper, these are reachable critical pairs relative to the chosen start states and exploration bounds.
+\end{enumerate}
+\end{definition}
+
+The point of \Cref{def:reduction-two-complex} is modest but essential. We are not introducing the full apparatus of higher gauge theory here. We are isolating the minimal two-dimensional structure needed to talk about local path dependence. The reduction graph supplies the $1$-skeleton; the generating peaks or reachable critical pairs supply the missing $2$-cells \cite{Mimram2023,GuiraudMalbos2018,GuiraudMalbos2012,Squier1987}.
+
+\begin{remark}[Why the bare graph is insufficient]
+\label{rem:bare-graph-insufficient}
+A graph by itself can encode paths, but not which pairs of paths are the elementary local branchings whose agreement is at stake. Curvature language therefore cannot be attached to the bare reduction graph alone in any informative way. The relevant local obstruction lives on generating $2$-cells, not merely on loops in the $1$-skeleton. This is exactly why the graph-only flatness surrogates examined in \Cref{sec:bare-graph-not-enough} fail.
+\end{remark}
+
+\subsection{Elementary holonomy}
+
+Each generating $2$-cell compares two boundary routes with the same source. If those routes can be filled to a common witness, the local discrepancy disappears. If they cannot, the local branching remembers a genuine route mismatch.
+
+\begin{definition}[Boundary data and fillers]
+\label{def:boundary-filler-data}
+Let $\sigma$ be a generating $2$-cell with source $x$ and one-step branches to $y_\ell$ and $y_r$. Its boundary data consist of
+\[
+x \to y_\ell
+\qquad\text{and}\qquad
+x \to y_r.
+\]
+A \emph{filler} for $\sigma$ is a common descendant $w$ together with directed paths
+\[
+y_\ell \to^* w
+\qquad\text{and}\qquad
+y_r \to^* w.
+\]
+When such a filler exists, we call $w$ a \emph{join witness} for $\sigma$.
+\end{definition}
+
+\begin{definition}[Elementary holonomy status]
+\label{def:elementary-holonomy-status}
+Let $\sigma$ be a generating $2$-cell in a reduction 2-complex.
+\begin{itemize}
+    \item $\sigma$ has \emph{trivial elementary holonomy} if it admits a filler in the sense of \Cref{def:boundary-filler-data}.
+    \item $\sigma$ has \emph{nontrivial elementary holonomy} if no such filler exists.
+\end{itemize}
+\end{definition}
+
+This terminology is intentionally local. The paper does not need a full group-valued holonomy theory. What it needs is a precise way to say whether the two elementary routes attached to a generating branching agree after completion to a common witness. Trivial elementary holonomy is exactly that agreement; nontrivial elementary holonomy is exactly its failure.
+
+In the machine-readable artifacts used later in the paper, two additional pieces of information are tracked.
+\begin{enumerate}
+    \item A canonical \emph{join witness} and canonical filler paths whenever the $2$-cell is joinable.
+    \item A canonical \emph{defect label} whenever it is not. The primary label is \texttt{nonjoinable}. In terminating bounded examples we also record normal-form outcome mismatch as a secondary diagnostic.
+\end{enumerate}
+These implementation choices make the local path-dependence story explicit without changing the underlying mathematical point: the first and indispensable distinction is whether the generating $2$-cell is fillable at all.
+
+\begin{remark}[Elementary holonomy and the theorem-level core]
+\label{rem:holonomy-vs-formal-core}
+The theorem-level core proved in \Cref{sec:core-theorem} uses only joinability of elementary peaks. The normal-form mismatch diagnostic belongs to the computational layer for terminating explored examples and is useful precisely because it refines the nontrivial cases. It is not needed for the basic equivalence between elementary flatness and local confluence.
+\end{remark}
+
+\subsection{Representative domains}
+
+The same two-dimensional pattern appears in the three domains used in this paper.
+\begin{itemize}
+    \item In finite abstract rewriting systems, the generating $2$-cells are local peaks.
+    \item In bounded string-rewriting examples, the generating $2$-cells are reachable critical pairs relative to the chosen start words.
+    \item In the left-linear term-rewriting bridge, the generating $2$-cells are reachable critical pairs relative to the chosen start terms.
+\end{itemize}
+Across all three domains, the reduction 2-complex records the same local question: given two admissible elementary branches from a common source, is there a canonical filler to a common witness, or does a genuine local route mismatch remain?
+
+\begin{table}[t]
+    \caption{Elementary holonomy on the representative finite-ARS, string, and term-rewriting examples used to instantiate the reduction 2-complex language. Joinable generators are trivial; defective generators are nontrivial.}
+    \label{tab:elementary-holonomy-summary}
+    \centering
+    \smallskip
+    \input{tables/T3_elementary_holonomy_summary}
+\end{table}
+
+This is the sense in which the paper uses the phrase \emph{elementary holonomy}. It is a local path-dependence status attached to generating $2$-cells of the reduction 2-complex. Once that language is fixed, the bridge to rewriting becomes straightforward: local confluence is the statement that the relevant elementary holonomies vanish.

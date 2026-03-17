@@ -1,0 +1,10 @@
+digraph E002_reduction_graph {
+  rankdir=LR;
+  "A" [shape=ellipse, style="filled,bold", fillcolor="#e8f0fe"];
+  "B" [shape=ellipse];
+  "C" [shape=doublecircle];
+  "D" [shape=doublecircle];
+  "A" -> "B";
+  "A" -> "C";
+  "B" -> "D";
+}

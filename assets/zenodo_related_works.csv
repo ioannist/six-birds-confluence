@@ -1,0 +1,18 @@
+relation,identifier,scheme,resource_type,bibkey,title
+Cites,10.48550/arXiv.2602.00134,DOI,other,Tsiokos2026SixBirdsFoundations,Six Birds: Foundations of Emergence Calculus
+Cites,10.5281/zenodo.18402004,DOI,other,Tsiokos2026CountStone,To Count a Stone with Six Birds: A Mathematics is a Theory
+Cites,10.20944/preprints202602.1699.v1,DOI,other,Tsiokos2026LayStone,"To Lay a Stone with Six Birds: Finite-State Semantics for Packaging, Directionality, and Coarse-Graining"
+Cites,10.1017/CBO9781139172752,DOI,publication-book,BaaderNipkow1998,Term Rewriting and All That
+Cites,10.1145/322217.322230,DOI,publication-article,Huet1980,Confluent Reductions: Abstract Properties and Applications to Term Rewriting Systems
+Cites,10.1016/B978-0-08-012975-4.50028-X,DOI,publication-section,KnuthBendix1970,Simple Word Problems in Universal Algebras
+Cites,10.1007/3-540-17220-3_7,DOI,publication-conferencepaper,SquierOtto1987,The Word Problem for Finitely Presented Monoids and Finite Canonical Rewriting Systems
+Cites,10.1017/S0960129516000220,DOI,publication-article,GuiraudMalbos2018,Polygraphs of finite derivation type
+Cites,10.4230/LIPIcs.FSCD.2023.16,DOI,publication-conferencepaper,Mimram2023,Categorical Coherence from Term Rewriting Systems
+Cites,10.1090/conm/775/15594,DOI,publication-section,Meneses2021,Thin Homotopy and the Holonomy Approach to Gauge Theories
+Cites,10.1016/B978-0-444-88074-1.50011-1,DOI,publication-section,DershowitzJouannaud1990,Rewrite Systems
+Cites,978-0-521-39115-3,ISBN,publication-book,Terese2003,Term Rewriting Systems
+Cites,10.1016/0022-4049(87)90129-0,DOI,publication-article,Squier1987,Word Problems and a Homological Finiteness Condition for Monoids
+Cites,10.1016/j.aim.2012.05.010,DOI,publication-article,GuiraudMalbos2012,Higher-dimensional normalisation strategies for acyclicity
+Cites,10.1017/S0960129522000123,DOI,publication-article,BonchiEtAl2022,String Diagram Rewrite Theory {III}: Confluence with and without Frobenius
+Cites,10.1142/2324,DOI,publication-book,BaezMuniain1994,"Gauge Fields, Knots and Gravity"
+Cites,10.1007/11805618_6,DOI,publication-conferencepaper,GramlichLucas2006,Generalizing Newman's Lemma for Left-Linear Rewrite Systems

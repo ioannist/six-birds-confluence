@@ -1,0 +1,112 @@
+\section{Critical Pairs as Curvature Generators}
+\label{sec:critical-pairs-curvature}
+
+\Cref{thm:elementary-flatness-iff-local-confluence} identifies the formal core of the paper at the level of abstract rewriting systems: once the relevant elementary branchings have been identified, local confluence is exactly elementary flatness. In structured rewriting formalisms, however, those elementary branchings are not presented to us as abstract triples. They arise from concrete overlaps of rewrite rules. This is the point at which critical pairs enter \cite{KnuthBendix1970,BaaderNipkow1998,Terese2003}.
+
+The guiding claim of this section is that critical pairs are not merely a practical confluence checklist. In the structured rewriting settings studied here, their reachable layer is the structured rewriting analogue of the generating $2$-cells introduced in \Cref{sec:reduction-two-complex} \cite{SquierOtto1987,Squier1987,GuiraudMalbos2018,GuiraudMalbos2012,Mimram2023}. Put differently: in the examples studied here, reachable critical pairs are the local generators on which elementary holonomy is tested. When a reachable critical pair is defective, the corresponding generating $2$-cell has nontrivial elementary holonomy. When that defect is removed, the corresponding elementary holonomy disappears.
+
+\subsection{Strings: overlaps, reachability, and observed peaks}
+\label{subsec:string-critical-pairs}
+
+In the bounded string-rewriting examples of this paper, the local branchings of interest arise from overlaps of string rules. System-level critical pairs therefore give the natural candidate list of generating $2$-cells \cite{BonchiEtAl2022}. But the correct comparison basis for the explored reduction complex is not the raw system-wide list. It is the \emph{reachable} subset relative to the designated start words and exploration bounds.
+
+This distinction matters already in the smallest nonconfluent overlap example. In $E006$, the system has two critical pairs, but only one of them is reachable from the chosen start word \texttt{aba}. The explored graph therefore displays one local peak, not two. The local obstruction seen in the explored reduction complex is not the entire system-wide overlap inventory; it is the reachable critical-pair layer. By contrast, in the sorting example $E005$ and in the completion pair $E007$--$E008$, the reachable and graph-visible local layers coincide exactly.
+
+\begin{figure}[t]
+    \centering
+    \fbox{%
+        \parbox{0.76\linewidth}{%
+            \centering
+            \[
+            \texttt{aba} \to \texttt{aa},
+            \qquad
+            \texttt{aba} \to \texttt{ab} \to \texttt{a}
+            \]
+            \medskip
+            Reachable critical pair at source \texttt{aba}; the observed graph peak has distinct outcomes \texttt{aa} and \texttt{a}.
+        }%
+    }
+    \caption{The string overlap example $E006$. The system has two system critical pairs, but only the reachable one from the designated start word appears in the explored reduction complex. Its defect matches the unique observed local peak.}
+    \label{fig:string-overlap-nonconfluent}
+\end{figure}
+
+\subsection{Reachable critical pairs versus graph peaks}
+\label{subsec:reachable-critical-pairs-vs-peaks}
+
+The computational bridge developed in the repository compares these two local layers by a common signature:
+\[
+(\text{source},\ \text{unordered pair of branch terms}).
+\]
+On the string examples, the reachable critical-pair signatures and the graph-peak signatures agree exactly.
+
+\begin{table}[t]
+    \caption{System critical pairs, reachable critical pairs, graph peaks, and reachable defect counts in the curated string and term-rewriting examples. The relevant local comparison basis for the explored reduction complex is the reachable critical-pair layer.}
+    \label{tab:system-vs-reachable-cp-vs-graph-peak}
+    \centering
+    \smallskip
+    \input{tables/T4_system_vs_reachable_cp_vs_graph_peak}
+\end{table}
+
+\begin{proposition}[Reachable critical pairs capture the observed local obstruction set in the curated string examples]
+\label{prop:reachable-critical-pairs-capture-string-obstructions}
+For the curated string examples $E005$--$E008$, the reachable critical pairs match the graph-extracted local peaks, and their defect signatures agree.
+\end{proposition}
+
+\begin{proof}[Audit summary]
+The string sorting example $E005$ has one system critical pair, one reachable critical pair, and one graph peak; all are joinable, and all local defect counts vanish. The overlap example $E006$ has two system critical pairs but only one reachable critical pair from the chosen start word. The explored graph correspondingly has one local peak, and that reachable critical pair is defective: both the nonjoinability and normal-form outcome-mismatch diagnostics are nonzero. The completion-before example $E007$ has one reachable critical pair and one graph peak, both defective. The completion-after example $E008$ has one reachable critical pair and one graph peak, both joinable. In all four cases the reachable-signature comparison is exact, and the defective-signature comparison is exact as well. Thus, on the curated string examples, reachable critical pairs capture the local obstruction set actually seen in the explored reduction complex.
+\end{proof}
+
+This is the sense in which reachable critical pairs behave as curvature generators in the string layer. They are the local overlap-generated $2$-cells on which elementary holonomy is tested. These reachable generators are the ones that appear in the explored reduction complex for the chosen starts.
+
+\subsection{Left-linear term-rewriting bridge}
+\label{subsec:left-linear-trs-bridge}
+
+The term-rewriting prototype pushes the same local picture beyond strings. The root-overlap example $TRS002$ serves as a smoke test: it has a single reachable critical pair with source term $f(a,b)$ and branch terms $g(b)$ and $h(a)$, and the explored reduction graph exhibits exactly the corresponding defective local peak. More importantly, the nested-overlap pair $TRS003$--$TRS004$ shows that this agreement survives genuine nonroot overlap structure.
+
+In $TRS003$, the two rules
+\[
+f(g(x)) \to p(x),
+\qquad
+g(a) \to b
+\]
+produce a reachable critical pair at source term $f(g(a))$ with branch terms $p(a)$ and $f(b)$. That critical pair is defective, and the explored reduction graph is nonconfluent from the chosen start term. In $TRS004$, the added rule
+\[
+f(b) \to p(a)
+\]
+makes the same local branching joinable. The critical-pair source and branch terms remain the same; what changes is the existence of a filler, and therefore the elementary holonomy status of the corresponding generating $2$-cell.
+
+\begin{figure}[t]
+    \centering
+    \fbox{%
+        \parbox{0.82\linewidth}{%
+            \centering
+            \begin{tabular}{c@{\qquad}c}
+            \textbf{$TRS003$} & \textbf{$TRS004$} \\
+            $f(g(a)) \to p(a)$ & $f(g(a)) \to p(a)$ \\
+            $f(g(a)) \to f(b)$ & $f(g(a)) \to f(b) \to p(a)$
+            \end{tabular}
+            \medskip
+            Same local generator, resolved by a filler in the right-hand system.
+        }%
+    }
+    \caption{The left-linear term-rewriting bridge. $TRS003$ and $TRS004$ share the same reachable local generator at $f(g(a))$ with branches $f(b)$ and $p(a)$; the added rule in $TRS004$ supplies a filler rather than removing the generator.}
+    \label{fig:trs-nested-overlap-pair}
+\end{figure}
+
+\begin{proposition}[The curated left-linear term-rewriting bridge exhibits the same local generator pattern]
+\label{prop:trs-critical-pairs-as-curvature-generators}
+In the curated left-linear term-rewriting examples $TRS002$--$TRS004$, reachable critical pairs agree with graph-visible local peaks, and their defect status agrees with the local confluence behavior observed in the explored reduction graphs.
+\end{proposition}
+
+\begin{proof}[Audit summary]
+The root-overlap example $TRS002$ has one reachable critical pair, one graph peak, and one nontrivial local defect. The nested-overlap example $TRS003$ also has one reachable critical pair and one graph peak; both are defective, and the explored reduction graph is nonconfluent from the chosen start term. After the additional rule is added in $TRS004$, the same reachable critical-pair source and branch terms remain, but the defect disappears: the reachable critical pair becomes joinable, the graph-visible local peak becomes fillable, and the explored reduction graph becomes confluent from the chosen start term. In all three examples, the reachable-signature comparison between critical pairs and graph peaks is exact.
+\end{proof}
+
+The term-rewriting bridge matters because it shows that the string-level picture is not an accident of substring rewriting. Once reachable critical pairs are treated as the local overlap-generated branching cells in the explored setting, the same curvature-generator reading survives in a genuine first-order rewriting setting, at least in the curated left-linear regime implemented here.
+
+\begin{remark}[Why the qualifier \emph{reachable} matters]
+\label{rem:reachable-critical-pairs-matter}
+The phrase \emph{critical pairs are curvature generators} would be too coarse if interpreted as a statement about every system critical pair independently of context. The correct local layer for the explored reduction complex is the reachable critical-pair layer relative to chosen starts. This is not a technicality. It is exactly what separates the system-wide overlap inventory from the local generator set that actually appears in the reduction 2-complex under study.
+\end{remark}
+
+Taken together, the string and left-linear term-rewriting examples justify the paper's rewriting-specific bridge claim: in structured rewriting formalisms, the relevant generating $2$-cells are supplied by reachable critical pairs, and the defective ones are precisely the local generators of nontrivial elementary holonomy. The next section places this local picture inside the broader computational evidence base.

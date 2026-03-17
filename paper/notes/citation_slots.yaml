@@ -1,0 +1,45 @@
+schema_version: 1
+kind: citation_slots
+groups:
+  core_internal_background:
+    bibkeys:
+      - Tsiokos2026SixBirdsFoundations
+      - Tsiokos2026CountStone
+  optional_contextual_lineage:
+    bibkeys:
+      - Tsiokos2026LayStone
+      - Tsiokos2026NotchStone
+      - Tsiokos2026ProtocolTrap
+  excluded_by_default:
+    policy: all other internal Six Birds papers are excluded by default unless later writing creates a concrete need
+slots:
+  - slot_id: intro:six_primitives
+    target_section: sec:introduction
+    purpose: reserve the foundations citation for six primitives and closure vocabulary
+    planned_bibkey: Tsiokos2026SixBirdsFoundations
+    priority: core
+    status: planned
+  - slot_id: intro:math_precursor
+    target_section: sec:introduction
+    purpose: reserve the mathematics-facing precursor citation for route mismatch lineage
+    planned_bibkey: Tsiokos2026CountStone
+    priority: core
+    status: planned
+  - slot_id: prelim:finite_state_lineage_optional
+    target_section: sec:preliminaries-scope
+    purpose: optional finite-state semantics lineage slot
+    planned_bibkey: Tsiokos2026LayStone
+    priority: optional
+    status: planned
+  - slot_id: discussion:loop_obstruction_optional
+    target_section: sec:proved-supported-deferred
+    purpose: optional loop-obstruction and time-artifact comparison slot
+    planned_bibkey: Tsiokos2026NotchStone
+    priority: optional
+    status: planned
+  - slot_id: discussion:no_fake_arrow_optional
+    target_section: sec:proved-supported-deferred
+    purpose: optional guardrail slot against conflating holonomy with arrow or dissipation
+    planned_bibkey: Tsiokos2026ProtocolTrap
+    priority: optional
+    status: planned

@@ -1,0 +1,125 @@
+\section{Core Theorem: Elementary Flatness and Local Confluence}
+\label{sec:core-theorem}
+
+We now state and prove the rigorous core used throughout the paper. The setting for this section is an abstract rewriting system $(X,\to)$, and $\to^*$ denotes the reflexive-transitive closure of $\to$. The theorem is intentionally local: it identifies the exact formal content of the slogan that ``flatness'' is the absence of elementary route mismatch.
+
+\subsection{Joinability, local confluence, and elementary flatness}
+
+\begin{definition}[Joinability]
+\label{def:joinability}
+Two states $b,c \in X$ are \emph{joinable} if there exists some $d \in X$ such that
+\[
+b \to^* d
+\qquad\text{and}\qquad
+c \to^* d.
+\]
+\end{definition}
+
+\begin{definition}[Normal forms]
+\label{def:normal-form}
+A state $n \in X$ is a \emph{normal form} if there is no state $m \in X$ such that $n \to m$.
+\end{definition}
+
+\begin{definition}[Local confluence]
+\label{def:local-confluence}
+The rewriting system $(X,\to)$ is \emph{locally confluent} if for all $a,b,c \in X$,
+\[
+a \to b
+\quad\text{and}\quad
+a \to c
+\quad\Longrightarrow\quad
+b \text{ and } c \text{ are joinable.}
+\]
+\end{definition}
+
+\begin{definition}[Elementary peaks and elementary flatness]
+\label{def:elementary-peak-flatness}
+An \emph{elementary peak} is a triple $(a,b,c)$ such that
+\[
+a \to b,
+\qquad
+a \to c,
+\qquad
+b \neq c.
+\]
+The rewriting system $(X,\to)$ is \emph{elementarily flat} if every elementary peak is joinable.
+\end{definition}
+
+\begin{lemma}[Reflexive joinability]
+\label{lem:joinable-refl}
+Every state is joinable with itself.
+\end{lemma}
+
+\begin{proof}
+Let $x \in X$. Since $\to^*$ is reflexive, we have $x \to^* x$. Taking $d=x$ in \Cref{def:joinability}, we conclude that $x$ is joinable with itself.
+\end{proof}
+
+\begin{theorem}[Elementary flatness iff local confluence]
+\label{thm:elementary-flatness-iff-local-confluence}
+A rewriting system is elementarily flat if and only if it is locally confluent.
+\end{theorem}
+
+\begin{proof}
+Assume first that $(X,\to)$ is locally confluent. Let $(a,b,c)$ be an elementary peak. By \Cref{def:elementary-peak-flatness}, we have $a \to b$ and $a \to c$. By local confluence, $b$ and $c$ are joinable. Hence every elementary peak is joinable, so the system is elementarily flat.
+
+Conversely, assume that $(X,\to)$ is elementarily flat. To prove local confluence, let $a,b,c \in X$ satisfy $a \to b$ and $a \to c$. There are two cases.
+
+If $b=c$, then $b$ and $c$ are joinable by \Cref{lem:joinable-refl}.
+
+If $b \neq c$, then $(a,b,c)$ is an elementary peak. By elementary flatness, $b$ and $c$ are joinable.
+
+In both cases, the two one-step descendants of $a$ are joinable. Therefore the system is locally confluent.
+\end{proof}
+
+\begin{remark}[What the theorem does and does not say]
+\label{rem:core-theorem-scope}
+\Cref{thm:elementary-flatness-iff-local-confluence} is the formal core of the paper. It does not yet identify which local branchings generate the relevant $2$-cells in a given rewriting formalism; that is the role of critical pairs in \Cref{sec:critical-pairs-curvature}. Nor does it by itself supply a local-to-global theorem such as Newman-style termination plus local confluence \cite{Huet1980,BaaderNipkow1998,DershowitzJouannaud1990,Terese2003}. Its point is narrower and more precise: once the correct elementary branchings have been identified, ``flatness'' at that level is exactly local confluence.
+\end{remark}
+
+\subsection{A supporting global normal-form fact}
+
+The local theorem above is the main formal statement needed for the paper's geometric bridge. We also record the standard supporting fact that confluence plus normalization yields a unique normal form from any chosen start state.
+
+\begin{definition}[Confluence and normalization]
+\label{def:confluence-normalization}
+The rewriting system $(X,\to)$ is \emph{confluent} if for all $a,b,c \in X$,
+\[
+a \to^* b
+\quad\text{and}\quad
+a \to^* c
+\quad\Longrightarrow\quad
+b \text{ and } c \text{ are joinable.}
+\]
+It is \emph{normalizing} if for every $a \in X$ there exists some normal form $n$ such that
+\[
+a \to^* n.
+\]
+\end{definition}
+
+\begin{proposition}[Confluence and normalization give a unique normal form]
+\label{prop:confluence-normalization-unique-normal-form}
+Assume that $(X,\to)$ is confluent and normalizing. Then for every $a \in X$ there exists a unique normal form $n$ such that $a \to^* n$.
+\end{proposition}
+
+\begin{proof}
+Fix $a \in X$. Since the system is normalizing, there exists at least one normal form $n$ with $a \to^* n$.
+
+To prove uniqueness, suppose that $n$ and $m$ are both normal forms and that
+\[
+a \to^* n,
+\qquad
+a \to^* m.
+\]
+By confluence, $n$ and $m$ are joinable. Hence there exists some $d$ such that
+\[
+n \to^* d
+\qquad\text{and}\qquad
+m \to^* d.
+\]
+But $n$ is a normal form, so the only state reachable from $n$ is $n$ itself; therefore $d=n$. Likewise, since $m$ is a normal form, we must have $d=m$. Hence $n=m$.
+\end{proof}
+
+\begin{remark}[Lean formal core]
+\label{rem:lean-formal-core-crossref}
+The definitions and baseline equivalences used in this section are mirrored in the Lean development summarized in Appendix~\ref{app:lean-formal-core}. In particular, the formal core contains the elementary-flatness/local-confluence equivalence together with the corresponding uniqueness-of-normal-form statement under confluence and normalization.
+\end{remark}

@@ -1,0 +1,56 @@
+{
+  "domain": "string_rewrite",
+  "example_id": "E007_completion_before",
+  "holonomy_counts": {
+    "nf_outcome_mismatch": 1,
+    "nonjoinable": 1,
+    "nontrivial": 1,
+    "trivial": 0
+  },
+  "kind": "reduction_two_complex",
+  "one_cells": [
+    {
+      "one_cell_id": "C1_0001",
+      "source": "ab",
+      "target": "x"
+    },
+    {
+      "one_cell_id": "C1_0002",
+      "source": "ab",
+      "target": "y"
+    }
+  ],
+  "schema_version": 1,
+  "two_cell_count": 1,
+  "two_cells": [
+    {
+      "boundary": {
+        "left_edge_path_states": [
+          "ab",
+          "x"
+        ],
+        "left_filler_path_states": [],
+        "right_edge_path_states": [
+          "ab",
+          "y"
+        ],
+        "right_filler_path_states": []
+      },
+      "elementary_holonomy_status": "nontrivial",
+      "generator_kind": "reachable_critical_pair",
+      "holonomy_defect_kind": "nonjoinable",
+      "join_witness": null,
+      "left_branch_0cell": "x",
+      "nf_outcome_mismatch": true,
+      "nonjoinability_defect": true,
+      "right_branch_0cell": "y",
+      "source_0cell": "ab",
+      "two_cell_id": "C2_0001"
+    }
+  ],
+  "zero_cells": [
+    "ab",
+    "x",
+    "y"
+  ]
+}

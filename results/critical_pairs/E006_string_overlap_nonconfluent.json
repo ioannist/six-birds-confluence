@@ -1,0 +1,112 @@
+{
+  "bounds": {
+    "max_depth": 4,
+    "max_states": 16,
+    "max_word_length": 8
+  },
+  "critical_pairs": [
+    {
+      "critical_pair_id": "CP0001",
+      "graph_peak_present_from_example_starts": true,
+      "joinable": false,
+      "left_branch_term": "aa",
+      "left_reachable_normal_forms": [
+        "aa"
+      ],
+      "local_exploration_complete": true,
+      "nf_outcome_mismatch": true,
+      "nf_symmetric_difference_size": 2,
+      "nonjoinability_defect": true,
+      "overlap_instances": [
+        {
+          "left_branch_term": "aa",
+          "left_lhs": "ab",
+          "left_rule_index": 0,
+          "left_start": 0,
+          "relative_offset": 1,
+          "right_branch_term": "ab",
+          "right_lhs": "ba",
+          "right_rule_index": 1,
+          "right_start": 1,
+          "source_word": "aba"
+        },
+        {
+          "left_branch_term": "ab",
+          "left_lhs": "ba",
+          "left_rule_index": 1,
+          "left_start": 1,
+          "relative_offset": -1,
+          "right_branch_term": "aa",
+          "right_lhs": "ab",
+          "right_rule_index": 0,
+          "right_start": 0,
+          "source_word": "aba"
+        }
+      ],
+      "right_branch_term": "ab",
+      "right_reachable_normal_forms": [
+        "a"
+      ],
+      "source_reachable_from_example_starts": true,
+      "source_word": "aba"
+    },
+    {
+      "critical_pair_id": "CP0002",
+      "graph_peak_present_from_example_starts": false,
+      "joinable": false,
+      "left_branch_term": "ba",
+      "left_reachable_normal_forms": [
+        "b"
+      ],
+      "local_exploration_complete": true,
+      "nf_outcome_mismatch": true,
+      "nf_symmetric_difference_size": 2,
+      "nonjoinability_defect": true,
+      "overlap_instances": [
+        {
+          "left_branch_term": "ba",
+          "left_lhs": "ab",
+          "left_rule_index": 0,
+          "left_start": 1,
+          "relative_offset": -1,
+          "right_branch_term": "bb",
+          "right_lhs": "ba",
+          "right_rule_index": 1,
+          "right_start": 0,
+          "source_word": "bab"
+        },
+        {
+          "left_branch_term": "bb",
+          "left_lhs": "ba",
+          "left_rule_index": 1,
+          "left_start": 0,
+          "relative_offset": 1,
+          "right_branch_term": "ba",
+          "right_lhs": "ab",
+          "right_rule_index": 0,
+          "right_start": 1,
+          "source_word": "bab"
+        }
+      ],
+      "right_branch_term": "bb",
+      "right_reachable_normal_forms": [
+        "bb"
+      ],
+      "source_reachable_from_example_starts": false,
+      "source_word": "bab"
+    }
+  ],
+  "cross_check": {
+    "graph_peaks_missing_from_reachable_critical_pairs": [],
+    "reachable_critical_pairs_missing_from_graph_peaks": [],
+    "reachable_cross_check_match": true
+  },
+  "defective_critical_pair_count": 2,
+  "example_id": "E006_string_overlap_nonconfluent",
+  "graph_peak_count": 1,
+  "kind": "string_critical_pair_analysis",
+  "reachable_critical_pair_count": 1,
+  "reachable_defective_critical_pair_count": 1,
+  "schema_version": 1,
+  "system_critical_pair_count": 2
+}

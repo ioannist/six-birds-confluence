@@ -1,0 +1,209 @@
+{
+  "completion_pair_delta": {
+    "after_confluent": true,
+    "after_example_id": "E008_completion_after",
+    "after_local_peak_nf_outcome_mismatch_count": 0,
+    "after_local_peak_nonjoinability_defect_count": 0,
+    "after_reachable_critical_pair_nf_outcome_mismatch_count": 0,
+    "after_reachable_critical_pair_nonjoinability_defect_count": 0,
+    "before_confluent": false,
+    "before_example_id": "E007_completion_before",
+    "before_local_peak_nf_outcome_mismatch_count": 1,
+    "before_local_peak_nonjoinability_defect_count": 1,
+    "before_reachable_critical_pair_nf_outcome_mismatch_count": 1,
+    "before_reachable_critical_pair_nonjoinability_defect_count": 1,
+    "defect_elimination_observed": true
+  },
+  "examples": [
+    {
+      "alignment": {
+        "global_vs_local_peak_alignment": true,
+        "global_vs_reachable_critical_pair_alignment": true,
+        "graph_peaks_missing_from_reachable_critical_pairs": [],
+        "nf_outcome_mismatch_graph_missing_from_reachable_cp": [],
+        "nf_outcome_mismatch_reachable_cp_missing_from_graph": [],
+        "nf_outcome_mismatch_signature_match": true,
+        "nonjoinability_defect_graph_missing_from_reachable_cp": [],
+        "nonjoinability_defect_reachable_cp_missing_from_graph": [],
+        "nonjoinability_defect_signature_match": true,
+        "reachable_critical_pairs_missing_from_graph_peaks": [],
+        "reachable_cross_check_match": true
+      },
+      "critical_pairs": {
+        "reachable_critical_pair_count": 1,
+        "reachable_critical_pair_has_obstruction": false,
+        "reachable_critical_pair_nf_outcome_mismatch_count": 0,
+        "reachable_critical_pair_nonjoinability_defect_count": 0,
+        "system_critical_pair_count": 1,
+        "system_critical_pair_nf_outcome_mismatch_count": 0,
+        "system_critical_pair_nonjoinability_defect_count": 0
+      },
+      "curvature_generator_story_supported": true,
+      "example_id": "E005_string_sort_confluent",
+      "global": {
+        "confluent": true,
+        "exploration_complete": true,
+        "normal_forms": [
+          "abc"
+        ],
+        "terminating": true,
+        "unique_reachable_normal_forms": true
+      },
+      "local_peaks": {
+        "local_peak_count": 1,
+        "local_peak_has_obstruction": false,
+        "local_peak_nf_outcome_mismatch_count": 0,
+        "local_peak_nonjoinability_defect_count": 0
+      }
+    },
+    {
+      "alignment": {
+        "global_vs_local_peak_alignment": true,
+        "global_vs_reachable_critical_pair_alignment": true,
+        "graph_peaks_missing_from_reachable_critical_pairs": [],
+        "nf_outcome_mismatch_graph_missing_from_reachable_cp": [],
+        "nf_outcome_mismatch_reachable_cp_missing_from_graph": [],
+        "nf_outcome_mismatch_signature_match": true,
+        "nonjoinability_defect_graph_missing_from_reachable_cp": [],
+        "nonjoinability_defect_reachable_cp_missing_from_graph": [],
+        "nonjoinability_defect_signature_match": true,
+        "reachable_critical_pairs_missing_from_graph_peaks": [],
+        "reachable_cross_check_match": true
+      },
+      "critical_pairs": {
+        "reachable_critical_pair_count": 1,
+        "reachable_critical_pair_has_obstruction": true,
+        "reachable_critical_pair_nf_outcome_mismatch_count": 1,
+        "reachable_critical_pair_nonjoinability_defect_count": 1,
+        "system_critical_pair_count": 2,
+        "system_critical_pair_nf_outcome_mismatch_count": 2,
+        "system_critical_pair_nonjoinability_defect_count": 2
+      },
+      "curvature_generator_story_supported": true,
+      "example_id": "E006_string_overlap_nonconfluent",
+      "global": {
+        "confluent": false,
+        "exploration_complete": true,
+        "normal_forms": [
+          "a",
+          "aa"
+        ],
+        "terminating": true,
+        "unique_reachable_normal_forms": false
+      },
+      "local_peaks": {
+        "local_peak_count": 1,
+        "local_peak_has_obstruction": true,
+        "local_peak_nf_outcome_mismatch_count": 1,
+        "local_peak_nonjoinability_defect_count": 1
+      }
+    },
+    {
+      "alignment": {
+        "global_vs_local_peak_alignment": true,
+        "global_vs_reachable_critical_pair_alignment": true,
+        "graph_peaks_missing_from_reachable_critical_pairs": [],
+        "nf_outcome_mismatch_graph_missing_from_reachable_cp": [],
+        "nf_outcome_mismatch_reachable_cp_missing_from_graph": [],
+        "nf_outcome_mismatch_signature_match": true,
+        "nonjoinability_defect_graph_missing_from_reachable_cp": [],
+        "nonjoinability_defect_reachable_cp_missing_from_graph": [],
+        "nonjoinability_defect_signature_match": true,
+        "reachable_critical_pairs_missing_from_graph_peaks": [],
+        "reachable_cross_check_match": true
+      },
+      "critical_pairs": {
+        "reachable_critical_pair_count": 1,
+        "reachable_critical_pair_has_obstruction": true,
+        "reachable_critical_pair_nf_outcome_mismatch_count": 1,
+        "reachable_critical_pair_nonjoinability_defect_count": 1,
+        "system_critical_pair_count": 1,
+        "system_critical_pair_nf_outcome_mismatch_count": 1,
+        "system_critical_pair_nonjoinability_defect_count": 1
+      },
+      "curvature_generator_story_supported": true,
+      "example_id": "E007_completion_before",
+      "global": {
+        "confluent": false,
+        "exploration_complete": true,
+        "normal_forms": [
+          "x",
+          "y"
+        ],
+        "terminating": true,
+        "unique_reachable_normal_forms": false
+      },
+      "local_peaks": {
+        "local_peak_count": 1,
+        "local_peak_has_obstruction": true,
+        "local_peak_nf_outcome_mismatch_count": 1,
+        "local_peak_nonjoinability_defect_count": 1
+      }
+    },
+    {
+      "alignment": {
+        "global_vs_local_peak_alignment": true,
+        "global_vs_reachable_critical_pair_alignment": true,
+        "graph_peaks_missing_from_reachable_critical_pairs": [],
+        "nf_outcome_mismatch_graph_missing_from_reachable_cp": [],
+        "nf_outcome_mismatch_reachable_cp_missing_from_graph": [],
+        "nf_outcome_mismatch_signature_match": true,
+        "nonjoinability_defect_graph_missing_from_reachable_cp": [],
+        "nonjoinability_defect_reachable_cp_missing_from_graph": [],
+        "nonjoinability_defect_signature_match": true,
+        "reachable_critical_pairs_missing_from_graph_peaks": [],
+        "reachable_cross_check_match": true
+      },
+      "critical_pairs": {
+        "reachable_critical_pair_count": 1,
+        "reachable_critical_pair_has_obstruction": false,
+        "reachable_critical_pair_nf_outcome_mismatch_count": 0,
+        "reachable_critical_pair_nonjoinability_defect_count": 0,
+        "system_critical_pair_count": 1,
+        "system_critical_pair_nf_outcome_mismatch_count": 0,
+        "system_critical_pair_nonjoinability_defect_count": 0
+      },
+      "curvature_generator_story_supported": true,
+      "example_id": "E008_completion_after",
+      "global": {
+        "confluent": true,
+        "exploration_complete": true,
+        "normal_forms": [
+          "y"
+        ],
+        "terminating": true,
+        "unique_reachable_normal_forms": true
+      },
+      "local_peaks": {
+        "local_peak_count": 1,
+        "local_peak_has_obstruction": false,
+        "local_peak_nf_outcome_mismatch_count": 0,
+        "local_peak_nonjoinability_defect_count": 0
+      }
+    }
+  ],
+  "findings": {
+    "all_examples_exploration_complete": true,
+    "all_examples_reachable_cross_check_match": true,
+    "all_examples_support_curvature_generator_story": true,
+    "all_examples_terminating": true,
+    "confluent_example_ids": [
+      "E005_string_sort_confluent",
+      "E008_completion_after"
+    ],
+    "examples_with_local_peak_obstructions": [
+      "E006_string_overlap_nonconfluent",
+      "E007_completion_before"
+    ],
+    "examples_with_reachable_critical_pair_obstructions": [
+      "E006_string_overlap_nonconfluent",
+      "E007_completion_before"
+    ],
+    "nonconfluent_example_ids": [
+      "E006_string_overlap_nonconfluent",
+      "E007_completion_before"
+    ]
+  },
+  "kind": "critical_pair_curvature_audit",
+  "schema_version": 1
+}

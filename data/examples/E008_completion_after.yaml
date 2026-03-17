@@ -1,0 +1,12 @@
+kind: string_rewrite_system
+id: E008_completion_after
+label: completion_after
+rules:
+  - [ab, x]
+  - [ab, y]
+  - [x, y]
+start_strings: [ab]
+bounds:
+  max_depth: 4
+  max_states: 16
+  max_word_length: 8

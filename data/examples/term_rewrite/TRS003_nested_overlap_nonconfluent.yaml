@@ -1,0 +1,11 @@
+kind: term_rewrite_system
+id: TRS003_nested_overlap_nonconfluent
+label: nested_overlap_nonconfluent
+rules:
+  - ["f(g(?x))", "p(?x)"]
+  - ["g(a)", "b"]
+start_terms: ["f(g(a))"]
+bounds:
+  max_depth: 4
+  max_states: 16
+  max_term_nodes: 64

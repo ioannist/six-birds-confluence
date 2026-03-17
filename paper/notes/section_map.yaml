@@ -1,0 +1,302 @@
+schema_version: 1
+kind: section_map
+sections:
+  - section_id: sec:introduction
+    tex_path: paper/sections/01_introduction.tex
+    role: orientation_and_claim_boundary_entry
+    artifact_families:
+      - freeze
+      - claim_support
+      - two_complex_summary
+      - critical_pair_curvature_audit
+    primary_artifacts:
+      - results/freeze/final_experiment_summary.json
+      - project/claim_support_matrix.yaml
+      - results/two_complex/summary.json
+      - results/audits/critical_pair_curvature_audit.json
+    figure_ids:
+      - F1_dictionary_bridge
+    table_ids:
+      - T1_claim_ladder
+    claim_row_refs:
+      - CSM009_reduction_2complex_elementary_holonomy_layer_is_explicit
+      - CSM010_full_confluence_equals_flatness_theorem_for_finite_terminating_left_linear_trs
+    planned_internal_citation_slots:
+      - intro:six_primitives
+      - intro:math_precursor
+    notes: frozen opening bridge from evidence ledger to theorem target
+  - section_id: sec:preliminaries-scope
+    tex_path: paper/sections/02_preliminaries_scope.tex
+    role: scope_boundary_and_definition_level_setup
+    artifact_families:
+      - claim_support
+      - freeze
+      - lean_formal_core
+      - finite_state_context_optional
+    primary_artifacts:
+      - project/claim_support_matrix.yaml
+      - results/freeze/final_experiment_summary.json
+      - ConfluenceFlat/Core.lean
+      - ConfluenceFlat/UniqueNormalForm.lean
+    figure_ids: []
+    table_ids: []
+    claim_row_refs:
+      - CSM001_elementary_flatness_iff_local_confluence_core
+      - CSM002_confluence_plus_normalizing_implies_exists_unique_normal_form_from_start
+      - CSM010_full_confluence_equals_flatness_theorem_for_finite_terminating_left_linear_trs
+    planned_internal_citation_slots:
+      - prelim:finite_state_lineage_optional
+    notes: use for scope discipline and prior-work boundary only
+  - section_id: sec:bare-graph-not-enough
+    tex_path: paper/sections/03_bare_graph_not_enough.tex
+    role: falsification_of_bare_graph_proxy
+    artifact_families:
+      - naive_graph_audit
+      - finite_ars_exhaustive
+      - diagram_assets
+    primary_artifacts:
+      - results/audits/naive_graph_flatness_audit.json
+      - results/audits/naive_graph_flatness_audit.csv
+      - results/audits/exhaustive_finite_ars_n_le_4_summary.json
+      - results/diagrams/E002_fork_curved/reduction_graph.dot
+      - results/diagrams/E002_fork_curved/defective_plaquette.dot
+    figure_ids:
+      - F2_bare_graph_failure
+    table_ids:
+      - T2_bare_graph_flatness_mismatch
+    claim_row_refs:
+      - CSM005_bare_graph_flatness_is_inadequate_without_2cells
+      - CSM003_finite_terminating_local_flatness_implies_confluence
+    planned_internal_citation_slots: []
+    notes: keep contrast between graph proxy and 2-cell layer explicit
+  - section_id: sec:reduction-two-complex
+    tex_path: paper/sections/04_reduction_two_complex.tex
+    role: explicit_2cell_language_and_elementary_holonomy_layer
+    artifact_families:
+      - two_complex
+      - diagram_assets
+    primary_artifacts:
+      - results/two_complex/E001_diamond_flat.json
+      - results/two_complex/E002_fork_curved.json
+      - results/two_complex/E007_completion_before.json
+      - results/two_complex/E008_completion_after.json
+      - results/two_complex/TRS003_nested_overlap_nonconfluent.json
+      - results/two_complex/TRS004_nested_overlap_joinable.json
+      - results/two_complex/summary.json
+      - results/two_complex/summary.csv
+    figure_ids:
+      - F3_reduction_two_complex_schematic
+      - F4_trivial_vs_nontrivial_holonomy
+    table_ids:
+      - T3_elementary_holonomy_summary
+    claim_row_refs:
+      - CSM009_reduction_2complex_elementary_holonomy_layer_is_explicit
+    planned_internal_citation_slots: []
+    notes: this is the main structural dictionary section
+  - section_id: sec:core-theorem
+    tex_path: paper/sections/05_core_theorem.tex
+    role: formal_core_theorem_statement_and_proved_kernel
+    artifact_families:
+      - lean_formal_core
+      - claim_support
+    primary_artifacts:
+      - ConfluenceFlat/Core.lean
+      - ConfluenceFlat/UniqueNormalForm.lean
+      - project/claim_support_matrix.yaml
+    figure_ids: []
+    table_ids: []
+    claim_row_refs:
+      - CSM001_elementary_flatness_iff_local_confluence_core
+      - CSM002_confluence_plus_normalizing_implies_exists_unique_normal_form_from_start
+    planned_internal_citation_slots: []
+    notes: theorem statements will be inserted later; no new evidence selection needed
+  - section_id: sec:critical-pairs-curvature
+    tex_path: paper/sections/06_critical_pairs_curvature_generators.tex
+    role: local_generator_story_across_string_and_trs_examples
+    artifact_families:
+      - critical_pair_analysis
+      - critical_pair_curvature_audit
+      - term_rewrite
+      - string_rewrite
+      - diagram_assets
+    primary_artifacts:
+      - results/critical_pairs/summary.json
+      - results/audits/critical_pair_curvature_audit.json
+      - results/audits/critical_pair_curvature_audit.csv
+      - results/term_rewrite/summary.json
+      - results/string_rewrite/summary.json
+      - results/diagrams/E006_string_overlap_nonconfluent/critical_pair_focus.dot
+      - results/diagrams/E007_completion_before/critical_pair_focus.dot
+      - results/diagrams/E008_completion_after/critical_pair_focus.dot
+    figure_ids:
+      - F5_string_overlap_nonconfluent
+      - F6_trs_nested_overlap_pair
+    table_ids:
+      - T4_system_vs_reachable_cp_vs_graph_peak
+    claim_row_refs:
+      - CSM006_reachable_string_critical_pair_defects_capture_local_obstructions
+      - CSM008_left_linear_trs_reachable_critical_pairs_capture_local_obstructions
+      - CSM009_reduction_2complex_elementary_holonomy_layer_is_explicit
+    planned_internal_citation_slots: []
+    notes: compare string and term-level generator evidence without reopening scope
+  - section_id: sec:computational-bridge
+    tex_path: paper/sections/07_computational_bridge.tex
+    role: finite_and_curated_experimental_bridge_section
+    artifact_families:
+      - finite_ars_exhaustive
+      - string_rewrite
+      - term_rewrite
+      - critical_pair_curvature_audit
+      - boundary_counterexamples
+    primary_artifacts:
+      - results/audits/exhaustive_finite_ars_n_le_4_summary.json
+      - results/audits/exhaustive_finite_ars_n_le_4_rows.csv
+      - results/string_rewrite/summary.json
+      - results/term_rewrite/summary.json
+      - results/audits/critical_pair_curvature_audit.json
+      - results/audits/boundary_counterexample_search_n_le_4.json
+    figure_ids: []
+    table_ids:
+      - T5_exhaustive_finite_ars_summary
+      - T6_curated_string_summary
+      - T7_curated_trs_summary
+    claim_row_refs:
+      - CSM003_finite_terminating_local_flatness_implies_confluence
+      - CSM004_finite_terminating_confluence_iff_unique_reachable_normal_forms
+      - CSM006_reachable_string_critical_pair_defects_capture_local_obstructions
+      - CSM008_left_linear_trs_reachable_critical_pairs_capture_local_obstructions
+    planned_internal_citation_slots: []
+    notes: bridge from exhaustive finite evidence to curated string/TRS evidence
+  - section_id: sec:completion-holonomy
+    tex_path: paper/sections/08_completion_holonomy_elimination.tex
+    role: before_after_defect_elimination_story
+    artifact_families:
+      - case_studies
+      - two_complex
+      - string_rewrite
+      - term_rewrite
+      - critical_pair_curvature_audit
+    primary_artifacts:
+      - results/case_studies/CS001_manual_completion_ab_to_xy.json
+      - results/case_studies/CS001_manual_completion_ab_to_xy.csv
+      - results/two_complex/summary.json
+      - results/two_complex/E007_completion_before.json
+      - results/two_complex/E008_completion_after.json
+      - results/two_complex/TRS003_nested_overlap_nonconfluent.json
+      - results/two_complex/TRS004_nested_overlap_joinable.json
+      - results/term_rewrite/summary.json
+    figure_ids:
+      - F7_string_completion_before_after
+      - F8_trs_completion_before_after
+    table_ids:
+      - T8_holonomy_elimination_deltas
+    claim_row_refs:
+      - CSM007_string_completion_eliminates_local_defects
+      - CSM008_left_linear_trs_reachable_critical_pairs_capture_local_obstructions
+      - CSM009_reduction_2complex_elementary_holonomy_layer_is_explicit
+    planned_internal_citation_slots: []
+    notes: pair the string and TRS before/after stories without expanding completion theory
+  - section_id: sec:proved-supported-deferred
+    tex_path: paper/sections/09_proved_supported_deferred.tex
+    role: explicit_claim_boundary_and_evidence_ladder
+    artifact_families:
+      - claim_support
+      - freeze
+      - lean_formal_core
+    primary_artifacts:
+      - project/claim_support_matrix.yaml
+      - results/freeze/final_experiment_summary.json
+      - ConfluenceFlat/Core.lean
+      - ConfluenceFlat/UniqueNormalForm.lean
+    figure_ids: []
+    table_ids:
+      - T9_claim_support_matrix
+    claim_row_refs:
+      - CSM001_elementary_flatness_iff_local_confluence_core
+      - CSM002_confluence_plus_normalizing_implies_exists_unique_normal_form_from_start
+      - CSM003_finite_terminating_local_flatness_implies_confluence
+      - CSM004_finite_terminating_confluence_iff_unique_reachable_normal_forms
+      - CSM005_bare_graph_flatness_is_inadequate_without_2cells
+      - CSM006_reachable_string_critical_pair_defects_capture_local_obstructions
+      - CSM007_string_completion_eliminates_local_defects
+      - CSM008_left_linear_trs_reachable_critical_pairs_capture_local_obstructions
+      - CSM009_reduction_2complex_elementary_holonomy_layer_is_explicit
+      - CSM010_full_confluence_equals_flatness_theorem_for_finite_terminating_left_linear_trs
+    planned_internal_citation_slots:
+      - discussion:loop_obstruction_optional
+      - discussion:no_fake_arrow_optional
+    notes: this section is the explicit proved versus supported versus deferred boundary
+  - section_id: sec:conclusion
+    tex_path: paper/sections/10_conclusion.tex
+    role: closing_boundary_statement_and_forward_pointer
+    artifact_families:
+      - freeze
+      - claim_support
+    primary_artifacts:
+      - results/freeze/final_experiment_summary.json
+      - project/claim_support_matrix.yaml
+    figure_ids: []
+    table_ids: []
+    claim_row_refs:
+      - CSM010_full_confluence_equals_flatness_theorem_for_finite_terminating_left_linear_trs
+    planned_internal_citation_slots: []
+    notes: conclusion should summarize the frozen boundary rather than add evidence
+appendices:
+  - section_id: app:lean-formal-core
+    tex_path: paper/appendices/A_lean_formal_core.tex
+    role: appendix_for_formal_core_indexing
+    artifact_families:
+      - lean_formal_core
+    primary_artifacts:
+      - ConfluenceFlat/Core.lean
+      - ConfluenceFlat/UniqueNormalForm.lean
+    figure_ids: []
+    table_ids: []
+    claim_row_refs:
+      - CSM001_elementary_flatness_iff_local_confluence_core
+      - CSM002_confluence_plus_normalizing_implies_exists_unique_normal_form_from_start
+    planned_internal_citation_slots: []
+    notes: appendix-only formal index, not new argument
+  - section_id: app:computational-protocol
+    tex_path: paper/appendices/B_computational_protocol.tex
+    role: appendix_for_reproducibility_and_protocol_scope
+    artifact_families:
+      - results_ledger
+      - freeze
+      - finite_ars_exhaustive
+      - string_rewrite
+      - term_rewrite
+    primary_artifacts:
+      - results/index.json
+      - results/summary.csv
+      - results/freeze/final_experiment_summary.json
+      - results/audits/exhaustive_finite_ars_n_le_4_summary.json
+      - results/string_rewrite/summary.json
+      - results/term_rewrite/summary.json
+    figure_ids: []
+    table_ids: []
+    claim_row_refs:
+      - CSM003_finite_terminating_local_flatness_implies_confluence
+      - CSM004_finite_terminating_confluence_iff_unique_reachable_normal_forms
+      - CSM006_reachable_string_critical_pair_defects_capture_local_obstructions
+      - CSM008_left_linear_trs_reachable_critical_pairs_capture_local_obstructions
+    planned_internal_citation_slots: []
+    notes: protocol appendix anchored in ledger plus frozen summary
+  - section_id: app:artifact-guide
+    tex_path: paper/appendices/C_artifact_guide.tex
+    role: appendix_for_artifact_navigation
+    artifact_families:
+      - results_ledger
+      - diagram_assets
+      - two_complex
+    primary_artifacts:
+      - results/index.json
+      - results/summary.csv
+      - results/diagrams/index.json
+      - results/two_complex/summary.json
+    figure_ids: []
+    table_ids: []
+    claim_row_refs:
+      - CSM009_reduction_2complex_elementary_holonomy_layer_is_explicit
+    planned_internal_citation_slots: []
+    notes: artifact guide stays purely navigational

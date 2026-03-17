@@ -1,0 +1,59 @@
+{
+  "bounds": {
+    "max_depth": 4,
+    "max_states": 16,
+    "max_word_length": 8
+  },
+  "confluent": false,
+  "defect_counts": {
+    "nf_outcome_mismatch": 1,
+    "nonjoinability_defect": 1
+  },
+  "edge_count": 3,
+  "edges": [
+    [
+      "ab",
+      "a"
+    ],
+    [
+      "aba",
+      "aa"
+    ],
+    [
+      "aba",
+      "ab"
+    ]
+  ],
+  "example_id": "E006_string_overlap_nonconfluent",
+  "exploration_complete": true,
+  "kind": "string_rewrite_exploration",
+  "locally_confluent": false,
+  "normal_forms": [
+    "a",
+    "aa"
+  ],
+  "peak_count": 1,
+  "schema_version": 1,
+  "start_strings": [
+    "aba"
+  ],
+  "state_count": 4,
+  "states": [
+    "a",
+    "aa",
+    "ab",
+    "aba"
+  ],
+  "step_count": 3,
+  "supported_expected_labels": [
+    "terminating",
+    "nonconfluent",
+    "nonzero_defect"
+  ],
+  "supported_expected_labels_match": true,
+  "terminating": true,
+  "unique_reachable_normal_forms": false,
+  "unsupported_expected_labels": [
+    "critical_pairs_nonjoinable"
+  ]
+}

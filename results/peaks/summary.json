@@ -1,0 +1,20 @@
+{
+  "examples": [
+    {
+      "example_id": "E001_diamond_flat",
+      "nf_outcome_mismatch_count": 0,
+      "nonjoinability_defect_count": 0,
+      "peak_count": 1,
+      "terminating": true
+    },
+    {
+      "example_id": "E002_fork_curved",
+      "nf_outcome_mismatch_count": 1,
+      "nonjoinability_defect_count": 1,
+      "peak_count": 1,
+      "terminating": true
+    }
+  ],
+  "kind": "finite_ars_peak_summary",
+  "schema_version": 1
+}

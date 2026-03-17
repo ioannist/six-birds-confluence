@@ -1,0 +1,56 @@
+{
+  "examples": [
+    {
+      "confluent": true,
+      "edge_count": 6,
+      "example_id": "E005_string_sort_confluent",
+      "normal_forms": [
+        "abc"
+      ],
+      "peak_count": 1,
+      "state_count": 6,
+      "supported_expected_labels_match": true,
+      "terminating": true
+    },
+    {
+      "confluent": false,
+      "edge_count": 3,
+      "example_id": "E006_string_overlap_nonconfluent",
+      "normal_forms": [
+        "a",
+        "aa"
+      ],
+      "peak_count": 1,
+      "state_count": 4,
+      "supported_expected_labels_match": true,
+      "terminating": true
+    },
+    {
+      "confluent": false,
+      "edge_count": 2,
+      "example_id": "E007_completion_before",
+      "normal_forms": [
+        "x",
+        "y"
+      ],
+      "peak_count": 1,
+      "state_count": 3,
+      "supported_expected_labels_match": true,
+      "terminating": true
+    },
+    {
+      "confluent": true,
+      "edge_count": 3,
+      "example_id": "E008_completion_after",
+      "normal_forms": [
+        "y"
+      ],
+      "peak_count": 1,
+      "state_count": 3,
+      "supported_expected_labels_match": true,
+      "terminating": true
+    }
+  ],
+  "kind": "string_rewrite_summary",
+  "schema_version": 1
+}

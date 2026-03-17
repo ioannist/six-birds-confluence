@@ -1,0 +1,41 @@
+{
+  "defect_counts": {
+    "defective": 0,
+    "joinable": 1
+  },
+  "edge_count": 4,
+  "example_id": "E001_diamond_flat",
+  "kind": "finite_ars_plaquettes",
+  "plaquette_count": 1,
+  "plaquettes": [
+    {
+      "defect_label": null,
+      "join_witness": {
+        "left_path_states": [
+          "B",
+          "D"
+        ],
+        "right_path_states": [
+          "C",
+          "D"
+        ],
+        "state": "D",
+        "total_distance": 2
+      },
+      "left_branch_edge": [
+        "A",
+        "B"
+      ],
+      "plaquette_id": "P0001",
+      "right_branch_edge": [
+        "A",
+        "C"
+      ],
+      "source": "A",
+      "status": "joinable"
+    }
+  ],
+  "schema_version": 1,
+  "state_count": 4,
+  "terminating": true
+}

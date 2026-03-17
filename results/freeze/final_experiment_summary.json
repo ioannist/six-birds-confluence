@@ -1,0 +1,49 @@
+{
+  "artifact_families": {
+    "missing_required_collections": [],
+    "present": [
+      "boundary_counterexamples",
+      "completion_case_study",
+      "critical_pair_analysis",
+      "critical_pair_audits",
+      "exhaustive_ars_audits",
+      "figures",
+      "freeze_artifacts",
+      "naive_graph_audit",
+      "peak_artifacts",
+      "plaquette_artifacts",
+      "string_examples",
+      "term_rewrite_examples",
+      "two_complex_artifacts"
+    ]
+  },
+  "claim_matrix": {
+    "claim_count": 10,
+    "missing_claim_rows": [],
+    "missing_evidence_types": [],
+    "path": "project/claim_support_matrix.yaml",
+    "status_counts": {
+      "deferred_to_paper_theorem": 1,
+      "empirically_supported": 7,
+      "proved": 2
+    }
+  },
+  "freeze_verdict": "implementation_complete",
+  "generated_at_utc": "2026-03-12T10:25:40Z",
+  "implementation": {
+    "implementation_complete": true,
+    "remaining_implementation_tasks": []
+  },
+  "kind": "final_experiment_summary",
+  "regression": {
+    "runtime_seconds": 1.5416934117674828,
+    "status": "passed",
+    "step_count": 14
+  },
+  "remaining_theorem_writing_work": [
+    "full theorem package for finite terminating left-linear TRSs in exact target form",
+    "explicit reduction 2-complex and 2-connection theorem phrasing",
+    "bridge to standard critical-pair completeness/local-confluence in full TRS setting"
+  ],
+  "schema_version": 1
+}

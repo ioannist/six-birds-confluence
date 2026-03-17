@@ -1,0 +1,9 @@
+kind: finite_ars
+id: E001_diamond_flat
+label: diamond_flat
+states: [A, B, C, D]
+edges:
+  - [A, B]
+  - [A, C]
+  - [B, D]
+  - [C, D]

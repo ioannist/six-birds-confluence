@@ -1,0 +1,67 @@
+{
+  "bounds": {
+    "max_depth": 4,
+    "max_states": 16,
+    "max_word_length": 8
+  },
+  "critical_pairs": [
+    {
+      "critical_pair_id": "CP0001",
+      "graph_peak_present_from_example_starts": true,
+      "joinable": true,
+      "left_branch_term": "x",
+      "left_reachable_normal_forms": [
+        "y"
+      ],
+      "local_exploration_complete": true,
+      "nf_outcome_mismatch": false,
+      "nf_symmetric_difference_size": 0,
+      "nonjoinability_defect": false,
+      "overlap_instances": [
+        {
+          "left_branch_term": "x",
+          "left_lhs": "ab",
+          "left_rule_index": 0,
+          "left_start": 0,
+          "relative_offset": 0,
+          "right_branch_term": "y",
+          "right_lhs": "ab",
+          "right_rule_index": 1,
+          "right_start": 0,
+          "source_word": "ab"
+        },
+        {
+          "left_branch_term": "y",
+          "left_lhs": "ab",
+          "left_rule_index": 1,
+          "left_start": 0,
+          "relative_offset": 0,
+          "right_branch_term": "x",
+          "right_lhs": "ab",
+          "right_rule_index": 0,
+          "right_start": 0,
+          "source_word": "ab"
+        }
+      ],
+      "right_branch_term": "y",
+      "right_reachable_normal_forms": [
+        "y"
+      ],
+      "source_reachable_from_example_starts": true,
+      "source_word": "ab"
+    }
+  ],
+  "cross_check": {
+    "graph_peaks_missing_from_reachable_critical_pairs": [],
+    "reachable_critical_pairs_missing_from_graph_peaks": [],
+    "reachable_cross_check_match": true
+  },
+  "defective_critical_pair_count": 0,
+  "example_id": "E008_completion_after",
+  "graph_peak_count": 1,
+  "kind": "string_critical_pair_analysis",
+  "reachable_critical_pair_count": 1,
+  "reachable_defective_critical_pair_count": 0,
+  "schema_version": 1,
+  "system_critical_pair_count": 1
+}

@@ -1,0 +1,54 @@
+{
+  "bounds": {
+    "max_depth": 3,
+    "max_states": 16,
+    "max_word_length": 8
+  },
+  "confluent": false,
+  "defect_counts": {
+    "nf_outcome_mismatch": 1,
+    "nonjoinability_defect": 1
+  },
+  "edge_count": 2,
+  "edges": [
+    [
+      "ab",
+      "x"
+    ],
+    [
+      "ab",
+      "y"
+    ]
+  ],
+  "example_id": "E007_completion_before",
+  "exploration_complete": true,
+  "kind": "string_rewrite_exploration",
+  "locally_confluent": false,
+  "normal_forms": [
+    "x",
+    "y"
+  ],
+  "peak_count": 1,
+  "schema_version": 1,
+  "start_strings": [
+    "ab"
+  ],
+  "state_count": 3,
+  "states": [
+    "ab",
+    "x",
+    "y"
+  ],
+  "step_count": 2,
+  "supported_expected_labels": [
+    "terminating",
+    "nonconfluent",
+    "nonzero_defect"
+  ],
+  "supported_expected_labels_match": true,
+  "terminating": true,
+  "unique_reachable_normal_forms": false,
+  "unsupported_expected_labels": [
+    "critical_pairs_nonjoinable"
+  ]
+}

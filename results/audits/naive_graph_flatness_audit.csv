@@ -1,0 +1,5 @@
+example_id,terminating,has_directed_cycle,naive_directed_loop_flat,undirected_cycle_rank,peak_count,nonjoinability_defect_count,nf_outcome_mismatch_count,locally_confluent,confluent
+E001_diamond_flat,True,False,True,1,1,0,0,True,True
+E002_fork_curved,True,False,True,0,1,1,1,False,False
+E003_delayed_join_flat,True,False,True,1,1,0,0,True,True
+E004_bare_graph_counterexample_target,True,False,True,0,2,2,2,False,False

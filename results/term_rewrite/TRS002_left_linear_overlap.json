@@ -1,0 +1,54 @@
+{
+  "bounds": {
+    "max_depth": 4,
+    "max_states": 16,
+    "max_term_nodes": 64
+  },
+  "confluent": false,
+  "critical_pair_count": 1,
+  "critical_pair_scope": "left_linear_nonvariable_overlaps",
+  "critical_pairs": [
+    {
+      "cp_id": "CP0001",
+      "graph_peak_present_from_starts": true,
+      "joinable": false,
+      "left_branch_term": "g(b)",
+      "left_reachable_normal_forms": [
+        "g(b)"
+      ],
+      "left_rule_index": 0,
+      "nf_outcome_mismatch": true,
+      "nonjoinability_defect": true,
+      "overlap_position": [],
+      "right_branch_term": "h(a)",
+      "right_reachable_normal_forms": [
+        "h(a)"
+      ],
+      "right_rule_index": 1,
+      "source_reachable_from_starts": true,
+      "source_term": "f(a,b)"
+    }
+  ],
+  "edge_count": 2,
+  "example_id": "TRS002_left_linear_overlap",
+  "exploration_complete": true,
+  "graph_peak_count": 1,
+  "graph_peaks_missing_from_reachable_critical_pairs": [],
+  "kind": "term_rewrite_prototype",
+  "left_linear_rules": true,
+  "normal_forms": [
+    "g(b)",
+    "h(a)"
+  ],
+  "reachable_critical_pair_count": 1,
+  "reachable_critical_pairs_missing_from_graph_peaks": [],
+  "reachable_cross_check_match": true,
+  "reachable_defective_critical_pair_count": 1,
+  "schema_version": 1,
+  "start_terms": [
+    "f(a,b)"
+  ],
+  "state_count": 3,
+  "system_defective_critical_pair_count": 1,
+  "terminating": true
+}

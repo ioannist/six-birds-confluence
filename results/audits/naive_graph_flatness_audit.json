@@ -1,0 +1,70 @@
+{
+  "examples": [
+    {
+      "confluent": true,
+      "example_id": "E001_diamond_flat",
+      "has_directed_cycle": false,
+      "locally_confluent": true,
+      "naive_directed_loop_flat": true,
+      "nf_outcome_mismatch_count": 0,
+      "nonjoinability_defect_count": 0,
+      "peak_count": 1,
+      "terminating": true,
+      "undirected_cycle_rank": 1
+    },
+    {
+      "confluent": false,
+      "example_id": "E002_fork_curved",
+      "has_directed_cycle": false,
+      "locally_confluent": false,
+      "naive_directed_loop_flat": true,
+      "nf_outcome_mismatch_count": 1,
+      "nonjoinability_defect_count": 1,
+      "peak_count": 1,
+      "terminating": true,
+      "undirected_cycle_rank": 0
+    },
+    {
+      "confluent": true,
+      "example_id": "E003_delayed_join_flat",
+      "has_directed_cycle": false,
+      "locally_confluent": true,
+      "naive_directed_loop_flat": true,
+      "nf_outcome_mismatch_count": 0,
+      "nonjoinability_defect_count": 0,
+      "peak_count": 1,
+      "terminating": true,
+      "undirected_cycle_rank": 1
+    },
+    {
+      "confluent": false,
+      "example_id": "E004_bare_graph_counterexample_target",
+      "has_directed_cycle": false,
+      "locally_confluent": false,
+      "naive_directed_loop_flat": true,
+      "nf_outcome_mismatch_count": 2,
+      "nonjoinability_defect_count": 2,
+      "peak_count": 2,
+      "terminating": true,
+      "undirected_cycle_rank": 0
+    }
+  ],
+  "findings": {
+    "all_curated_examples_naively_flat": true,
+    "all_curated_examples_terminating": true,
+    "nonconfluent_but_naively_flat_example_ids": [
+      "E002_fork_curved",
+      "E004_bare_graph_counterexample_target"
+    ],
+    "positive_undirected_cycle_rank_and_confluent_example_ids": [
+      "E001_diamond_flat",
+      "E003_delayed_join_flat"
+    ],
+    "zero_undirected_cycle_rank_but_nonconfluent_example_ids": [
+      "E002_fork_curved",
+      "E004_bare_graph_counterexample_target"
+    ]
+  },
+  "kind": "naive_bare_graph_flatness_audit",
+  "schema_version": 1
+}

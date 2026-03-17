@@ -1,0 +1,67 @@
+{
+  "bounds": {
+    "max_depth": 6,
+    "max_states": 16,
+    "max_word_length": 8
+  },
+  "critical_pairs": [
+    {
+      "critical_pair_id": "CP0001",
+      "graph_peak_present_from_example_starts": true,
+      "joinable": true,
+      "left_branch_term": "bca",
+      "left_reachable_normal_forms": [
+        "abc"
+      ],
+      "local_exploration_complete": true,
+      "nf_outcome_mismatch": false,
+      "nf_symmetric_difference_size": 0,
+      "nonjoinability_defect": false,
+      "overlap_instances": [
+        {
+          "left_branch_term": "cab",
+          "left_lhs": "ba",
+          "left_rule_index": 0,
+          "left_start": 1,
+          "relative_offset": -1,
+          "right_branch_term": "bca",
+          "right_lhs": "cb",
+          "right_rule_index": 2,
+          "right_start": 0,
+          "source_word": "cba"
+        },
+        {
+          "left_branch_term": "bca",
+          "left_lhs": "cb",
+          "left_rule_index": 2,
+          "left_start": 0,
+          "relative_offset": 1,
+          "right_branch_term": "cab",
+          "right_lhs": "ba",
+          "right_rule_index": 0,
+          "right_start": 1,
+          "source_word": "cba"
+        }
+      ],
+      "right_branch_term": "cab",
+      "right_reachable_normal_forms": [
+        "abc"
+      ],
+      "source_reachable_from_example_starts": true,
+      "source_word": "cba"
+    }
+  ],
+  "cross_check": {
+    "graph_peaks_missing_from_reachable_critical_pairs": [],
+    "reachable_critical_pairs_missing_from_graph_peaks": [],
+    "reachable_cross_check_match": true
+  },
+  "defective_critical_pair_count": 0,
+  "example_id": "E005_string_sort_confluent",
+  "graph_peak_count": 1,
+  "kind": "string_critical_pair_analysis",
+  "reachable_critical_pair_count": 1,
+  "reachable_defective_critical_pair_count": 0,
+  "schema_version": 1,
+  "system_critical_pair_count": 1
+}

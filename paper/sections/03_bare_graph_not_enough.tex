@@ -1,0 +1,64 @@
+\section{Why the Bare Graph Is Not Enough}
+\label{sec:bare-graph-not-enough}
+
+The most tempting geometric reading of confluence is also the wrong one: one tries to attach ``flatness'' directly to the bare reduction graph and then hopes that graph-theoretic path information will recover order-independence of reduction. The computational evidence in this project shows that this move fails for a structural reason. A graph records a $1$-skeleton. Confluence, however, is tested on specific local branchings, and those branchings are inherently $2$-dimensional data \cite{Huet1980,Terese2003,Mimram2023,GuiraudMalbos2012}. The reduction graph therefore remembers too little: it records paths, but not which pairs of paths are the elementary local comparisons whose agreement matters.
+
+Two especially tempting graph-only surrogates were stress-tested in the finite-ARS regime.
+
+\begin{enumerate}
+    \item A \emph{directed-loop flatness} surrogate, which declares a system ``flat'' whenever the directed reduction graph has no directed cycle.
+    \item An \emph{undirected cycle-rank} surrogate, which measures only the cycle-space rank of the underlying simple undirected graph.
+\end{enumerate}
+
+Neither surrogate captures confluence. The first is too weak, because in terminating examples it collapses to a vacuous acyclicity test. The second is pointed at the wrong object, because ordinary graph cycles do not encode the local branching cells on which joinability is decided.
+
+\begin{figure}[t]
+    \centering
+    \fbox{%
+        \parbox{0.72\linewidth}{%
+            \centering
+            \[
+            A \to B,\qquad A \to C,\qquad B \to D
+            \]
+            \[
+            C \text{ terminal},\qquad D \text{ terminal}
+            \]
+            \medskip
+            Local peak at $A$ with branches $B$ and $C$ is defective.
+        }%
+    }
+    \caption{A nonconfluent finite ARS whose directed reduction graph is acyclic. The obstruction lives on the local branching cell at the common source, not on an ordinary graph loop, which is why graph-only flatness surrogates miss it.}
+    \label{fig:bare-graph-failure}
+\end{figure}
+
+\begin{table}[t]
+    \caption{Curated finite-ARS comparison between graph-only surrogates and rewriting-relevant defect signals. All four examples are naively flat under the directed-loop surrogate, yet $E002$ and $E004$ are nonconfluent; meanwhile $E001$ and $E003$ are confluent despite positive undirected cycle rank.}
+    \label{tab:bare-graph-flatness-mismatch}
+    \centering
+    \smallskip
+    \input{tables/T2_bare_graph_flatness_mismatch}
+\end{table}
+
+The finite-ARS audits make the failure precise.
+
+\begin{proposition}[Bare graph surrogates are not diagnostic for confluence]
+\label{prop:bare-graph-not-diagnostic}
+The graph-only surrogates above do not diagnose confluence, even in the small terminating finite-ARS regime explored in this paper.
+\end{proposition}
+
+\begin{proof}[Audit summary]
+The curated finite-ARS examples already exhibit the mismatch clearly. In the examples $E001$--$E004$, all four reduction graphs are terminating and therefore acyclic as directed graphs, so the naive directed-loop criterion declares all four ``flat.'' Yet $E002$ and $E004$ are nonconfluent and have nonzero local defects. Thus directed-loop flatness produces false positives.
+
+The undirected cycle-rank surrogate fails in the opposite way. The example $E004$ is nonconfluent while having undirected cycle rank zero, so graph-loop absence does not imply confluence. Conversely, the examples $E001$ and $E003$ are confluent while having positive undirected cycle rank, so graph-loop presence does not imply nonconfluence. The graph cycle structure is therefore not the right local obstruction carrier.
+
+These curated mismatches are consistent with the exhaustive finite-ARS audit on all labeled systems up to four states in the terminating regime: the computational relationships that survive there are the rewriting-theoretic local/global ones, not the graph-only flatness surrogates. In particular, the exhaustive audit supports the local peak picture rather than a bare graph-loop picture.
+\end{proof}
+
+The lesson is not that path-independence language should be abandoned. The lesson is that it must be attached to the correct object. Confluence is not a statement about arbitrary loops in the $1$-skeleton; it is a statement about the agreement of specific local branchings. Those branchings become visible only after the missing $2$-cells are restored. This is the motivation for the reduction 2-complex introduced in \Cref{sec:reduction-two-complex}.
+
+Stated differently: the failure of the bare graph does not weaken the bridge to geometry. It sharpens it. The experiments show exactly where the geometric data must live. Elementary flatness cannot be read from the graph alone because the relevant local obstruction is not an ordinary graph loop. It is an elementary branching cell with two boundary routes and, when joinable, a filler to a common witness. That corrected local picture is what the next section makes precise.
+
+\begin{remark}[From graph loops to branching cells]
+\label{rem:graph-loops-to-branching-cells}
+The negative result of this section is therefore a positive design constraint for the rest of the paper. Any viable confluence-as-flatness statement must be formulated on a structure that remembers local branching cells. In the present paper, that structure is the reduction 2-complex. The local obstructions of interest are then carried by generating $2$-cells, not by graph loops in the bare reduction graph.
+\end{remark}

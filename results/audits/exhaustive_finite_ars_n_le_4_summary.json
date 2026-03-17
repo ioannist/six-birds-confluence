@@ -1,0 +1,62 @@
+{
+  "discrepancy_counts": {
+    "local_flatness_vs_local_confluence": 0,
+    "terminating_confluent_not_unique_reachable_normal_forms": 0,
+    "terminating_local_flatness_not_confluent": 0,
+    "terminating_unique_reachable_normal_forms_not_confluent": 0
+  },
+  "findings": {
+    "local_flatness_eq_local_confluence_holds": true,
+    "terminating_confluence_implies_unique_reachable_normal_forms_holds": true,
+    "terminating_local_flatness_implies_confluence_holds": true,
+    "terminating_unique_reachable_normal_forms_implies_confluence_holds": true
+  },
+  "kind": "exhaustive_finite_ars_audit",
+  "per_n": [
+    {
+      "confluent_count": 1,
+      "local_flatness_count": 1,
+      "locally_confluent_count": 1,
+      "n_states": 1,
+      "total_systems_checked": 2,
+      "total_terminating_systems_checked": 1,
+      "unique_reachable_normal_forms_count": 1
+    },
+    {
+      "confluent_count": 3,
+      "local_flatness_count": 3,
+      "locally_confluent_count": 3,
+      "n_states": 2,
+      "total_systems_checked": 16,
+      "total_terminating_systems_checked": 3,
+      "unique_reachable_normal_forms_count": 3
+    },
+    {
+      "confluent_count": 22,
+      "local_flatness_count": 22,
+      "locally_confluent_count": 22,
+      "n_states": 3,
+      "total_systems_checked": 512,
+      "total_terminating_systems_checked": 25,
+      "unique_reachable_normal_forms_count": 22
+    },
+    {
+      "confluent_count": 401,
+      "local_flatness_count": 401,
+      "locally_confluent_count": 401,
+      "n_states": 4,
+      "total_systems_checked": 65536,
+      "total_terminating_systems_checked": 543,
+      "unique_reachable_normal_forms_count": 401
+    }
+  ],
+  "runtime_seconds": 0.5206057168543339,
+  "schema_version": 1,
+  "search_space": {
+    "include_self_loops": true,
+    "max_states": 4,
+    "state_naming": "s0..s{n-1}",
+    "total_systems_checked": 66066,
+    "total_terminating_systems_checked": 572
+  }
+}

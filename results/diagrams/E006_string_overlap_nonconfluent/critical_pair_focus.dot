@@ -1,0 +1,10 @@
+digraph E006_critical_pair_focus {
+  rankdir=LR;
+  "aa" [shape=ellipse, style="filled", fillcolor="#fde2e2"];
+  "ab" [shape=ellipse, style="filled", fillcolor="#fde2e2"];
+  "aba" [shape=ellipse, style="filled,bold", fillcolor="#fff3cd"];
+  "aba" -> "aa" [penwidth=2];
+  "aba" -> "ab" [penwidth=2];
+  "aa" -> "aa" [style=dashed, color=red, label=defect];
+  "ab" -> "ab" [style=dashed, color=red, label=defect];
+}

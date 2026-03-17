@@ -1,0 +1,12 @@
+schema_version: 1
+case_id: CS001_manual_completion_ab_to_xy
+label: manual_completion_ab_to_xy
+start_strings: [ab]
+stages:
+  - stage_id: S0_before
+    example_id: E007_completion_before
+    added_rules_from_previous_stage: []
+  - stage_id: S1_after
+    example_id: E008_completion_after
+    added_rules_from_previous_stage:
+      - [x, y]

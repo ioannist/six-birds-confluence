@@ -1,0 +1,10 @@
+kind: finite_ars
+id: E003_delayed_join_flat
+label: delayed_join_flat
+states: [A, B, C, D, F]
+edges:
+  - [A, B]
+  - [A, C]
+  - [B, D]
+  - [D, F]
+  - [C, F]

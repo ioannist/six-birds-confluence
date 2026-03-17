@@ -1,0 +1,34 @@
+{
+  "examples": [
+    {
+      "defective_count": 0,
+      "example_id": "E001_diamond_flat",
+      "joinable_count": 1,
+      "plaquette_count": 1,
+      "terminating": true
+    },
+    {
+      "defective_count": 1,
+      "example_id": "E002_fork_curved",
+      "joinable_count": 0,
+      "plaquette_count": 1,
+      "terminating": true
+    },
+    {
+      "defective_count": 0,
+      "example_id": "E003_delayed_join_flat",
+      "joinable_count": 1,
+      "plaquette_count": 1,
+      "terminating": true
+    },
+    {
+      "defective_count": 2,
+      "example_id": "E004_bare_graph_counterexample_target",
+      "joinable_count": 0,
+      "plaquette_count": 2,
+      "terminating": true
+    }
+  ],
+  "kind": "finite_ars_plaquette_summary",
+  "schema_version": 1
+}

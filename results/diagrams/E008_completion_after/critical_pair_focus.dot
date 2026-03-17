@@ -1,0 +1,9 @@
+digraph E008_completion_after_critical_pair_focus {
+  rankdir=LR;
+  "ab" [shape=ellipse, style="filled,bold", fillcolor="#fff3cd"];
+  "x" [shape=ellipse, style="filled", fillcolor="#e7f5e8"];
+  "y" [shape=ellipse, style="filled", fillcolor="#e7f5e8"];
+  "ab" -> "x" [penwidth=2];
+  "ab" -> "y" [penwidth=2];
+  "x" -> "y" [color=green, penwidth=2];
+}

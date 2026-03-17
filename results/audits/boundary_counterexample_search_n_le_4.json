@@ -1,0 +1,407 @@
+{
+  "kind": "boundary_counterexample_search",
+  "overclaims": [
+    {
+      "overclaim_id": "O001_local_flatness_implies_confluence_without_termination",
+      "status": "found",
+      "witness": {
+        "edges": [
+          [
+            "s0",
+            "s1"
+          ],
+          [
+            "s0",
+            "s3"
+          ],
+          [
+            "s1",
+            "s0"
+          ],
+          [
+            "s1",
+            "s2"
+          ]
+        ],
+        "metrics": {
+          "confluent": false,
+          "has_directed_cycle": true,
+          "local_flatness": true,
+          "locally_confluent": true,
+          "naive_directed_loop_flat": false,
+          "naive_nf_peak_flatness": false,
+          "nf_outcome_mismatch_count": 0,
+          "nonjoinability_defect_count": 0,
+          "normalizing": true,
+          "peak_count": 2,
+          "terminating": false,
+          "undirected_cycle_rank": 0,
+          "unique_reachable_normal_forms": false
+        },
+        "n_states": 4,
+        "overclaim_id": "O001_local_flatness_implies_confluence_without_termination",
+        "states": [
+          "s0",
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "status": "found",
+        "summary": {
+          "defective_peak": null,
+          "directed_cycle_witness": {
+            "cycle_length": 2,
+            "cycle_path_states": [
+              "s0",
+              "s1",
+              "s0"
+            ]
+          },
+          "nonconfluence_witness": {
+            "left_path_states": [
+              "s0",
+              "s1",
+              "s2"
+            ],
+            "left_state": "s2",
+            "right_path_states": [
+              "s0",
+              "s3"
+            ],
+            "right_state": "s3",
+            "source_state": "s0"
+          },
+          "state_without_reachable_normal_forms": null
+        },
+        "system_id": "N04_M00090",
+        "witness_id": "W001"
+      }
+    },
+    {
+      "overclaim_id": "O002_confluence_implies_normalizing",
+      "status": "found",
+      "witness": {
+        "edges": [
+          [
+            "s0",
+            "s0"
+          ]
+        ],
+        "metrics": {
+          "confluent": true,
+          "has_directed_cycle": true,
+          "local_flatness": true,
+          "locally_confluent": true,
+          "naive_directed_loop_flat": false,
+          "naive_nf_peak_flatness": true,
+          "nf_outcome_mismatch_count": 0,
+          "nonjoinability_defect_count": 0,
+          "normalizing": false,
+          "peak_count": 0,
+          "terminating": false,
+          "undirected_cycle_rank": 0,
+          "unique_reachable_normal_forms": true
+        },
+        "n_states": 1,
+        "overclaim_id": "O002_confluence_implies_normalizing",
+        "states": [
+          "s0"
+        ],
+        "status": "found",
+        "summary": {
+          "defective_peak": null,
+          "directed_cycle_witness": {
+            "cycle_length": 1,
+            "cycle_path_states": [
+              "s0",
+              "s0"
+            ]
+          },
+          "nonconfluence_witness": null,
+          "state_without_reachable_normal_forms": "s0"
+        },
+        "system_id": "N01_M1",
+        "witness_id": "W002"
+      }
+    },
+    {
+      "overclaim_id": "O003_unique_reachable_normal_forms_implies_confluence_without_termination",
+      "status": "found",
+      "witness": {
+        "edges": [
+          [
+            "s0",
+            "s1"
+          ],
+          [
+            "s0",
+            "s2"
+          ],
+          [
+            "s1",
+            "s1"
+          ]
+        ],
+        "metrics": {
+          "confluent": false,
+          "has_directed_cycle": true,
+          "local_flatness": false,
+          "locally_confluent": false,
+          "naive_directed_loop_flat": false,
+          "naive_nf_peak_flatness": false,
+          "nf_outcome_mismatch_count": 0,
+          "nonjoinability_defect_count": 1,
+          "normalizing": false,
+          "peak_count": 1,
+          "terminating": false,
+          "undirected_cycle_rank": 0,
+          "unique_reachable_normal_forms": true
+        },
+        "n_states": 3,
+        "overclaim_id": "O003_unique_reachable_normal_forms_implies_confluence_without_termination",
+        "states": [
+          "s0",
+          "s1",
+          "s2"
+        ],
+        "status": "found",
+        "summary": {
+          "defective_peak": {
+            "left": "s1",
+            "left_reachable_normal_forms": [],
+            "right": "s2",
+            "right_reachable_normal_forms": [
+              "s2"
+            ],
+            "source": "s0"
+          },
+          "directed_cycle_witness": {
+            "cycle_length": 1,
+            "cycle_path_states": [
+              "s1",
+              "s1"
+            ]
+          },
+          "nonconfluence_witness": {
+            "left_path_states": [
+              "s0",
+              "s1"
+            ],
+            "left_state": "s1",
+            "right_path_states": [
+              "s0",
+              "s2"
+            ],
+            "right_state": "s2",
+            "source_state": "s0"
+          },
+          "state_without_reachable_normal_forms": "s1"
+        },
+        "system_id": "N03_M022",
+        "witness_id": "W003"
+      }
+    },
+    {
+      "overclaim_id": "O004_naive_nf_peak_flatness_implies_local_flatness_without_termination",
+      "status": "found",
+      "witness": {
+        "edges": [
+          [
+            "s0",
+            "s0"
+          ],
+          [
+            "s1",
+            "s1"
+          ],
+          [
+            "s2",
+            "s0"
+          ],
+          [
+            "s2",
+            "s1"
+          ]
+        ],
+        "metrics": {
+          "confluent": false,
+          "has_directed_cycle": true,
+          "local_flatness": false,
+          "locally_confluent": false,
+          "naive_directed_loop_flat": false,
+          "naive_nf_peak_flatness": true,
+          "nf_outcome_mismatch_count": 0,
+          "nonjoinability_defect_count": 1,
+          "normalizing": false,
+          "peak_count": 1,
+          "terminating": false,
+          "undirected_cycle_rank": 0,
+          "unique_reachable_normal_forms": true
+        },
+        "n_states": 3,
+        "overclaim_id": "O004_naive_nf_peak_flatness_implies_local_flatness_without_termination",
+        "states": [
+          "s0",
+          "s1",
+          "s2"
+        ],
+        "status": "found",
+        "summary": {
+          "defective_peak": {
+            "left": "s0",
+            "left_reachable_normal_forms": [],
+            "right": "s1",
+            "right_reachable_normal_forms": [],
+            "source": "s2"
+          },
+          "directed_cycle_witness": {
+            "cycle_length": 1,
+            "cycle_path_states": [
+              "s0",
+              "s0"
+            ]
+          },
+          "nonconfluence_witness": {
+            "left_path_states": [
+              "s2",
+              "s0"
+            ],
+            "left_state": "s0",
+            "right_path_states": [
+              "s2",
+              "s1"
+            ],
+            "right_state": "s1",
+            "source_state": "s2"
+          },
+          "state_without_reachable_normal_forms": "s0"
+        },
+        "system_id": "N03_M209",
+        "witness_id": "W004"
+      }
+    },
+    {
+      "overclaim_id": "O005_naive_graph_flatness_false_positive",
+      "status": "found",
+      "witness": {
+        "edges": [
+          [
+            "s0",
+            "s1"
+          ],
+          [
+            "s0",
+            "s2"
+          ]
+        ],
+        "metrics": {
+          "confluent": false,
+          "has_directed_cycle": false,
+          "local_flatness": false,
+          "locally_confluent": false,
+          "naive_directed_loop_flat": true,
+          "naive_nf_peak_flatness": false,
+          "nf_outcome_mismatch_count": 1,
+          "nonjoinability_defect_count": 1,
+          "normalizing": true,
+          "peak_count": 1,
+          "terminating": true,
+          "undirected_cycle_rank": 0,
+          "unique_reachable_normal_forms": false
+        },
+        "n_states": 3,
+        "overclaim_id": "O005_naive_graph_flatness_false_positive",
+        "states": [
+          "s0",
+          "s1",
+          "s2"
+        ],
+        "status": "found",
+        "summary": {
+          "defective_peak": {
+            "left": "s1",
+            "left_reachable_normal_forms": [
+              "s1"
+            ],
+            "right": "s2",
+            "right_reachable_normal_forms": [
+              "s2"
+            ],
+            "source": "s0"
+          },
+          "directed_cycle_witness": null,
+          "nonconfluence_witness": {
+            "left_path_states": [
+              "s0",
+              "s1"
+            ],
+            "left_state": "s1",
+            "right_path_states": [
+              "s0",
+              "s2"
+            ],
+            "right_state": "s2",
+            "source_state": "s0"
+          },
+          "state_without_reachable_normal_forms": null
+        },
+        "system_id": "N03_M006",
+        "witness_id": "W005"
+      }
+    },
+    {
+      "overclaim_id": "O006_naive_graph_flatness_false_negative",
+      "status": "found",
+      "witness": {
+        "edges": [
+          [
+            "s0",
+            "s0"
+          ]
+        ],
+        "metrics": {
+          "confluent": true,
+          "has_directed_cycle": true,
+          "local_flatness": true,
+          "locally_confluent": true,
+          "naive_directed_loop_flat": false,
+          "naive_nf_peak_flatness": true,
+          "nf_outcome_mismatch_count": 0,
+          "nonjoinability_defect_count": 0,
+          "normalizing": false,
+          "peak_count": 0,
+          "terminating": false,
+          "undirected_cycle_rank": 0,
+          "unique_reachable_normal_forms": true
+        },
+        "n_states": 1,
+        "overclaim_id": "O006_naive_graph_flatness_false_negative",
+        "states": [
+          "s0"
+        ],
+        "status": "found",
+        "summary": {
+          "defective_peak": null,
+          "directed_cycle_witness": {
+            "cycle_length": 1,
+            "cycle_path_states": [
+              "s0",
+              "s0"
+            ]
+          },
+          "nonconfluence_witness": null,
+          "state_without_reachable_normal_forms": "s0"
+        },
+        "system_id": "N01_M1",
+        "witness_id": "W006"
+      }
+    }
+  ],
+  "runtime_seconds": 10.125922933220863,
+  "schema_version": 1,
+  "search_space": {
+    "include_self_loops": true,
+    "max_states": 4,
+    "state_naming": "s0..s{n-1}"
+  }
+}

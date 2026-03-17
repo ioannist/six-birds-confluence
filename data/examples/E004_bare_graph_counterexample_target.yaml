@@ -1,0 +1,10 @@
+kind: finite_ars
+id: E004_bare_graph_counterexample_target
+label: bare_graph_counterexample_target
+states: [A, B, C, D, E, F]
+edges:
+  - [A, B]
+  - [A, C]
+  - [B, D]
+  - [B, E]
+  - [C, F]

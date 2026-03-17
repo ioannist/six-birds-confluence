@@ -1,0 +1,12 @@
+kind: string_rewrite_system
+id: E005_string_sort_confluent
+label: string_sort_confluent
+rules:
+  - [ba, ab]
+  - [ca, ac]
+  - [cb, bc]
+start_strings: [cba]
+bounds:
+  max_depth: 6
+  max_states: 16
+  max_word_length: 8

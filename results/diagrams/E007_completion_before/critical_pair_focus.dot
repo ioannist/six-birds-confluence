@@ -1,0 +1,10 @@
+digraph E007_completion_before_critical_pair_focus {
+  rankdir=LR;
+  "ab" [shape=ellipse, style="filled,bold", fillcolor="#fff3cd"];
+  "x" [shape=ellipse, style="filled", fillcolor="#fde2e2"];
+  "y" [shape=ellipse, style="filled", fillcolor="#fde2e2"];
+  "ab" -> "x" [penwidth=2];
+  "ab" -> "y" [penwidth=2];
+  "x" -> "x" [style=dashed, color=red, label=defect];
+  "y" -> "y" [style=dashed, color=red, label=defect];
+}

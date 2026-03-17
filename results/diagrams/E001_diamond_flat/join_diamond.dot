@@ -1,0 +1,11 @@
+digraph E001_join_diamond {
+  rankdir=LR;
+  "A" [shape=ellipse, style="filled,bold", fillcolor="#fff3cd"];
+  "B" [shape=ellipse, style="filled", fillcolor="#e7f5e8"];
+  "C" [shape=ellipse, style="filled", fillcolor="#e7f5e8"];
+  "D" [shape=doublecircle, style="filled,bold", fillcolor="#d6f5d6"];
+  "A" -> "B" [penwidth=2];
+  "A" -> "C" [penwidth=2];
+  "B" -> "D" [color=green, penwidth=2];
+  "C" -> "D" [color=green, penwidth=2];
+}

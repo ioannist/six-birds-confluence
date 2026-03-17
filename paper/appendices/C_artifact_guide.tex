@@ -1,0 +1,32 @@
+\section{Artifact Guide}
+\label{app:artifact-guide}
+
+The paper is backed by a machine-readable artifact layer. This appendix gives a compact guide to that layer and to the stable entry points used in the manuscript.
+
+\subsection{Artifact families}
+
+The major artifact families are:
+\begin{itemize}
+    \item audit artifacts under \texttt{results/audits/},
+    \item peak artifacts under \texttt{results/peaks/},
+    \item plaquette artifacts under \texttt{results/plaquettes/},
+    \item string-rewriting artifacts under \code{results/string_rewrite/},
+    \item critical-pair artifacts under \code{results/critical_pairs/},
+    \item term-rewriting artifacts under \code{results/term_rewrite/},
+    \item completion case-study artifacts under \code{results/case_studies/},
+    \item diagram assets under \texttt{results/diagrams/},
+    \item reduction 2-complex / elementary holonomy artifacts under \code{results/two_complex/},
+    \item freeze artifacts under \texttt{results/freeze/}.
+\end{itemize}
+
+\subsection{Section-to-artifact map}
+
+The manuscript uses these artifact families in a disciplined way. The bare-graph falsification section relies on the naive graph audit and finite-ARS artifacts. The reduction 2-complex section relies on the two-complex artifacts. The critical-pair section relies on the critical-pair, string, and term-rewriting artifacts. The completion section relies on the case-study and two-complex layers. The final boundary-setting section relies on the freeze summary and the claim-support matrix. This section-to-artifact mapping is also recorded in machine-readable form under \code{paper/notes/section_map.yaml}.
+
+\subsection{Figure and table source map}
+
+The kept figure and table slots are backed by specific artifact families rather than ad hoc manuscript data. Their intended source mapping is recorded in \code{paper/notes/figure_table_plan.yaml}. This makes it possible to reconstruct the provenance of every figure and table used in the paper without re-running the full implementation workflow manually.
+
+\subsection{Using the results ledger}
+
+The stable entry points for the artifact layer are \code{results/index.json} and \code{results/summary.csv}. These files index the non-ignored result artifacts, record stable artifact identifiers, and expose the major logical collections used throughout the project. They are the recommended first stop for anyone tracing a statement in the manuscript back to its computational or structural evidence.

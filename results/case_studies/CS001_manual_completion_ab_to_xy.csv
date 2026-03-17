@@ -1,0 +1,3 @@
+case_id,stage_id,stage_index,example_id,rule_count,exploration_complete,terminating,confluent,unique_reachable_normal_forms,local_peak_count,local_peak_nonjoinability_defect_count,local_peak_nf_outcome_mismatch_count,system_critical_pair_count,reachable_critical_pair_count,system_defective_critical_pair_count,reachable_defective_critical_pair_count,normal_forms
+CS001_manual_completion_ab_to_xy,S0_before,0,E007_completion_before,2,True,True,False,False,1,1,1,1,1,1,1,"[""x"", ""y""]"
+CS001_manual_completion_ab_to_xy,S1_after,1,E008_completion_after,3,True,True,True,True,1,0,0,1,1,0,0,"[""y""]"

@@ -1,0 +1,18 @@
+\begin{table}[t]
+\caption{Curated string examples. The table reports explored graph size, reachable critical-pair counts, reachable defect counts, normal forms, and confluence status for $E005$--$E008$.}
+\label{tab:curated-string-summary}
+\centering
+\smallskip
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}L{0.10\linewidth} *{2}{>{\centering\arraybackslash}p{0.07\linewidth}} *{2}{>{\centering\arraybackslash}p{0.10\linewidth}} Y >{\centering\arraybackslash}p{0.11\linewidth}@{}}
+\toprule
+Example & States & Edges & \shortstack{Reach.\\CPs} & \shortstack{Defective\\CPs} & Normal forms & Confluent? \\
+\midrule
+$E005$ & 6 & 6 & 1 & 0 & \texttt{abc} & yes \\
+$E006$ & 4 & 3 & 1 & 1 & \texttt{a}, \texttt{aa} & no \\
+$E007$ & 3 & 2 & 1 & 1 & \texttt{x}, \texttt{y} & no \\
+$E008$ & 3 & 3 & 1 & 0 & \texttt{y} & yes \\
+\bottomrule
+\end{tabularx}
+\end{table}

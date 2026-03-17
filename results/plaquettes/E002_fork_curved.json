@@ -1,0 +1,30 @@
+{
+  "defect_counts": {
+    "defective": 1,
+    "joinable": 0
+  },
+  "edge_count": 3,
+  "example_id": "E002_fork_curved",
+  "kind": "finite_ars_plaquettes",
+  "plaquette_count": 1,
+  "plaquettes": [
+    {
+      "defect_label": "nonjoinable_peak",
+      "join_witness": null,
+      "left_branch_edge": [
+        "A",
+        "B"
+      ],
+      "plaquette_id": "P0001",
+      "right_branch_edge": [
+        "A",
+        "C"
+      ],
+      "source": "A",
+      "status": "defective"
+    }
+  ],
+  "schema_version": 1,
+  "state_count": 4,
+  "terminating": true
+}

@@ -1,0 +1,45 @@
+{
+  "defect_counts": {
+    "defective": 2,
+    "joinable": 0
+  },
+  "edge_count": 5,
+  "example_id": "E004_bare_graph_counterexample_target",
+  "kind": "finite_ars_plaquettes",
+  "plaquette_count": 2,
+  "plaquettes": [
+    {
+      "defect_label": "nonjoinable_peak",
+      "join_witness": null,
+      "left_branch_edge": [
+        "A",
+        "B"
+      ],
+      "plaquette_id": "P0001",
+      "right_branch_edge": [
+        "A",
+        "C"
+      ],
+      "source": "A",
+      "status": "defective"
+    },
+    {
+      "defect_label": "nonjoinable_peak",
+      "join_witness": null,
+      "left_branch_edge": [
+        "B",
+        "D"
+      ],
+      "plaquette_id": "P0002",
+      "right_branch_edge": [
+        "B",
+        "E"
+      ],
+      "source": "B",
+      "status": "defective"
+    }
+  ],
+  "schema_version": 1,
+  "state_count": 6,
+  "terminating": true
+}

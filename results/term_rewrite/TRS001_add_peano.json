@@ -1,0 +1,32 @@
+{
+  "bounds": {
+    "max_depth": 6,
+    "max_states": 32,
+    "max_term_nodes": 64
+  },
+  "confluent": true,
+  "critical_pair_count": 0,
+  "critical_pair_scope": "left_linear_nonvariable_overlaps",
+  "critical_pairs": [],
+  "edge_count": 2,
+  "example_id": "TRS001_add_peano",
+  "exploration_complete": true,
+  "graph_peak_count": 0,
+  "graph_peaks_missing_from_reachable_critical_pairs": [],
+  "kind": "term_rewrite_prototype",
+  "left_linear_rules": true,
+  "normal_forms": [
+    "s(s(z))"
+  ],
+  "reachable_critical_pair_count": 0,
+  "reachable_critical_pairs_missing_from_graph_peaks": [],
+  "reachable_cross_check_match": true,
+  "reachable_defective_critical_pair_count": 0,
+  "schema_version": 1,
+  "start_terms": [
+    "add(s(z),s(z))"
+  ],
+  "state_count": 3,
+  "system_defective_critical_pair_count": 0,
+  "terminating": true
+}

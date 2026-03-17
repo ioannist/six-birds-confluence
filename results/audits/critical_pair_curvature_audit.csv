@@ -1,0 +1,5 @@
+example_id,terminating,exploration_complete,confluent,unique_reachable_normal_forms,local_peak_count,local_peak_nonjoinability_defect_count,local_peak_nf_outcome_mismatch_count,system_critical_pair_count,reachable_critical_pair_count,system_critical_pair_nonjoinability_defect_count,system_critical_pair_nf_outcome_mismatch_count,reachable_critical_pair_nonjoinability_defect_count,reachable_critical_pair_nf_outcome_mismatch_count,reachable_cross_check_match,nonjoinability_defect_signature_match,nf_outcome_mismatch_signature_match,global_vs_local_peak_alignment,global_vs_reachable_critical_pair_alignment,curvature_generator_story_supported
+E005_string_sort_confluent,True,True,True,True,1,0,0,1,1,0,0,0,0,True,True,True,True,True,True
+E006_string_overlap_nonconfluent,True,True,False,False,1,1,1,2,1,2,2,1,1,True,True,True,True,True,True
+E007_completion_before,True,True,False,False,1,1,1,1,1,1,1,1,1,True,True,True,True,True,True
+E008_completion_after,True,True,True,True,1,0,0,1,1,0,0,0,0,True,True,True,True,True,True

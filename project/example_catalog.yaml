@@ -1,0 +1,100 @@
+schema_version: 1
+examples:
+  - id: E001_diamond_flat
+    label: diamond_flat
+    domain: finite_ars
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - locally_confluent
+      - confluent
+      - zero_defect
+  - id: E002_fork_curved
+    label: fork_curved
+    domain: finite_ars
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - nonconfluent
+      - nonzero_defect
+      - local_peak_nonjoinable
+  - id: E003_delayed_join_flat
+    label: delayed_join_flat
+    domain: finite_ars
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - locally_confluent
+      - confluent
+  - id: E004_bare_graph_counterexample_target
+    label: bare_graph_counterexample
+    domain: finite_ars_boundary
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - bare_graph_flatness_failure
+      - nonzero_defect
+      - boundary_case
+  - id: E005_string_sort_confluent
+    label: string_sort_confluent
+    domain: string_rewrite
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - locally_confluent
+      - confluent
+      - critical_pairs_joinable
+  - id: E006_string_overlap_nonconfluent
+    label: string_overlap_nonconfluent
+    domain: string_rewrite
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - nonconfluent
+      - nonzero_defect
+      - critical_pairs_nonjoinable
+  - id: E007_completion_before
+    label: completion_before
+    domain: string_rewrite
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - nonconfluent
+      - nonzero_defect
+      - critical_pairs_nonjoinable
+  - id: E008_completion_after
+    label: completion_after
+    domain: string_rewrite
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - terminating
+      - locally_confluent
+      - confluent
+      - zero_defect
+      - critical_pairs_joinable
+  - id: E009_nonterminating_boundary_target
+    label: nonterminating_boundary_target
+    domain: boundary_case
+    status: planned
+    target_phases:
+      - bootstrap
+    expected_labels:
+      - nonterminating
+      - boundary_case
+      - outcome_metric_risky

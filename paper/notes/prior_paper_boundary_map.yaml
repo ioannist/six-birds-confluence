@@ -1,0 +1,48 @@
+schema_version: 1
+kind: prior_paper_boundary_map
+default_policy: exclude_unlisted_internal_papers
+papers:
+  - bibkey: Tsiokos2026SixBirdsFoundations
+    status: cite_core
+    role: six_primitives_and_closure_vocabulary
+    manuscript_targets:
+      - sec:introduction
+      - sec:preliminaries-scope
+    do_not_repeat:
+      - full exposition of P1-P6
+      - general closure-mechanics motivation
+  - bibkey: Tsiokos2026CountStone
+    status: cite_core
+    role: mathematics_facing_precursor_route_mismatch
+    manuscript_targets:
+      - sec:introduction
+      - sec:proved-supported-deferred
+    do_not_repeat:
+      - route mismatch as a general mathematical closure defect
+      - precursor mathematical framing in full
+  - bibkey: Tsiokos2026LayStone
+    status: cite_optional
+    role: finite_state_semantics_coarse_graining_lab
+    manuscript_targets:
+      - sec:preliminaries-scope
+    do_not_repeat:
+      - finite-state semantics lineage
+      - packaging directionality and coarse-graining background
+  - bibkey: Tsiokos2026NotchStone
+    status: cite_optional
+    role: loop_obstruction_global_potential_and_time_background
+    manuscript_targets:
+      - sec:proved-supported-deferred
+      - sec:conclusion
+    do_not_repeat:
+      - loop-obstruction analogy in full
+      - time order and arrow background in full
+  - bibkey: Tsiokos2026ProtocolTrap
+    status: cite_optional
+    role: guardrail_against_conflating_holonomy_with_arrow_or_dissipation
+    manuscript_targets:
+      - sec:proved-supported-deferred
+      - sec:conclusion
+    do_not_repeat:
+      - protocol-trap holonomy background in full
+      - dissipation or entropy-production caveat exposition

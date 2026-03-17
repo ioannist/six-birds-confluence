@@ -1,0 +1,56 @@
+{
+  "domain": "term_rewrite",
+  "example_id": "TRS003_nested_overlap_nonconfluent",
+  "holonomy_counts": {
+    "nf_outcome_mismatch": 1,
+    "nonjoinable": 1,
+    "nontrivial": 1,
+    "trivial": 0
+  },
+  "kind": "reduction_two_complex",
+  "one_cells": [
+    {
+      "one_cell_id": "C1_0001",
+      "source": "f(g(a))",
+      "target": "f(b)"
+    },
+    {
+      "one_cell_id": "C1_0002",
+      "source": "f(g(a))",
+      "target": "p(a)"
+    }
+  ],
+  "schema_version": 1,
+  "two_cell_count": 1,
+  "two_cells": [
+    {
+      "boundary": {
+        "left_edge_path_states": [
+          "f(g(a))",
+          "f(b)"
+        ],
+        "left_filler_path_states": [],
+        "right_edge_path_states": [
+          "f(g(a))",
+          "p(a)"
+        ],
+        "right_filler_path_states": []
+      },
+      "elementary_holonomy_status": "nontrivial",
+      "generator_kind": "reachable_critical_pair",
+      "holonomy_defect_kind": "nonjoinable",
+      "join_witness": null,
+      "left_branch_0cell": "f(b)",
+      "nf_outcome_mismatch": true,
+      "nonjoinability_defect": true,
+      "right_branch_0cell": "p(a)",
+      "source_0cell": "f(g(a))",
+      "two_cell_id": "C2_0001"
+    }
+  ],
+  "zero_cells": [
+    "f(b)",
+    "f(g(a))",
+    "p(a)"
+  ]
+}

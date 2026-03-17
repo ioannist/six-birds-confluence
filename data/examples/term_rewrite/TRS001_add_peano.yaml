@@ -1,0 +1,11 @@
+kind: term_rewrite_system
+id: TRS001_add_peano
+label: add_peano
+rules:
+  - ["add(z, ?y)", "?y"]
+  - ["add(s(?x), ?y)", "s(add(?x, ?y))"]
+start_terms: ["add(s(z),s(z))"]
+bounds:
+  max_depth: 6
+  max_states: 32
+  max_term_nodes: 64

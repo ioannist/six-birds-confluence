@@ -1,0 +1,2 @@
+import ConfluenceFlat.Core
+import ConfluenceFlat.UniqueNormalForm

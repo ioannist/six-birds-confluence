@@ -1,0 +1,66 @@
+{
+  "critical_pair_scope": "left_linear_nonvariable_overlaps",
+  "example_count": 4,
+  "examples": [
+    {
+      "critical_pair_count": 0,
+      "edge_count": 2,
+      "example_id": "TRS001_add_peano",
+      "exploration_complete": true,
+      "graph_peak_count": 0,
+      "normal_forms": [
+        "s(s(z))"
+      ],
+      "reachable_critical_pair_count": 0,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 0,
+      "state_count": 3
+    },
+    {
+      "critical_pair_count": 1,
+      "edge_count": 2,
+      "example_id": "TRS002_left_linear_overlap",
+      "exploration_complete": true,
+      "graph_peak_count": 1,
+      "normal_forms": [
+        "g(b)",
+        "h(a)"
+      ],
+      "reachable_critical_pair_count": 1,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 1,
+      "state_count": 3
+    },
+    {
+      "critical_pair_count": 1,
+      "edge_count": 2,
+      "example_id": "TRS003_nested_overlap_nonconfluent",
+      "exploration_complete": true,
+      "graph_peak_count": 1,
+      "normal_forms": [
+        "f(b)",
+        "p(a)"
+      ],
+      "reachable_critical_pair_count": 1,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 1,
+      "state_count": 3
+    },
+    {
+      "critical_pair_count": 1,
+      "edge_count": 3,
+      "example_id": "TRS004_nested_overlap_joinable",
+      "exploration_complete": true,
+      "graph_peak_count": 1,
+      "normal_forms": [
+        "p(a)"
+      ],
+      "reachable_critical_pair_count": 1,
+      "reachable_cross_check_match": true,
+      "reachable_defective_critical_pair_count": 0,
+      "state_count": 3
+    }
+  ],
+  "kind": "term_rewrite_prototype_summary",
+  "schema_version": 1
+}

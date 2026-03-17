@@ -1,0 +1,122 @@
+{
+  "case_id": "CS001_manual_completion_ab_to_xy",
+  "findings": {
+    "confluence_flips_false_to_true": true,
+    "curvature_elimination_story_worked_cleanly": true,
+    "defect_elimination_observed": true,
+    "final_stage_confluent": true,
+    "final_stage_zero_reachable_defects": true,
+    "final_stage_zero_system_defects": true
+  },
+  "kind": "manual_completion_case_study",
+  "schema_version": 1,
+  "stage_deltas": [
+    {
+      "added_rules": [
+        [
+          "x",
+          "y"
+        ]
+      ],
+      "confluence_changed": true,
+      "from_stage_id": "S0_before",
+      "local_peak_nf_outcome_mismatch_delta": -1,
+      "local_peak_nonjoinability_defect_delta": -1,
+      "reachable_defective_critical_pair_count_delta": -1,
+      "system_defective_critical_pair_count_delta": -1,
+      "to_stage_id": "S1_after"
+    }
+  ],
+  "stages": [
+    {
+      "added_rules_from_previous_stage": [],
+      "bounds": {
+        "max_depth": 3,
+        "max_states": 16,
+        "max_word_length": 8
+      },
+      "case_id": "CS001_manual_completion_ab_to_xy",
+      "confluent": false,
+      "example_id": "E007_completion_before",
+      "exploration_complete": true,
+      "local_peak_count": 1,
+      "local_peak_nf_outcome_mismatch_count": 1,
+      "local_peak_nonjoinability_defect_count": 1,
+      "normal_forms": [
+        "x",
+        "y"
+      ],
+      "reachable_critical_pair_count": 1,
+      "reachable_defective_critical_pair_count": 1,
+      "rule_count": 2,
+      "rules": [
+        [
+          "ab",
+          "x"
+        ],
+        [
+          "ab",
+          "y"
+        ]
+      ],
+      "stage_id": "S0_before",
+      "stage_index": 0,
+      "start_strings": [
+        "ab"
+      ],
+      "system_critical_pair_count": 1,
+      "system_defective_critical_pair_count": 1,
+      "terminating": true,
+      "unique_reachable_normal_forms": false
+    },
+    {
+      "added_rules_from_previous_stage": [
+        [
+          "x",
+          "y"
+        ]
+      ],
+      "bounds": {
+        "max_depth": 4,
+        "max_states": 16,
+        "max_word_length": 8
+      },
+      "case_id": "CS001_manual_completion_ab_to_xy",
+      "confluent": true,
+      "example_id": "E008_completion_after",
+      "exploration_complete": true,
+      "local_peak_count": 1,
+      "local_peak_nf_outcome_mismatch_count": 0,
+      "local_peak_nonjoinability_defect_count": 0,
+      "normal_forms": [
+        "y"
+      ],
+      "reachable_critical_pair_count": 1,
+      "reachable_defective_critical_pair_count": 0,
+      "rule_count": 3,
+      "rules": [
+        [
+          "ab",
+          "x"
+        ],
+        [
+          "ab",
+          "y"
+        ],
+        [
+          "x",
+          "y"
+        ]
+      ],
+      "stage_id": "S1_after",
+      "stage_index": 1,
+      "start_strings": [
+        "ab"
+      ],
+      "system_critical_pair_count": 1,
+      "system_defective_critical_pair_count": 0,
+      "terminating": true,
+      "unique_reachable_normal_forms": true
+    }
+  ]
+}

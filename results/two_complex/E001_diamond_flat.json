@@ -1,0 +1,73 @@
+{
+  "domain": "finite_ars",
+  "example_id": "E001_diamond_flat",
+  "holonomy_counts": {
+    "nf_outcome_mismatch": 0,
+    "nonjoinable": 0,
+    "nontrivial": 0,
+    "trivial": 1
+  },
+  "kind": "reduction_two_complex",
+  "one_cells": [
+    {
+      "one_cell_id": "C1_0001",
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "one_cell_id": "C1_0002",
+      "source": "A",
+      "target": "C"
+    },
+    {
+      "one_cell_id": "C1_0003",
+      "source": "B",
+      "target": "D"
+    },
+    {
+      "one_cell_id": "C1_0004",
+      "source": "C",
+      "target": "D"
+    }
+  ],
+  "schema_version": 1,
+  "two_cell_count": 1,
+  "two_cells": [
+    {
+      "boundary": {
+        "left_edge_path_states": [
+          "A",
+          "B"
+        ],
+        "left_filler_path_states": [
+          "B",
+          "D"
+        ],
+        "right_edge_path_states": [
+          "A",
+          "C"
+        ],
+        "right_filler_path_states": [
+          "C",
+          "D"
+        ]
+      },
+      "elementary_holonomy_status": "trivial",
+      "generator_kind": "local_peak",
+      "holonomy_defect_kind": null,
+      "join_witness": "D",
+      "left_branch_0cell": "B",
+      "nf_outcome_mismatch": false,
+      "nonjoinability_defect": false,
+      "right_branch_0cell": "C",
+      "source_0cell": "A",
+      "two_cell_id": "C2_0001"
+    }
+  ],
+  "zero_cells": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ]
+}

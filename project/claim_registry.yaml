@@ -1,0 +1,110 @@
+schema_version: 1
+claims:
+  - id: C001_finite_ars_local_flatness_eq_local_confluence
+    label: finite_ars_local_flatness_eq_local_confluence
+    kind: implication
+    scope_model: rewriting_system
+    status: planned
+    priority: high
+    hypotheses:
+      - finite_ars
+      - local_peak_flatness
+    target_phases:
+      - bootstrap
+    evidence_targets:
+      - local_curvature_generators
+    related_example_ids:
+      - E001_diamond_flat
+  - id: C002_finite_ars_local_flatness_plus_termination_implies_confluence
+    label: finite_ars_local_flatness_plus_termination_implies_confluence
+    kind: implication
+    scope_model: rewriting_system
+    status: planned
+    priority: high
+    hypotheses:
+      - finite_ars
+      - termination
+      - local_peak_flatness
+    target_phases:
+      - bootstrap
+    evidence_targets:
+      - local_confluence_plus_termination
+    related_example_ids:
+      - E001_diamond_flat
+      - E003_delayed_join_flat
+  - id: C003_finite_ars_confluence_implies_unique_reachable_normal_form
+    label: finite_ars_confluence_implies_unique_reachable_normal_form
+    kind: implication
+    scope_model: rewriting_system
+    status: planned
+    priority: medium
+    hypotheses:
+      - finite_ars
+      - confluence
+    target_phases:
+      - bootstrap
+    evidence_targets:
+      - normal_form_uniqueness
+    related_example_ids:
+      - E001_diamond_flat
+      - E003_delayed_join_flat
+      - E008_completion_after
+  - id: C004_bare_graph_loop_flatness_is_inadequate_or_noninformative
+    label: bare_graph_loop_flatness_is_inadequate_or_noninformative
+    kind: counterexample
+    scope_model: graph_rewrite
+    status: planned
+    priority: medium
+    hypotheses:
+      - bare_graph_loop_context
+    target_phases:
+      - bootstrap
+    evidence_targets:
+      - loop_flatness_counterexample
+    related_example_ids:
+      - E004_bare_graph_counterexample_target
+  - id: C005_string_critical_pair_defects_capture_local_curvature_generators
+    label: string_critical_pair_defects_capture_local_curvature_generators
+    kind: observation
+    scope_model: string_rewrite
+    status: planned
+    priority: medium
+    hypotheses:
+      - string_rules
+      - one_step_overlap
+    target_phases:
+      - bootstrap
+    evidence_targets:
+      - critical_pairs
+    related_example_ids:
+      - E005_string_sort_confluent
+      - E006_string_overlap_nonconfluent
+  - id: C006_small_completion_eliminates_curvature_generators
+    label: small_completion_eliminates_curvature_generators
+    kind: conjecture
+    scope_model: string_rewrite
+    status: planned
+    priority: medium
+    hypotheses:
+      - overlap_catalog_available
+    target_phases:
+      - bootstrap
+    evidence_targets:
+      - completion_effect
+    related_example_ids:
+      - E007_completion_before
+      - E008_completion_after
+  - id: C007_outcome_based_flatness_needs_termination_or_normalization_hypotheses
+    label: outcome_based_flatness_needs_termination_or_normalization_hypotheses
+    kind: caveat
+    scope_model: rewriting_system
+    status: planned
+    priority: medium
+    hypotheses:
+      - outcome_based_metrics
+    target_phases:
+      - bootstrap
+    evidence_targets:
+      - boundary_case
+    related_example_ids:
+      - E009_nonterminating_boundary_target
