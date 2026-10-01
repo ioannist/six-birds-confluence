@@ -100,7 +100,7 @@
       "svg_path": null
     },
     {
-      "critical_pair_id": "CP0001",
+      "critical_pair_id": "RCP0001",
       "diagram_id": "D0007",
       "diagram_kind": "critical_pair_focus",
       "domain": "string_rewrite",
@@ -118,7 +118,7 @@
       "svg_path": null
     },
     {
-      "critical_pair_id": "CP0001",
+      "critical_pair_id": "RCP0001",
       "diagram_id": "D0008",
       "diagram_kind": "critical_pair_focus",
       "domain": "string_rewrite",
@@ -136,7 +136,7 @@
       "svg_path": null
     },
     {
-      "critical_pair_id": "CP0001",
+      "critical_pair_id": "RCP0001",
       "diagram_id": "D0009",
       "diagram_kind": "critical_pair_focus",
       "domain": "string_rewrite",

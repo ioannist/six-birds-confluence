@@ -30,11 +30,14 @@ claims:
       - terminating
       - local flatness/local confluence condition
     evidence:
+      - evidence_type: lean_proved
+        strongest_artifact_paths:
+          - ConfluenceFlat/Termination.lean
       - evidence_type: exhaustive_computational
         strongest_artifact_paths:
           - results/audits/exhaustive_finite_ars_n_le_4_summary.json
           - results/audits/exhaustive_finite_ars_n_le_4_counterexamples.json
-    status: empirically_supported
+    status: proved
 
   - claim_id: CSM004_finite_terminating_confluence_iff_unique_reachable_normal_forms
     label: finite terminating confluence iff unique reachable normal forms
@@ -42,17 +45,20 @@ claims:
       - finite ARS
       - terminating
     evidence:
+      - evidence_type: lean_proved
+        strongest_artifact_paths:
+          - ConfluenceFlat/Termination.lean
       - evidence_type: exhaustive_computational
         strongest_artifact_paths:
           - results/audits/exhaustive_finite_ars_n_le_4_summary.json
           - results/audits/exhaustive_finite_ars_n_le_4_rows.csv
-    status: empirically_supported
+    status: proved
 
   - claim_id: CSM005_bare_graph_flatness_is_inadequate_without_2cells
-    label: bare graph flatness inadequate without 2-cells
+    label: directed-cycle absence and undirected cycle-rank proxies do not diagnose confluence
     exact_hypotheses:
       - bare graph directed-loop proxy only
-      - no plaquette/critical-pair 2-cell layer
+      - not an impossibility claim about recovering confluence from the full directed graph
     evidence:
       - evidence_type: curated_term_level
         strongest_artifact_paths:
@@ -90,6 +96,7 @@ claims:
     label: left-linear TRS reachable critical pairs capture local obstructions
     exact_hypotheses:
       - curated left-linear TRS examples
+      - complete reachable closures and complete critical-pair closures
       - reachable critical pairs
       - nonroot overlap support
     evidence:
@@ -106,6 +113,7 @@ claims:
       - representative ARS/string/TRS examples
       - machine-readable 0/1/2-cell layer
       - elementary holonomy status on generators
+      - branching and filler presentation; unfilled peaks are not attached topological 2-cells
     evidence:
       - evidence_type: structural_artifact
         strongest_artifact_paths:

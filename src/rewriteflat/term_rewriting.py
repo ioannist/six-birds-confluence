@@ -10,6 +10,7 @@ from typing import Any
 import yaml
 
 from .finite_ars import FiniteARS
+from .reachable_pairs import reachable_overlap_pairs, require_complete
 
 
 @dataclass(frozen=True)
@@ -166,10 +167,9 @@ def _occurs(name: str, term: Term) -> bool:
 
 
 def apply_substitution(term: Term, subst: Subst) -> Term:
+    """Simultaneous substitution; replacement terms are not substituted again."""
     if isinstance(term, Var):
-        if term.name in subst:
-            return apply_substitution(subst[term.name], subst)
-        return term
+        return subst.get(term.name, term)
     return Fun(term.symbol, tuple(apply_substitution(arg, subst) for arg in term.args))
 
 
@@ -197,6 +197,8 @@ def unify(t1: Term, t2: Term, subst: Subst | None = None) -> Subst | None:
     def resolve(t: Term) -> Term:
         if isinstance(t, Var) and t.name in out:
             return resolve(out[t.name])
+        if isinstance(t, Fun):
+            return Fun(t.symbol, tuple(resolve(arg) for arg in t.args))
         return t
 
     def bind(name: str, value: Term) -> bool:
@@ -219,7 +221,22 @@ def unify(t1: Term, t2: Term, subst: Subst | None = None) -> Subst | None:
             return False
         return all(go(x, y) for x, y in zip(a.args, b.args))
 
-    return out if go(t1, t2) else None
+    # Validate optional initial substitutions before recursive resolution.
+    def acyclic(name: str, active: frozenset[str]) -> bool:
+        if name in active:
+            return False
+        counts: dict[str, int] = {}
+        _collect_var_counts(out[name], counts)
+        return all(acyclic(v, active | {name}) for v in counts if v in out)
+
+    for name in list(out):
+        if out[name] == Var(name):
+            del out[name]
+    if not all(acyclic(name, frozenset()) for name in out):
+        return None
+    if not go(t1, t2):
+        return None
+    return {name: resolve(value) for name, value in out.items()}
 
 
 def _collect_var_counts(term: Term, counts: dict[str, int]) -> None:
@@ -247,8 +264,33 @@ class TermRewriteSystem:
         if not isinstance(rules, list) or not rules:
             raise ValueError("rules must be a non-empty list")
         self.rules = tuple(Rule(lhs, rhs) for lhs, rhs in rules)
+        for rule in self.rules:
+            if isinstance(rule.lhs, Var):
+                raise ValueError("rule lhs must not be a variable")
+            lhs_vars: dict[str, int] = {}
+            rhs_vars: dict[str, int] = {}
+            _collect_var_counts(rule.lhs, lhs_vars)
+            _collect_var_counts(rule.rhs, rhs_vars)
+            if not rhs_vars.keys() <= lhs_vars.keys():
+                raise ValueError("rule rhs variables must occur in lhs")
+        arities: dict[str, int] = {}
+        for rule in self.rules:
+            for term in (rule.lhs, rule.rhs):
+                for position in iter_positions(term):
+                    subterm = get_subterm(term, position)
+                    if isinstance(subterm, Fun):
+                        arity = len(subterm.args)
+                        if arities.setdefault(subterm.symbol, arity) != arity:
+                            raise ValueError("function symbols must have a fixed arity")
+        self._arities = arities
 
     def one_step_matches(self, term: Term) -> list[dict[str, Any]]:
+        arities = dict(self._arities)
+        for position in iter_positions(term):
+            subterm = get_subterm(term, position)
+            if isinstance(subterm, Fun):
+                if arities.setdefault(subterm.symbol, len(subterm.args)) != len(subterm.args):
+                    raise ValueError("function symbols must have a fixed arity")
         records: list[dict[str, Any]] = []
         positions = list(iter_positions(term))
         for rule_index, rule in enumerate(self.rules):
@@ -294,6 +336,11 @@ class TermRewriteSystem:
 
         starts = sorted({term_to_string(t): t for t in start_terms}.items())
         start_terms_sorted = [t for _, t in starts]
+        if len(starts) > max_states:
+            raise ValueError("start terms exceed max_states")
+        if max_term_nodes is not None and any(term_node_count(t) > max_term_nodes
+                                              for t in start_terms_sorted):
+            raise ValueError("start term exceeds max_term_nodes")
 
         depth_by: dict[Term, int] = {t: 0 for t in start_terms_sorted}
         queue: list[Term] = list(start_terms_sorted)
@@ -387,12 +434,12 @@ def _cp_signature(source_term: str, left_branch_term: str, right_branch_term: st
 
 
 def generate_left_linear_critical_pairs(system: TermRewriteSystem) -> list[dict[str, Any]]:
+    if not all(is_left_linear(rule.lhs) for rule in system.rules):
+        raise ValueError("critical-pair prototype requires left-linear rules")
     raw: list[dict[str, Any]] = []
 
     for i, base_rule in enumerate(system.rules):
         for j, overlap_rule in enumerate(system.rules):
-            if i == j:
-                continue
             left = _freshened_rule(base_rule, f"_L{i}_{j}")
             right = _freshened_rule(overlap_rule, f"_R{i}_{j}")
 
@@ -440,7 +487,18 @@ def generate_left_linear_critical_pairs(system: TermRewriteSystem) -> list[dict[
     dedup: list[dict[str, Any]] = []
     seen: set[tuple[str, str, str]] = set()
     for rec in raw:
-        sig = (rec["source_term"], rec["left_branch_term"], rec["right_branch_term"])
+        # Quotient by renaming variables across the whole branching triple.
+        names: dict[str, str] = {}
+
+        def alpha(term: Term) -> Term:
+            if isinstance(term, Var):
+                return Var(names.setdefault(term.name, f"v{len(names)}"))
+            return Fun(term.symbol, tuple(alpha(arg) for arg in term.args))
+
+        source = term_to_string(alpha(parse_term(rec["source_term"])))
+        branches = sorted(term_to_string(alpha(parse_term(rec[k])))
+                          for k in ("left_branch_term", "right_branch_term"))
+        sig = (source, branches[0], branches[1])
         if sig in seen:
             continue
         seen.add(sig)
@@ -539,9 +597,8 @@ def build_term_rewrite_artifact(example_id: str, example: dict[str, Any]) -> dic
     }
 
     critical_pairs = generate_left_linear_critical_pairs(system)
+    require_complete(exploration)
 
-    reachable_signatures: set[tuple[str, tuple[str, str]]] = set()
-    reachable_defective_count = 0
     system_defective_count = 0
     main_state_set = set(states)
 
@@ -562,34 +619,27 @@ def build_term_rewrite_artifact(example_id: str, example: dict[str, Any]) -> dic
             states=local_exploration["states"],
             edges=[tuple(e) for e in local_exploration["edges"]],
         )
-        local_states = set(local_ars.states)
-        if left_s in local_states and right_s in local_states:
-            joinable = local_ars.joinable(left_s, right_s)
-            left_nfs = sorted(local_ars.reachable_normal_forms(left_s))
-            right_nfs = sorted(local_ars.reachable_normal_forms(right_s))
-        else:
-            joinable = False
-            left_nfs = []
-            right_nfs = []
+        require_complete(local_exploration)
+        joinable = local_ars.joinable(left_s, right_s)
+        left_nfs = sorted(local_ars.reachable_normal_forms(left_s))
+        right_nfs = sorted(local_ars.reachable_normal_forms(right_s))
 
         left_nf_set = set(left_nfs)
         right_nf_set = set(right_nfs)
-        nf_outcome_mismatch = left_nf_set != right_nf_set
-        cp_defective = (not joinable) or nf_outcome_mismatch
+        nf_outcome_mismatch = (left_nf_set != right_nf_set) if local_ars.is_terminating() else None
+        cp_defective = not joinable
 
         if cp_defective:
             system_defective_count += 1
-            if source_reachable:
-                reachable_defective_count += 1
 
         sig = _cp_signature(source_s, left_s, right_s)
-        if source_reachable:
-            reachable_signatures.add(sig)
 
         enriched_cps.append(
             {
                 **cp,
+                "source_reachability_scope": "literal schematic overlap source",
                 "source_reachable_from_starts": source_reachable,
+                "local_exploration_complete": local_exploration["exploration_complete"],
                 "graph_peak_present_from_starts": sig in graph_peak_signatures,
                 "joinable": joinable,
                 "nonjoinability_defect": not joinable,
@@ -598,6 +648,13 @@ def build_term_rewrite_artifact(example_id: str, example: dict[str, Any]) -> dic
                 "nf_outcome_mismatch": nf_outcome_mismatch,
             }
         )
+
+    reachable_pairs = reachable_overlap_pairs(system, exploration, terms=True)
+    reachable_signatures = {
+        _cp_signature(cp["source_term"], cp["left_branch_term"], cp["right_branch_term"])
+        for cp in reachable_pairs
+    }
+    reachable_defective_count = sum(cp["nonjoinability_defect"] for cp in reachable_pairs)
 
     reachable_missing = sorted(
         [
@@ -632,13 +689,15 @@ def build_term_rewrite_artifact(example_id: str, example: dict[str, Any]) -> dic
         "confluent": ars.is_confluent(),
         "graph_peak_count": len(graph_peak_signatures),
         "critical_pair_count": len(enriched_cps),
-        "reachable_critical_pair_count": sum(1 for cp in enriched_cps if cp["source_reachable_from_starts"]),
+        "reachable_critical_pair_count": len(reachable_pairs),
         "system_defective_critical_pair_count": system_defective_count,
         "reachable_defective_critical_pair_count": reachable_defective_count,
         "reachable_cross_check_match": not reachable_missing and not graph_missing,
         "reachable_critical_pairs_missing_from_graph_peaks": reachable_missing,
         "graph_peaks_missing_from_reachable_critical_pairs": graph_missing,
         "critical_pairs": enriched_cps,
+        "reachable_critical_pairs": reachable_pairs,
+        "analysis_scope": "complete reachable closure and complete critical-pair closures",
         "critical_pair_scope": "left_linear_nonvariable_overlaps",
         "left_linear_rules": all(is_left_linear(rule.lhs) for rule in system.rules),
     }

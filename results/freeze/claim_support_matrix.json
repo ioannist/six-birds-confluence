@@ -38,6 +38,12 @@
       "claim_id": "CSM003_finite_terminating_local_flatness_implies_confluence",
       "evidence": [
         {
+          "evidence_type": "lean_proved",
+          "strongest_artifact_paths": [
+            "ConfluenceFlat/Termination.lean"
+          ]
+        },
+        {
           "evidence_type": "exhaustive_computational",
           "strongest_artifact_paths": [
             "results/audits/exhaustive_finite_ars_n_le_4_summary.json",
@@ -51,11 +57,17 @@
         "local flatness/local confluence condition"
       ],
       "label": "finite terminating local flatness implies confluence",
-      "status": "empirically_supported"
+      "status": "proved"
     },
     {
       "claim_id": "CSM004_finite_terminating_confluence_iff_unique_reachable_normal_forms",
       "evidence": [
+        {
+          "evidence_type": "lean_proved",
+          "strongest_artifact_paths": [
+            "ConfluenceFlat/Termination.lean"
+          ]
+        },
         {
           "evidence_type": "exhaustive_computational",
           "strongest_artifact_paths": [
@@ -69,7 +81,7 @@
         "terminating"
       ],
       "label": "finite terminating confluence iff unique reachable normal forms",
-      "status": "empirically_supported"
+      "status": "proved"
     },
     {
       "claim_id": "CSM005_bare_graph_flatness_is_inadequate_without_2cells",
@@ -84,9 +96,9 @@
       ],
       "exact_hypotheses": [
         "bare graph directed-loop proxy only",
-        "no plaquette/critical-pair 2-cell layer"
+        "not an impossibility claim about recovering confluence from the full directed graph"
       ],
-      "label": "bare graph flatness inadequate without 2-cells",
+      "label": "directed-cycle absence and undirected cycle-rank proxies do not diagnose confluence",
       "status": "empirically_supported"
     },
     {
@@ -141,6 +153,7 @@
       ],
       "exact_hypotheses": [
         "curated left-linear TRS examples",
+        "complete reachable closures and complete critical-pair closures",
         "reachable critical pairs",
         "nonroot overlap support"
       ],
@@ -162,7 +175,8 @@
       "exact_hypotheses": [
         "representative ARS/string/TRS examples",
         "machine-readable 0/1/2-cell layer",
-        "elementary holonomy status on generators"
+        "elementary holonomy status on generators",
+        "branching and filler presentation; unfilled peaks are not attached topological 2-cells"
       ],
       "label": "reduction 2-complex elementary holonomy layer explicit",
       "status": "empirically_supported"

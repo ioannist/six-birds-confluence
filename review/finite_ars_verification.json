@@ -1,0 +1,33 @@
+{
+  "kind": "independent_warshall_mathematical_audit",
+  "per_n": [
+    {
+      "states": 1,
+      "systems": 2,
+      "terminating": 1,
+      "confluent_terminating": 1
+    },
+    {
+      "states": 2,
+      "systems": 16,
+      "terminating": 3,
+      "confluent_terminating": 3
+    },
+    {
+      "states": 3,
+      "systems": 512,
+      "terminating": 25,
+      "confluent_terminating": 22
+    },
+    {
+      "states": 4,
+      "systems": 65536,
+      "terminating": 543,
+      "confluent_terminating": 401
+    }
+  ],
+  "total_systems": 66066,
+  "total_terminating_systems": 572,
+  "algorithm_discrepancies": 0,
+  "terminating_equivalence_discrepancies": 0
+}

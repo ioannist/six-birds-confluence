@@ -50,7 +50,7 @@
       "unique_reachable_normal_forms_count": 401
     }
   ],
-  "runtime_seconds": 0.5206057168543339,
+  "runtime_seconds": 0.598871469963342,
   "schema_version": 1,
   "search_space": {
     "include_self_loops": true,

@@ -1,4 +1,5 @@
 {
+  "analysis_scope": "complete reachable closure and complete critical-pair closures",
   "bounds": {
     "max_depth": 4,
     "max_states": 16,
@@ -17,6 +18,7 @@
         "g(b)"
       ],
       "left_rule_index": 0,
+      "local_exploration_complete": true,
       "nf_outcome_mismatch": true,
       "nonjoinability_defect": true,
       "overlap_position": [],
@@ -25,6 +27,7 @@
         "h(a)"
       ],
       "right_rule_index": 1,
+      "source_reachability_scope": "literal schematic overlap source",
       "source_reachable_from_starts": true,
       "source_term": "f(a,b)"
     }
@@ -41,6 +44,37 @@
     "h(a)"
   ],
   "reachable_critical_pair_count": 1,
+  "reachable_critical_pairs": [
+    {
+      "cp_id": "RCP0001",
+      "graph_peak_present_from_starts": true,
+      "joinable": false,
+      "left_branch_term": "g(b)",
+      "left_reachable_normal_forms": [
+        "g(b)"
+      ],
+      "local_exploration_complete": true,
+      "nf_outcome_mismatch": true,
+      "nf_symmetric_difference_size": 2,
+      "nonjoinability_defect": true,
+      "overlap_instances": [
+        {
+          "left_position": [],
+          "left_rule_index": 0,
+          "right_position": [],
+          "right_rule_index": 1
+        }
+      ],
+      "right_branch_term": "h(a)",
+      "right_reachable_normal_forms": [
+        "h(a)"
+      ],
+      "shortest_join_witness_total_distance": null,
+      "shortest_join_witnesses": [],
+      "source_reachable_from_starts": true,
+      "source_term": "f(a,b)"
+    }
+  ],
   "reachable_critical_pairs_missing_from_graph_peaks": [],
   "reachable_cross_check_match": true,
   "reachable_defective_critical_pair_count": 1,

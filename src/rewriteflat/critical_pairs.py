@@ -7,6 +7,7 @@ from typing import Any
 
 from .peak_analysis import analyze_all_peaks, analyze_peak
 from .string_rewriting import StringRewriteSystem, finite_ars_from_exploration
+from .reachable_pairs import reachable_overlap_pairs, require_complete
 
 
 def _apply_at(word: str, start: int, lhs: str, rhs: str) -> str:
@@ -149,6 +150,7 @@ def analyze_string_example_critical_pairs(example: dict[str, Any], system: Strin
         max_word_length=max_word_length,
     )
     example_ars = finite_ars_from_exploration(example_exploration)
+    require_complete(example_exploration)
     graph_peaks = analyze_all_peaks(example_ars)
     graph_peak_signatures = {
         _cp_signature(peak["source"], peak["left"], peak["right"]) for peak in graph_peaks
@@ -156,8 +158,6 @@ def analyze_string_example_critical_pairs(example: dict[str, Any], system: Strin
 
     critical_pairs = []
     system_pairs = enumerate_critical_pairs(system)
-    reachable_signatures = set()
-    reachable_defective_count = 0
     defective_count = 0
 
     for cp in system_pairs:
@@ -172,6 +172,7 @@ def analyze_string_example_critical_pairs(example: dict[str, Any], system: Strin
             max_word_length=max_word_length,
         )
         local_ars = finite_ars_from_exploration(local_exploration)
+        require_complete(local_exploration)
         peak_metrics = analyze_peak(local_ars, source_word, left, right)
         pair_signature = _cp_signature(source_word, left, right)
         source_reachable = source_word in set(example_exploration["states"])
@@ -179,13 +180,10 @@ def analyze_string_example_critical_pairs(example: dict[str, Any], system: Strin
 
         if peak_metrics["nonjoinability_defect"]:
             defective_count += 1
-            if source_reachable:
-                reachable_defective_count += 1
-        if source_reachable:
-            reachable_signatures.add(pair_signature)
 
         cp_record = {
             **cp,
+            "source_reachability_scope": "literal minimal overlap source",
             "local_exploration_complete": local_exploration["exploration_complete"],
             "joinable": peak_metrics["joinable"],
             "nonjoinability_defect": peak_metrics["nonjoinability_defect"],
@@ -197,6 +195,13 @@ def analyze_string_example_critical_pairs(example: dict[str, Any], system: Strin
             "graph_peak_present_from_example_starts": graph_peak_present,
         }
         critical_pairs.append(cp_record)
+
+    reachable_pairs = reachable_overlap_pairs(system, example_exploration)
+    reachable_signatures = {
+        _cp_signature(cp["source_word"], cp["left_branch_term"], cp["right_branch_term"])
+        for cp in reachable_pairs
+    }
+    reachable_defective_count = sum(cp["nonjoinability_defect"] for cp in reachable_pairs)
 
     reachable_missing_from_graph = sorted(
         [
@@ -221,10 +226,10 @@ def analyze_string_example_critical_pairs(example: dict[str, Any], system: Strin
 
     return {
         "critical_pairs": critical_pairs,
+        "reachable_critical_pairs": reachable_pairs,
+        "analysis_scope": "complete reachable closure and complete critical-pair closures",
         "system_critical_pair_count": len(critical_pairs),
-        "reachable_critical_pair_count": sum(
-            1 for cp in critical_pairs if cp["source_reachable_from_example_starts"]
-        ),
+        "reachable_critical_pair_count": len(reachable_pairs),
         "graph_peak_count": len(graph_peaks),
         "defective_critical_pair_count": defective_count,
         "reachable_defective_critical_pair_count": reachable_defective_count,
@@ -250,5 +255,7 @@ def build_critical_pair_artifact(example_id: str, example: dict[str, Any], syste
         "defective_critical_pair_count": analysis["defective_critical_pair_count"],
         "reachable_defective_critical_pair_count": analysis["reachable_defective_critical_pair_count"],
         "critical_pairs": analysis["critical_pairs"],
+        "reachable_critical_pairs": analysis["reachable_critical_pairs"],
+        "analysis_scope": analysis["analysis_scope"],
         "cross_check": analysis["cross_check"],
     }

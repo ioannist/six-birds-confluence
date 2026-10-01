@@ -1,0 +1,241 @@
+{
+  "matrix_validation": {
+    "claim_count": 10,
+    "missing_claim_rows": [],
+    "missing_evidence_types": [],
+    "status_counts": {
+      "deferred_to_paper_theorem": 1,
+      "empirically_supported": 5,
+      "proved": 4
+    }
+  },
+  "regression": {
+    "executed_step_count": 14,
+    "failed_step": null,
+    "slowest_step": {
+      "elapsed_seconds": 1.2013758951798081,
+      "name": "unit_tests"
+    },
+    "step_count": 14,
+    "steps": [
+      {
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "pytest",
+          "-q"
+        ],
+        "elapsed_seconds": 1.2013758951798081,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "unit_tests",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/finite_ars_smoke_check.py"
+        ],
+        "elapsed_seconds": 0.05055896192789078,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "finite_ars_smoke",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/generate_peak_artifacts.py"
+        ],
+        "elapsed_seconds": 0.05484988586977124,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "peak_artifacts",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/generate_plaquette_artifacts.py"
+        ],
+        "elapsed_seconds": 0.05406520701944828,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "plaquette_artifacts",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/run_naive_graph_flatness_audit.py"
+        ],
+        "elapsed_seconds": 0.053208851255476475,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "naive_graph_audit",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/run_string_rewrite_examples.py"
+        ],
+        "elapsed_seconds": 0.05876336386427283,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "string_examples",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/run_critical_pair_analysis.py"
+        ],
+        "elapsed_seconds": 0.0554543430916965,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "critical_pair_analysis",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/run_critical_pair_curvature_audit.py"
+        ],
+        "elapsed_seconds": 0.055400933139026165,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "critical_pair_curvature_audit",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/run_completion_case_study.py"
+        ],
+        "elapsed_seconds": 0.054450207855552435,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "completion_case_study",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/generate_diagram_assets.py"
+        ],
+        "elapsed_seconds": 0.0634986818768084,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "diagram_assets",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/run_term_rewrite_prototype.py"
+        ],
+        "elapsed_seconds": 0.06091131130233407,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "term_rewrite_prototype",
+        "success": true
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/run_two_complex_generation.py"
+        ],
+        "elapsed_seconds": 0.06061643082648516,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "two_complex_generation",
+        "success": true
+      },
+      {
+        "callable": "_small_exhaustive_audit_n3",
+        "details": {
+          "discrepancy_counts": {
+            "local_flatness_vs_local_confluence": 0,
+            "terminating_confluent_not_unique_reachable_normal_forms": 0,
+            "terminating_local_flatness_not_confluent": 0,
+            "terminating_unique_reachable_normal_forms_not_confluent": 0
+          },
+          "max_states": 3,
+          "total_systems_checked": 530,
+          "total_terminating_systems_checked": 29
+        },
+        "elapsed_seconds": 0.0038638943806290627,
+        "error": null,
+        "kind": "callable",
+        "max_states": 3,
+        "name": "small_exhaustive_audit_n3",
+        "success": true,
+        "writes_artifacts": false
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "scripts/build_results_ledger.py"
+        ],
+        "elapsed_seconds": 0.0719197653234005,
+        "exit_code": 0,
+        "kind": "subprocess",
+        "name": "results_ledger",
+        "success": true
+      }
+    ],
+    "success": true,
+    "total_runtime_seconds": 1.8990664458833635
+  },
+  "summary": {
+    "artifact_families": {
+      "missing_required_collections": [],
+      "present": [
+        "boundary_counterexamples",
+        "completion_case_study",
+        "critical_pair_analysis",
+        "critical_pair_audits",
+        "exhaustive_ars_audits",
+        "figures",
+        "freeze_artifacts",
+        "naive_graph_audit",
+        "peak_artifacts",
+        "plaquette_artifacts",
+        "string_examples",
+        "term_rewrite_examples",
+        "two_complex_artifacts"
+      ]
+    },
+    "claim_matrix": {
+      "claim_count": 10,
+      "missing_claim_rows": [],
+      "missing_evidence_types": [],
+      "path": "project/claim_support_matrix.yaml",
+      "status_counts": {
+        "deferred_to_paper_theorem": 1,
+        "empirically_supported": 5,
+        "proved": 4
+      }
+    },
+    "freeze_verdict": "implementation_complete",
+    "generated_at_utc": "2026-10-01T17:07:36Z",
+    "implementation": {
+      "implementation_complete": true,
+      "remaining_implementation_tasks": [],
+      "scope": "curated computational artifact pipeline; not the deferred general theorem"
+    },
+    "kind": "final_experiment_summary",
+    "regression": {
+      "runtime_seconds": 1.8990664458833635,
+      "status": "passed",
+      "step_count": 14
+    },
+    "remaining_theorem_writing_work": [
+      "construct and prove the full theorem package for finite terminating left-linear TRSs in exact target form",
+      "define a genuine reduction 2-complex and 2-connection if a topological holonomy theorem is intended",
+      "prove the bridge to critical-pair completeness/local-confluence in the full TRS setting"
+    ],
+    "schema_version": 1
+  }
+}

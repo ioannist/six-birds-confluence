@@ -1,2 +1,3 @@
 import ConfluenceFlat.Core
 import ConfluenceFlat.UniqueNormalForm
+import ConfluenceFlat.Termination

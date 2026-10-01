@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parents[2]
 def _small_exhaustive_audit_n3() -> dict[str, Any]:
     result = run_exhaustive_audit(max_states=3)
     summary = result["summary"]
+    if any(summary["discrepancy_counts"].values()):
+        raise AssertionError(f"finite-ARS discrepancies: {summary['discrepancy_counts']}")
     return {
         "max_states": 3,
         "total_systems_checked": summary["search_space"]["total_systems_checked"],

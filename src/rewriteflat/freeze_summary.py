@@ -125,9 +125,9 @@ def build_final_experiment_summary(
     missing_required = ledger.get("missing_required_collections", [])
 
     remaining_theorem_work = [
-        "full theorem package for finite terminating left-linear TRSs in exact target form",
-        "explicit reduction 2-complex and 2-connection theorem phrasing",
-        "bridge to standard critical-pair completeness/local-confluence in full TRS setting",
+        "construct and prove the full theorem package for finite terminating left-linear TRSs in exact target form",
+        "define a genuine reduction 2-complex and 2-connection if a topological holonomy theorem is intended",
+        "prove the bridge to critical-pair completeness/local-confluence in the full TRS setting",
     ]
 
     implementation_complete = (
@@ -158,6 +158,7 @@ def build_final_experiment_summary(
             "missing_required_collections": missing_required,
         },
         "implementation": {
+            "scope": "curated computational artifact pipeline; not the deferred general theorem",
             "remaining_implementation_tasks": [],
             "implementation_complete": implementation_complete,
         },
@@ -176,15 +177,9 @@ def run_final_freeze(
     if run_regression:
         regression = run_regression_steps(steps=build_regression_steps())
     else:
-        regression = regression_result or {
-            "success": True,
-            "failed_step": None,
-            "step_count": len(build_regression_steps()),
-            "executed_step_count": len(build_regression_steps()),
-            "total_runtime_seconds": 0.0,
-            "slowest_step": None,
-            "steps": [],
-        }
+        if regression_result is None:
+            raise ValueError("skipping regression requires an explicit regression result")
+        regression = regression_result
 
     if not regression["success"]:
         raise RuntimeError(f"regression failed at step: {regression['failed_step']}")

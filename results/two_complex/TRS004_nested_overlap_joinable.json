@@ -25,11 +25,24 @@
       "target": "p(a)"
     }
   ],
+  "presentation_kind": "branching_and_filler_data",
   "schema_version": 1,
   "two_cell_count": 1,
   "two_cells": [
     {
+      "attachment_status": "filled_branching",
       "boundary": {
+        "closed_boundary_walk": {
+          "forward_route_states": [
+            "f(g(a))",
+            "f(b)",
+            "p(a)"
+          ],
+          "reverse_route_states": [
+            "p(a)",
+            "f(g(a))"
+          ]
+        },
         "left_edge_path_states": [
           "f(g(a))",
           "f(b)"

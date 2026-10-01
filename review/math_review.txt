@@ -1,0 +1,203 @@
+Mathematical review — 2026-10-01
+Baseline checkpoint: da6e40b (the worktree was clean; an empty checkpoint
+commit was made before review). Paper files have not been edited.
+
+Verdict and exact surviving claims
+
+The elementary-flatness/local-confluence equivalence and the normal-form
+proposition are correct. Elementary flatness here means fillability of every
+distinct-target one-step peak. The equivalence unpacks that definition, adding
+the reflexive case; it is not an independent geometric or gauge-theoretic
+criterion. The original finite and curated observations survive the repairs.
+No title change or weakening of either proved manuscript statement is needed.
+Several broad explanatory sentences need qualification in the later paper edit.
+
+The formal library now proves stronger statements:
+  * elementary flatness iff local confluence for an arbitrary rewriting relation;
+  * termination (reverse-step well-foundedness) implies normalization;
+  * termination plus local confluence implies confluence (Newman's lemma);
+  * under termination, confluence iff elementary flatness;
+  * under weak normalization, confluence iff uniqueness of reachable normal
+    forms, where uniqueness alone means at most one, not existence;
+  * termination plus elementary flatness gives existence of a unique reachable
+    normal form from every start.
+
+Proof inspection
+
+ConfluenceFlat/Core.lean: Reachable is the reflexive-transitive closure of step,
+Joinable is existence of a common descendant, and ElementaryPeak excludes equal
+targets. The two directions of the core equivalence use exactly these premises.
+Originally ARS.step_closed restricted every step to a finite support list. No
+proof used that restriction, but the declarations were consequently narrower
+than unrestricted abstract rewriting. RewriteSystem now carries just step; all
+definitions and proofs quantify over it. ARS remains a finite-support extension
+with a coercion, retaining a usable finite representation.
+
+ConfluenceFlat/UniqueNormalForm.lean: a normal form has only itself as a reachable
+descendant. Confluence joins two reachable normal forms, so they must be equal.
+Normalizing supplies existence independently. These proofs assume neither
+termination nor finiteness, and do not hide existence in the uniqueness predicate.
+
+ConfluenceFlat/Termination.lean: well-founded induction is taken on
+(b,a) -> step a b, the correct orientation. In Newman's lemma the first steps
+lead to b1 and c1. Local confluence gives d reachable from both; induction at
+c1 joins c with d at v; induction at b1 joins b with v. The resulting paths
+compose to a common descendant of b and c. The converse normal-form criterion
+normalizes each branch and invokes uniqueness at the original common ancestor.
+All normalizing, local-confluence and termination inputs remain explicit.
+
+review/axioms.lean audits the exported declarations, not just the absence of
+local axiom keywords. review/lean_axioms.txt is a fresh output on Lean 4.28.0.
+There are no sorry proofs, custom axioms, unsafe computational proof bridges, or
+imported Six Birds recognition assumptions. Some declarations use the standard
+Lean axioms propext, Classical.choice and Quot.sound; others have no axioms.
+
+Computational failures found and repaired
+
+1. two_complex._holonomy_status combined joinability and normal-form outcome-set
+   equality. Counterexample: A -> B,C; B -> D,E; C -> D. B and C join at D, yet
+   their normal-form sets differ. The peak is trivial under the manuscript's
+   definition. Holonomy status and primary defect counts now use joinability
+   alone; outcome mismatch remains an independent diagnostic.
+
+2. term_rewriting.generate_left_linear_critical_pairs omitted all i=j overlaps.
+   A single rule f(f(x)) -> g(x) has a proper self-overlap at depth one, giving
+   f(f(f(x))) -> g(f(x)), f(g(x)). Self-overlaps are now enumerated; trivial root
+   overlaps are discarded by branch equality. Variable renamings are quotiented
+   when deduplicating schematic branchings.
+
+3. unify resolved only variables at the root, missing indirect occurs cycles.
+   The equation f(x,y)=f(g(y),g(x)) previously produced an impossible cyclic
+   substitution. Resolution now descends through function arguments before the
+   occurs check; returned unifiers are normalized. Cyclic supplied substitution
+   environments are rejected.
+
+4. apply_substitution recursively substituted into its own replacements. This
+   confuses simultaneous substitution with unifier normalization and loops on
+   open-term matches such as x -> x. Substitution is now simultaneous; recursive
+   normalization is confined to the unifier. Matching f(x,y) against f(y,a)
+   now reconstructs f(y,a), rather than incorrectly replacing y a second time.
+
+5. TRS inputs admitted variable left sides, fresh right-side variables, inconsistent
+   function arities, and nonlinear left sides into the explicitly left-linear
+   critical-pair generator. Those cases are now rejected at the relevant boundary.
+   The one-step rewriting engine still supports valid nonlinear matching; only
+   the left-linear generator requires left linearity.
+
+6. Reachability used literal equality of minimal/schematic overlap sources with
+   explored states. Thus ab -> x,y at the reachable source zab was missed, as
+   were ground instances of symbolic TRS overlaps and overlaps inside contexts.
+   reachable_pairs.py now enumerates concrete reachable overlapping redex pairs
+   independently from schematic system pairs, recording positions and rule
+   indices. reachable_critical_pairs contains those instances. System-level
+   source_reachable flags are explicitly scoped to literal sources. Downstream
+   counts, holonomy artifacts, completion audits and diagrams use the instances.
+
+7. Bounded searches treated absence of a found join as nonjoinability, or crashed
+   when the bounds omitted a branch. A depth-one truncation of the diamond
+   a -> b,c; b,c -> d is an explicit false negative. Certification builders now
+   require complete reachable and critical-pair closures and fail explicitly
+   with an inconclusive-bounds message otherwise. The bounded explorer remains
+   available; its graph analysis states its scope and whether the reachable
+   closure is certified. Completeness concerns the chosen starts, not every term
+   or word in the unrestricted rewriting system. This is a conservative gate:
+   even a positive partial witness does not make the full audit complete.
+
+8. TRS outcome mismatch was calculated even for nonterminating closures. It is
+   now unset there, matching the finite-ARS diagnostic convention. Primary TRS
+   defective-pair counts use nonjoinability, consistently with the string layer.
+
+9. The finite graph representation rejected the empty string although deleting
+   string rules are allowed. It now accepts the empty word as a state. Initial
+   states exceeding exploration bounds are rejected, instead of silently
+   violating those bounds. Termination checking uses an iterative topological
+   algorithm, avoiding recursion-limit failures on long finite chains.
+
+10. Completion stages recorded declared rule additions without checking them.
+    Their rule sets and starts are now verified to implement exactly the declared
+    additions, with the same starts. Existing manual completion examples pass.
+
+11. The freeze helper invented a successful regression result when regression
+    was skipped without a receipt. Skipping now requires an explicit result.
+    The small regression audit now fails on discrepancies rather than merely
+    printing them. The final freeze was produced by actual regression execution.
+
+12. A bare V-shaped peak is not the attaching boundary of a conventional
+    topological 2-cell. Artifacts now identify themselves as branching/filler
+    presentations, distinguish unfilled peaks from filled branchings, and export
+    closed forward/reverse boundary walks only when a filler exists. The existing
+    names and two_cells list are retained as the project's branching records;
+    they do not assert that an unfilled peak is an attached CW disk.
+
+Required qualifications for the later paper phase (paper left untouched)
+
+paper/sections/03_bare_graph_not_enough.tex and 04_reduction_two_complex.tex:
+The full directed graph determines an abstract rewrite relation, its peaks,
+joinability and confluence. The code itself computes all of these from that
+graph. Therefore claims that it intrinsically contains too little information,
+or that elementary flatness cannot be read from it, are false for ARSs. The
+valid negative result concerns the directed-cycle and undirected cycle-rank
+proxies only. A 2-dimensional presentation packages branching/filler data; it
+does not create previously unavailable ARS information. CSM005 is narrowed to
+that valid proxy statement without changing the counterexample proposition.
+
+paper/sections/04_reduction_two_complex.tex:
+Keep the explicit elementary-holonomy definition as a Boolean fillability
+status. It is not group-valued holonomy of an independently specified connection,
+nor a theorem about fundamental groups, higher coherence or path homotopy.
+Open branching records should be distinguished from actually attached 2-cells.
+CSM009 and the regenerated artifacts now expose this distinction.
+
+paper/sections/06_critical_pairs_curvature_generators.tex:
+Exact equality of critical-pair and graph-peak signatures holds on the curated
+examples, not on arbitrary structured rewriting systems. Disjoint rewrites
+commute and produce peaks without critical overlaps; nested variable overlaps
+in left-linear TRSs are also handled by compatibility, not by critical pairs.
+For example a -> b and c -> d produce a peak at ac with zero critical overlaps.
+Likewise f(x) -> g(x) and a -> b give a commuting variable-overlap peak at f(a).
+Critical pairs generate the nontrivial overlap obligations, with contextual
+instances and substitutions included; they are not the entire local peak set.
+The original curated propositions and their numbers remain correct.
+
+paper/sections/09_proved_supported_deferred.tex and appendices:
+CSM003 and CSM004 now have actual Lean proofs and can be upgraded in the later
+edit. The stronger weak-normalization criterion is also available. The abstract
+library is now unrestricted rather than merely a finite-support surrogate.
+
+Still deferred, rather than silently assumed
+
+The general syntactic critical-pair completeness theorem for left-linear TRSs,
+and an independently defined topological 2-connection theorem, are not proved
+by these repairs. The first requires the standard disjoint/variable/critical
+overlap decomposition and stability under contexts and substitutions. The
+second first requires precise connection and geometric definitions. CSM010
+remains deferred, and the freeze record now describes construction/proof work,
+rather than suggesting only manuscript phrasing remains. The paper's existing
+title and its stated elementary fillability interpretation do not require either
+deferred theorem. The archived snapshot ZIP is historical, not a current build
+or verification receipt, and was not regenerated.
+
+Fresh validation and distinct self-review
+
+The library's BFS-based predicates were compared against a separately implemented
+Boolean-matrix Warshall closure for every one of the 66,066 labeled relations on
+1..4 states, including loops and cyclic systems. Zero predicate discrepancies;
+all 572 terminating systems satisfy local confluence iff confluence iff unique
+reachable normal forms. Per-size terminating counts: 1,3,25,543; confluent
+terminating counts: 1,3,22,401. The original exhaustive audit was also rerun and
+reports zero discrepancies. review/finite_ars_verification.json records the
+independent algorithm comparison, not an independent human/agent review.
+
+tests/test_math_repairs.py exercises the specific counterexamples above and
+checks actual boundary/filler paths against each artifact's own edge relation.
+The complete suite has 126 tests. The fourteen-step artifact regression and the
+Lean build pass. review/final_verification.json records the actual regression
+steps; review/lean_axioms.txt records the declaration axiom audit.
+
+A separate adversarial self-review checked the repairs for: induction orientation
+and quantified hypotheses; existence versus at-most-one normal forms; cyclic and
+empty-word boundaries; schematic versus instantiated overlaps; partial-search
+false negatives; normalization versus termination; joinability versus outcome
+equality; and branching records versus attached disks. This was self-review,
+not independent reviewer certification. The graph-proxy and geometric limits
+above remain explicit, rather than being transferred into the Lean conclusions.

@@ -105,11 +105,10 @@ def _filler_paths(states: list[str], edges: list[tuple[str, str]], left: str, ri
 
 
 def _holonomy_status(joinable: bool, nf_mismatch: bool) -> tuple[str, str | None]:
-    if joinable and not nf_mismatch:
+    # Outcome-set equality is a separate diagnostic, not the filler predicate.
+    if joinable:
         return "trivial", None
-    if not joinable:
-        return "nontrivial", "nonjoinable"
-    return "nontrivial", "nf_outcome_mismatch"
+    return "nontrivial", "nonjoinable"
 
 
 def _build_finite_ars_artifact(example_id: str) -> dict[str, Any]:
@@ -181,7 +180,7 @@ def _build_string_artifact(example_id: str) -> dict[str, Any]:
     ]
 
     cp_art = build_critical_pair_artifact(example_id, example, system)
-    reachable = [cp for cp in cp_art["critical_pairs"] if cp["source_reachable_from_example_starts"]]
+    reachable = cp_art["reachable_critical_pairs"]
     reachable.sort(key=lambda cp: (cp["source_word"], cp["left_branch_term"], cp["right_branch_term"], cp["critical_pair_id"]))
 
     two_cells = []
@@ -241,7 +240,7 @@ def _build_term_artifact(example_id: str) -> dict[str, Any]:
     ]
 
     cp_art = build_term_rewrite_artifact(example_id, example)
-    reachable = [cp for cp in cp_art["critical_pairs"] if cp["source_reachable_from_starts"]]
+    reachable = cp_art["reachable_critical_pairs"]
     reachable.sort(key=lambda cp: (cp["source_term"], cp["left_branch_term"], cp["right_branch_term"], cp["cp_id"]))
 
     two_cells = []
@@ -279,6 +278,19 @@ def _build_term_artifact(example_id: str) -> dict[str, Any]:
 
 
 def _finalize_artifact(example_id: str, domain: str, zero_cells: list[str], one_cells: list[dict[str, Any]], two_cells: list[dict[str, Any]]) -> dict[str, Any]:
+    for cell in two_cells:
+        boundary = cell["boundary"]
+        witness = cell["join_witness"]
+        cell["attachment_status"] = "filled_branching" if witness is not None else "unfilled_peak"
+        if witness is None:
+            boundary["closed_boundary_walk"] = None
+        else:
+            left_route = boundary["left_edge_path_states"] + boundary["left_filler_path_states"][1:]
+            right_route = boundary["right_edge_path_states"] + boundary["right_filler_path_states"][1:]
+            boundary["closed_boundary_walk"] = {
+                "forward_route_states": left_route,
+                "reverse_route_states": list(reversed(right_route)),
+            }
     holonomy_counts = {
         "trivial": sum(1 for c in two_cells if c["elementary_holonomy_status"] == "trivial"),
         "nontrivial": sum(1 for c in two_cells if c["elementary_holonomy_status"] == "nontrivial"),
@@ -288,6 +300,7 @@ def _finalize_artifact(example_id: str, domain: str, zero_cells: list[str], one_
     return {
         "schema_version": 1,
         "kind": "reduction_two_complex",
+        "presentation_kind": "branching_and_filler_data",
         "example_id": example_id,
         "domain": domain,
         "zero_cells": sorted(zero_cells),
@@ -361,7 +374,7 @@ def build_selected_two_complex_artifacts(example_ids: list[str] | None = None) -
             for cell in art["two_cells"]
         ),
         "all_defective_two_cells_nontrivial": all(
-            (not cell["nonjoinability_defect"] and not cell["nf_outcome_mismatch"])
+            (not cell["nonjoinability_defect"])
             or (cell["elementary_holonomy_status"] == "nontrivial")
             for art in artifacts
             for cell in art["two_cells"]

@@ -1,0 +1,10 @@
+import ConfluenceFlat
+
+#print axioms ConfluenceFlat.FiniteARS.elementaryFlat_iff_localConfluent
+#print axioms ConfluenceFlat.FiniteARS.uniqueNormalFormFrom_of_confluent
+#print axioms ConfluenceFlat.FiniteARS.existsUniqueNormalFormFrom_of_confluent_normalizing
+#print axioms ConfluenceFlat.FiniteARS.normalizing_of_terminating
+#print axioms ConfluenceFlat.FiniteARS.confluent_of_terminating_localConfluent
+#print axioms ConfluenceFlat.FiniteARS.confluent_iff_elementaryFlat_of_terminating
+#print axioms ConfluenceFlat.FiniteARS.confluent_iff_uniqueNormalForms_of_normalizing
+#print axioms ConfluenceFlat.FiniteARS.existsUniqueNormalFormFrom_of_terminating_elementaryFlat

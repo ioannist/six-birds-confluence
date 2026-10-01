@@ -370,7 +370,7 @@ def build_diagram_manifest(output_root: Path | str | None = None, dot_executable
         }
     )
     cp_art = build_critical_pair_artifact("E006_string_overlap_nonconfluent", example, system)
-    candidates = [cp for cp in cp_art["critical_pairs"] if cp["source_reachable_from_example_starts"]] or cp_art["critical_pairs"]
+    candidates = cp_art["reachable_critical_pairs"] or cp_art["critical_pairs"]
     cp = sorted(candidates, key=lambda item: item["critical_pair_id"])[0]
     witness = _choose_join_witness(ars, cp["left_branch_term"], cp["right_branch_term"]) if cp["joinable"] else None
     plans.append(
@@ -399,7 +399,7 @@ def build_diagram_manifest(output_root: Path | str | None = None, dot_executable
         states, edges, starts, normal_forms, ars, example, system = _string_state(eid)
         _ = (states, edges, starts, normal_forms)
         cp_art = build_critical_pair_artifact(eid, example, system)
-        candidates = [cp for cp in cp_art["critical_pairs"] if cp["source_reachable_from_example_starts"]] or cp_art["critical_pairs"]
+        candidates = cp_art["reachable_critical_pairs"] or cp_art["critical_pairs"]
         cp = sorted(candidates, key=lambda item: item["critical_pair_id"])[0]
         witness = _choose_join_witness(ars, cp["left_branch_term"], cp["right_branch_term"]) if cp["joinable"] else None
         plans.append(

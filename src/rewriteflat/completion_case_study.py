@@ -74,13 +74,12 @@ def build_completion_case_stage_row(case_spec: dict[str, Any], stage_spec: dict[
     system_defective = sum(
         1
         for cp in cp_artifact["critical_pairs"]
-        if cp["nonjoinability_defect"] or (cp["nf_outcome_mismatch"] is True)
+        if cp["nonjoinability_defect"]
     )
     reachable_defective = sum(
         1
-        for cp in cp_artifact["critical_pairs"]
-        if cp["source_reachable_from_example_starts"]
-        and (cp["nonjoinability_defect"] or (cp["nf_outcome_mismatch"] is True))
+        for cp in cp_artifact["reachable_critical_pairs"]
+        if cp["nonjoinability_defect"]
     )
 
     return {
@@ -149,6 +148,14 @@ def build_completion_case_study_artifact(case_id: str = DEFAULT_CASE_ID) -> dict
     stages = []
     for idx, stage_spec in enumerate(spec["stages"]):
         row = build_completion_case_stage_row(spec, stage_spec)
+        if stages:
+            previous_rules = {tuple(rule) for rule in stages[-1]["rules"]}
+            current_rules = {tuple(rule) for rule in row["rules"]}
+            added_rules = {tuple(rule) for rule in row["added_rules_from_previous_stage"]}
+            if current_rules != previous_rules | added_rules:
+                raise ValueError("completion stages must differ by exactly their declared rule additions")
+            if row["start_strings"] != stages[-1]["start_strings"]:
+                raise ValueError("completion stages must use the same start strings")
         row["stage_index"] = idx
         stages.append(row)
 

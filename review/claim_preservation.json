@@ -1,0 +1,12 @@
+{
+  "curated_claim_summaries_preserved": {
+    "results/critical_pairs/summary.json": true,
+    "results/term_rewrite/summary.json": true,
+    "results/two_complex/summary.json": true,
+    "results/string_rewrite/summary.json": true,
+    "results/audits/critical_pair_curvature_audit.json": true,
+    "results/case_studies/CS001_manual_completion_ab_to_xy.json": true
+  },
+  "paper_changes": [],
+  "baseline_commit": "da6e40b"
+}

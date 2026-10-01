@@ -93,6 +93,10 @@ class StringRewriteSystem:
             raise ValueError("max_word_length must be a positive integer when provided")
 
         starts = sorted(set(start_strings))
+        if len(starts) > max_states:
+            raise ValueError("start strings exceed max_states")
+        if max_word_length is not None and any(len(w) > max_word_length for w in starts):
+            raise ValueError("start string exceeds max_word_length")
         depth_by_state: dict[str, int] = {word: 0 for word in starts}
         queue: deque[str] = deque(starts)
         explored_states: set[str] = set(starts)
@@ -185,6 +189,9 @@ def analyze_string_exploration(exploration: dict[str, Any]) -> dict[str, Any]:
     }
 
     return {
+        "analysis_scope": "explored finite graph",
+        "exploration_complete": exploration["exploration_complete"],
+        "reachable_closure_properties_certified": exploration["exploration_complete"],
         "state_count": len(ars.states),
         "edge_count": len(ars.edges),
         "peak_count": len(peaks),
@@ -202,6 +209,8 @@ def analyze_string_exploration(exploration: dict[str, Any]) -> dict[str, Any]:
 
 
 def evaluate_supported_expected_label(label: str, analysis: dict[str, Any]) -> bool:
+    if analysis.get("exploration_complete") is False:
+        raise ValueError("expected reachable-closure labels require complete exploration")
     defects = analysis["defect_counts"]
     if label == "terminating":
         return bool(analysis["terminating"])

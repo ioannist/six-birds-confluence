@@ -54,7 +54,7 @@ def build_example_curvature_audit_row(example_id: str) -> dict[str, Any]:
 
     local_nonjoin = sum(1 for peak in peaks if peak["nonjoinability_defect"])
     local_nf_mismatch = sum(1 for peak in peaks if peak["nf_outcome_mismatch"] is True)
-    local_peak_has_obstruction = (local_nonjoin > 0) or (local_nf_mismatch > 0)
+    local_peak_has_obstruction = local_nonjoin > 0
 
     peak_signatures = {_signature(peak["source"], peak["left"], peak["right"]) for peak in peaks}
     peak_nonjoin_signatures = {
@@ -73,10 +73,10 @@ def build_example_curvature_audit_row(example_id: str) -> dict[str, Any]:
 
     system_nonjoin = sum(1 for cp in cps if cp["nonjoinability_defect"])
     system_nf_mismatch = sum(1 for cp in cps if cp["nf_outcome_mismatch"] is True)
-    reachable_cps = [cp for cp in cps if cp["source_reachable_from_example_starts"]]
+    reachable_cps = cp_artifact["reachable_critical_pairs"]
     reachable_nonjoin = sum(1 for cp in reachable_cps if cp["nonjoinability_defect"])
     reachable_nf_mismatch = sum(1 for cp in reachable_cps if cp["nf_outcome_mismatch"] is True)
-    reachable_has_obstruction = (reachable_nonjoin > 0) or (reachable_nf_mismatch > 0)
+    reachable_has_obstruction = reachable_nonjoin > 0
 
     reachable_signatures = {
         _signature(cp["source_word"], cp["left_branch_term"], cp["right_branch_term"]) for cp in reachable_cps
@@ -113,7 +113,9 @@ def build_example_curvature_audit_row(example_id: str) -> dict[str, Any]:
     global_vs_reachable_cp_alignment = confluent == (not reachable_has_obstruction)
 
     curvature_supported = (
-        reachable_cross_check_match
+        exploration["exploration_complete"]
+        and string_analysis["terminating"]
+        and reachable_cross_check_match
         and nonjoinability_match
         and nf_mismatch_match
         and global_vs_local_peak_alignment

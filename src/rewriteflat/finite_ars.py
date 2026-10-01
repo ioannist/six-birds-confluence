@@ -16,8 +16,8 @@ class FiniteARS:
             raise ValueError("states must be non-empty")
         if len(set(state_list)) != len(state_list):
             raise ValueError("states must be unique")
-        if any(not isinstance(state, str) or not state for state in state_list):
-            raise ValueError("all states must be non-empty strings")
+        if any(not isinstance(state, str) for state in state_list):
+            raise ValueError("all states must be strings")
 
         self._states = tuple(state_list)
         self._state_set = set(self._states)
@@ -82,27 +82,20 @@ class FiniteARS:
         return peaks
 
     def is_terminating(self) -> bool:
-        visiting: set[str] = set()
-        visited: set[str] = set()
-
-        def dfs(node: str) -> bool:
-            if node in visiting:
-                return False
-            if node in visited:
-                return True
-
-            visiting.add(node)
-            for nxt in self._adjacency[node]:
-                if not dfs(nxt):
-                    return False
-            visiting.remove(node)
-            visited.add(node)
-            return True
-
-        for state in self._states:
-            if state not in visited and not dfs(state):
-                return False
-        return True
+        # Kahn's algorithm avoids a recursion limit on long terminating chains.
+        indegree = dict.fromkeys(self._states, 0)
+        for _, target in self._edges:
+            indegree[target] += 1
+        queue = deque(state for state in self._states if indegree[state] == 0)
+        removed = 0
+        while queue:
+            source = queue.popleft()
+            removed += 1
+            for target in self._adjacency[source]:
+                indegree[target] -= 1
+                if indegree[target] == 0:
+                    queue.append(target)
+        return removed == len(self._states)
 
     def is_locally_confluent(self) -> bool:
         for _, left, right in self.local_peaks():

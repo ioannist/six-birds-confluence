@@ -25,11 +25,24 @@
       "target": "y"
     }
   ],
+  "presentation_kind": "branching_and_filler_data",
   "schema_version": 1,
   "two_cell_count": 1,
   "two_cells": [
     {
+      "attachment_status": "filled_branching",
       "boundary": {
+        "closed_boundary_walk": {
+          "forward_route_states": [
+            "ab",
+            "x",
+            "y"
+          ],
+          "reverse_route_states": [
+            "y",
+            "ab"
+          ]
+        },
         "left_edge_path_states": [
           "ab",
           "x"

@@ -1,6 +1,6 @@
 .PHONY: test audit regression paper paper-clean paper-flatten
 
-PYTHON := python
+PYTHON := python3
 
 install:
 	$(PYTHON) -m pip install -e .

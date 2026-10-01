@@ -6,32 +6,32 @@ namespace FiniteARS
 
 universe u
 
-def Confluent {α : Type u} (R : ARS α) : Prop :=
+def Confluent {α : Type u} (R : RewriteSystem α) : Prop :=
   ∀ ⦃a b c : α⦄, Reachable R a b → Reachable R a c → Joinable R b c
 
-def Normalizing {α : Type u} (R : ARS α) : Prop :=
+def Normalizing {α : Type u} (R : RewriteSystem α) : Prop :=
   ∀ a, ∃ n, Reachable R a n ∧ NormalForm R n
 
-def UniqueNormalFormFrom {α : Type u} (R : ARS α) (a : α) : Prop :=
+def UniqueNormalFormFrom {α : Type u} (R : RewriteSystem α) (a : α) : Prop :=
   ∀ b c,
     Reachable R a b → NormalForm R b →
     Reachable R a c → NormalForm R c →
     b = c
 
-def ExistsUniqueNormalFormFrom {α : Type u} (R : ARS α) (a : α) : Prop :=
+def ExistsUniqueNormalFormFrom {α : Type u} (R : RewriteSystem α) (a : α) : Prop :=
   ∃ n,
     Reachable R a n ∧
     NormalForm R n ∧
     ∀ m, Reachable R a m → NormalForm R m → m = n
 
-theorem reachable_eq_of_normalForm {α : Type u} {R : ARS α} {a b : α}
+theorem reachable_eq_of_normalForm {α : Type u} {R : RewriteSystem α} {a b : α}
     (hna : NormalForm R a) (hab : Reachable R a b) : a = b := by
   induction hab with
   | refl _ => rfl
   | tail hstep _ _ =>
       exact False.elim (hna _ hstep)
 
-theorem eq_of_joinable_normalForms {α : Type u} {R : ARS α} {b c : α}
+theorem eq_of_joinable_normalForms {α : Type u} {R : RewriteSystem α} {b c : α}
     (hjoin : Joinable R b c)
     (hnb : NormalForm R b)
     (hnc : NormalForm R c) : b = c := by
@@ -42,13 +42,13 @@ theorem eq_of_joinable_normalForms {α : Type u} {R : ARS α} {b c : α}
     b = w := hbw
     _ = c := hcw'.symm
 
-theorem uniqueNormalFormFrom_of_confluent {α : Type u} {R : ARS α}
+theorem uniqueNormalFormFrom_of_confluent {α : Type u} {R : RewriteSystem α}
     (hconf : Confluent R) (a : α) :
     UniqueNormalFormFrom R a := by
   intro b c hab hnb hac hnc
   exact eq_of_joinable_normalForms (hconf hab hac) hnb hnc
 
-theorem existsUniqueNormalFormFrom_of_confluent_normalizing {α : Type u} {R : ARS α}
+theorem existsUniqueNormalFormFrom_of_confluent_normalizing {α : Type u} {R : RewriteSystem α}
     (hconf : Confluent R) (hnorm : Normalizing R) (a : α) :
     ExistsUniqueNormalFormFrom R a := by
   rcases hnorm a with ⟨n, han, hnnf⟩

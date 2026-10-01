@@ -1,4 +1,5 @@
 {
+  "analysis_scope": "complete reachable closure and complete critical-pair closures",
   "bounds": {
     "max_depth": 3,
     "max_states": 16,
@@ -47,6 +48,7 @@
       "right_reachable_normal_forms": [
         "y"
       ],
+      "source_reachability_scope": "literal minimal overlap source",
       "source_reachable_from_example_starts": true,
       "source_word": "ab"
     }
@@ -61,6 +63,37 @@
   "graph_peak_count": 1,
   "kind": "string_critical_pair_analysis",
   "reachable_critical_pair_count": 1,
+  "reachable_critical_pairs": [
+    {
+      "critical_pair_id": "RCP0001",
+      "graph_peak_present_from_example_starts": true,
+      "joinable": false,
+      "left_branch_term": "x",
+      "left_reachable_normal_forms": [
+        "x"
+      ],
+      "local_exploration_complete": true,
+      "nf_outcome_mismatch": true,
+      "nf_symmetric_difference_size": 2,
+      "nonjoinability_defect": true,
+      "overlap_instances": [
+        {
+          "left_position": 0,
+          "left_rule_index": 0,
+          "right_position": 0,
+          "right_rule_index": 1
+        }
+      ],
+      "right_branch_term": "y",
+      "right_reachable_normal_forms": [
+        "y"
+      ],
+      "shortest_join_witness_total_distance": null,
+      "shortest_join_witnesses": [],
+      "source_reachable_from_example_starts": true,
+      "source_word": "ab"
+    }
+  ],
   "reachable_defective_critical_pair_count": 1,
   "schema_version": 1,
   "system_critical_pair_count": 1

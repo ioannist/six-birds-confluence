@@ -397,7 +397,7 @@
       }
     }
   ],
-  "runtime_seconds": 10.125922933220863,
+  "runtime_seconds": 11.638998605776578,
   "schema_version": 1,
   "search_space": {
     "include_self_loops": true,

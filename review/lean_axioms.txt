@@ -1,0 +1,12 @@
+'ConfluenceFlat.FiniteARS.elementaryFlat_iff_localConfluent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConfluenceFlat.FiniteARS.uniqueNormalFormFrom_of_confluent' does not depend on any axioms
+'ConfluenceFlat.FiniteARS.existsUniqueNormalFormFrom_of_confluent_normalizing' does not depend on any axioms
+'ConfluenceFlat.FiniteARS.normalizing_of_terminating' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConfluenceFlat.FiniteARS.confluent_of_terminating_localConfluent' does not depend on any axioms
+'ConfluenceFlat.FiniteARS.confluent_iff_elementaryFlat_of_terminating' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ConfluenceFlat.FiniteARS.confluent_iff_uniqueNormalForms_of_normalizing' does not depend on any axioms
+'ConfluenceFlat.FiniteARS.existsUniqueNormalFormFrom_of_terminating_elementaryFlat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

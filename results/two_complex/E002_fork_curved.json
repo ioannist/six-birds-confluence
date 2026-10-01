@@ -25,11 +25,14 @@
       "target": "D"
     }
   ],
+  "presentation_kind": "branching_and_filler_data",
   "schema_version": 1,
   "two_cell_count": 1,
   "two_cells": [
     {
+      "attachment_status": "unfilled_peak",
       "boundary": {
+        "closed_boundary_walk": null,
         "left_edge_path_states": [
           "A",
           "B"
