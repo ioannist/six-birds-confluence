@@ -1,54 +1,35 @@
-\section{What Is Proved, What Is Supported, What Remains}
+\section{What Is Proved, What Is Computed, What Remains Open}
 \label{sec:proved-supported-deferred}
 
-The paper is intentionally organized around three levels of claim. This is not a hedge. It is the correct way to separate what has already been established from what has been computationally fixed and from what still remains to be written as the final theorem package. The resulting boundary is one of the paper's main strengths: it makes the bridge precise without pretending that every desirable general statement has already been formalized.
+\Cref{tab:claim-support-matrix} summarizes the status of each claim. This section comments on the three groups.
 
 \begin{table}[t]
-    \caption{Claim-support matrix for the paper. The table distinguishes statements already proved, statements strongly supported by the computational and structural evidence, and the final theorem package deferred to later work.}
+    \caption{Status of the main claims. ``Proved'' means proved in the paper and, where indicated, in Lean. ``Cited'' means a classical result used as stated in the literature. ``Computed'' means verified on the specific systems examined. ``Open'' means not established here.}
     \label{tab:claim-support-matrix}
     \centering
     \smallskip
     \input{tables/T9_claim_support_matrix}
 \end{table}
 
-\subsection{What is already proved}
+\subsection{Proved}
 \label{subsec:what-is-proved}
 
-The theorem-level core of the paper is already in place. At the level of abstract rewriting systems, \Cref{thm:elementary-flatness-iff-local-confluence} proves that elementary flatness is equivalent to local confluence. This gives the paper its central formal sentence: once the relevant elementary branchings have been identified, local confluence is exactly the vanishing of elementary route mismatch. In the terminology of the paper, local confluence is exactly elementary flatness.
+For abstract rewriting systems the picture is complete. Elementary flatness is local confluence (\Cref{thm:elementary-flatness-iff-local-confluence}). Under termination, Newman's lemma makes it equivalent to confluence (\Cref{cor:terminating-confluence-iff-flat}); under the weaker hypothesis of normalization, confluence is equivalent to uniqueness of reachable normal forms (\Cref{thm:normalizing-confluence-iff-unf}); and a terminating, elementarily flat system has exactly one normal form reachable from each state (\Cref{cor:terminating-flat-unique-nf}). These are classical facts of rewriting theory restated in the vocabulary of holonomy, and all of them are checked in Lean for arbitrary, possibly infinite, systems. The failure of cycle-based graph flatness (\Cref{prop:bare-graph-not-diagnostic}) is proved by explicit counterexamples.
 
-A second supporting fact is also already proved: under confluence and normalization, each chosen start state has a unique reachable normal form (\Cref{prop:confluence-normalization-unique-normal-form}). This is not the paper's headline theorem, but it is an important supporting bridge between the local path-filling language and the usual outcome language of rewriting theory.
-
-These core results are not merely informal manuscript claims. They are mirrored in the Lean development summarized in Appendix~\ref{app:lean-formal-core}. The formal core currently includes the elementary-flatness/local-confluence equivalence and the corresponding uniqueness-of-normal-form statement under confluence and normalization. The Lean layer therefore already secures the paper's most basic theorem-level commitments.
-
-\subsection{What is strongly supported by the computational and structural evidence}
+\subsection{Cited and computed}
 \label{subsec:what-is-supported}
 
-The next layer of the paper is not theorem-writing in the strict sense, but it is substantially stronger than anecdotal experimentation. The repository now contains exhaustive, curated, and structural evidence that all points in the same direction.
+For string and term rewriting, the link between critical pairs and local confluence is the classical critical-pair lemma, which we cite (\Cref{thm:critical-pair-lemma}). Together with the results above it gives \Cref{cor:cp-flatness}: a system is elementarily flat if and only if its critical pairs are joinable, and, when terminating, confluent under the same condition.
 
-First, the bare-graph formulation has been falsified in exactly the way the corrected theory predicts. Directed-loop flatness on the reduction graph is vacuous in the curated terminating examples, and undirected graph cycle structure is not diagnostic for confluence. The graph-only surrogates therefore fail not accidentally, but because they are attached to the wrong object.
+The computations add evidence of a different kind. On finite systems with one to four states they agree with the theorems on every case and produce smallest counterexamples for each dropped hypothesis. On the curated string and term examples they show that the start-relative analysis, based on concrete critical-pair instances in reachable terms, finds exactly the observed obstructions, including an overlap below the root, and that a single added rule can turn an open branching into a filled one. These are statements about the examples examined, and we do not extrapolate them.
 
-Second, the finite-ARS stress tests are now strong enough to stabilize the local/global picture in the small terminating regime. The exhaustive audit over all labeled systems up to four states finds no counterexample to the expected finite-ARS relationships on the terminating subset, while the boundary-counterexample search finds explicit failures as soon as the safe hypotheses are weakened in the wrong way. The evidence therefore distinguishes sharply between the correct local peak picture and several tempting but incorrect substitutes.
-
-Third, the curated string and left-linear term-rewriting examples support the rewriting-specific bridge. In the string layer, reachable critical-pair defects agree with the observed graph-peak defect layer and align with global confluence behavior on the explored systems. In the left-linear term-rewriting bridge, the same pattern survives genuine nonroot overlap structure. These results do not yet amount to the final fully general theorem for finite terminating left-linear term rewriting systems, but they do isolate the correct local generators and the correct comparison basis.
-
-Fourth, the reduction 2-complex / elementary holonomy layer is now explicit. The repository contains machine-readable artifacts with $0$-cells, $1$-cells, and generating $2$-cells; canonical join witnesses where they exist; and explicit trivial versus nontrivial elementary holonomy status. This matters because it turns the paper's geometric language into something operational rather than rhetorical. The corrected local object is no longer just described; it is instantiated across representative finite-ARS, string, and term-rewriting examples.
-
-Finally, the completion case studies support the paper's most memorable operational reading. In both the string and term-rewriting before/after pairs, the relevant local generator survives while its defect is eliminated. The source of the local comparison persists, but the filler becomes available. That is exactly the sense in which the repository supports reading completion as holonomy elimination.
-
-\subsection{What remains theorem-writing work}
+\subsection{Open}
 \label{subsec:what-remains}
 
-What remains is no longer an experimental gap. It is theorem packaging and statement refinement.
+Three directions remain open.
 
-The first remaining task is the full general theorem package for finite terminating left-linear term rewriting systems in the target form suggested by the paper: a confluence-as-flatness statement on the reduction 2-complex with critical pairs as the local curvature generators. The repository now fixes the right local picture, the right object, and the right examples, but the final general theorem still has to be written at that level of abstraction.
-
-The second remaining task is to connect the present formulation more explicitly to the standard critical-pair completeness bridge in the full TRS setting. The curated term-rewriting examples already show that the bridge is pointing in the right direction, but the full paper theorem should make the relation to standard critical-pair methods mathematically explicit rather than merely computationally persuasive \cite{KnuthBendix1970,BaaderNipkow1998,Terese2003,SquierOtto1987,GramlichLucas2006}.
-
-The third remaining task is presentational rather than conceptual: the reduction 2-complex language should be related, in the final theorem-level packaging, to the appropriate higher-dimensional rewriting or discrete transport vocabulary without overstating what has been proved here \cite{Mimram2023,GuiraudMalbos2018,GuiraudMalbos2012,Meneses2021,BaezMuniain1994}. That is a matter of theorem phrasing and literature integration, not more implementation.
-
-\begin{remark}[The remaining gap is not more code]
-\label{rem:remaining-gap-not-code}
-At this point, the repository has already done the experimental work needed for this paper. The finite-ARS audits are frozen, the string and term-rewriting bridges are frozen, the reduction 2-complex layer is explicit, the completion case studies are explicit, and the claim-support matrix records the current evidence boundary. What remains is theorem writing, literature positioning, and final manuscript discipline rather than new implementation.
-\end{remark}
-
-The practical consequence is simple. The paper can now be written honestly in three voices at once: a proved core, a strong computational bridge, and a clearly delimited deferred theorem package. That is not a weakness of the narrative. It is what makes the narrative trustworthy.
+\begin{enumerate}
+    \item \emph{A mechanized critical-pair lemma.} The Lean development covers abstract rewriting only. A formal proof of \Cref{thm:critical-pair-lemma} and its start-relative form for left-linear term rewriting, phrased in terms of reduction 2-complexes, requires the full case analysis of \Cref{subsec:three-kinds-of-peaks} together with stability of rewriting under contexts and substitutions. It is not attempted here.
+    \item \emph{A genuinely geometric formulation.} Elementary holonomy is a Boolean status. A theory in which holonomy takes values in a group, or in which confluence becomes the flatness of an independently defined connection on a reduction complex, would need definitions that this paper does not supply. The homotopical approach to rewriting \cite{Squier1987,GuiraudMalbos2012,GuiraudMalbos2018,Mimram2023} is the natural setting for such a development.
+    \item \emph{Completion in general.} \Cref{sec:completion-holonomy} reads two single completion steps as holonomy elimination. Whether the full completion procedure, with its orderings, new critical pairs, and possible failure, admits a useful description in these terms is open.
+\end{enumerate}

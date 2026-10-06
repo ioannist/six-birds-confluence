@@ -1,0 +1,21 @@
+\begin{table}[t]
+\caption{Smallest counterexamples to six plausible strengthenings, found by searching all relations on one to four labeled states (fewest states first, then fewest edges). ``Normal-form peak test'' declares a peak sound when its branches reach the same set of normal forms.}
+\label{tab:boundary-counterexamples}
+\centering
+\smallskip
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabularx}{\linewidth}{@{}Y l L{0.36\linewidth}@{}}
+\toprule
+Refuted statement & Witness (edges) & Why it fails \\
+\midrule
+Local confluence implies confluence without termination & $s_0{\to}s_1$, $s_1{\to}s_0$, $s_0{\to}s_3$, $s_1{\to}s_2$ & locally confluent and normalizing, but $s_0$ reaches normal forms $s_2 \neq s_3$ \\
+Confluence implies normalization & $s_0{\to}s_0$ & confluent, but $s_0$ reaches no normal form \\
+Unique reachable normal forms imply confluence without normalization & $s_0{\to}s_1$, $s_0{\to}s_2$, $s_1{\to}s_1$ & $s_1$ reaches no normal form, so every state has at most one; $s_1$ and $s_2$ are not joinable \\
+Normal-form peak test implies elementary flatness without termination & $s_0{\to}s_0$, $s_1{\to}s_1$, $s_2{\to}s_0$, $s_2{\to}s_1$ & both branches at $s_2$ reach no normal form, yet $s_0$ and $s_1$ are not joinable \\
+No directed cycle implies confluence & $s_0{\to}s_1$, $s_0{\to}s_2$ & terminating fork with two normal forms \\
+Confluence implies no directed cycle & $s_0{\to}s_0$ & confluent self-loop \\
+\bottomrule
+\end{tabularx}
+\end{table}

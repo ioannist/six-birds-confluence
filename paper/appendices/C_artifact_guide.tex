@@ -1,32 +1,19 @@
 \section{Artifact Guide}
 \label{app:artifact-guide}
 
-The paper is backed by a machine-readable artifact layer. This appendix gives a compact guide to that layer and to the stable entry points used in the manuscript.
+Every number in the tables of this paper is read from a machine-readable record in the repository. This appendix lists where those records live.
 
-\subsection{Artifact families}
+\subsection{Records by family}
 
-The major artifact families are:
 \begin{itemize}
-    \item audit artifacts under \texttt{results/audits/},
-    \item peak artifacts under \texttt{results/peaks/},
-    \item plaquette artifacts under \texttt{results/plaquettes/},
-    \item string-rewriting artifacts under \code{results/string_rewrite/},
-    \item critical-pair artifacts under \code{results/critical_pairs/},
-    \item term-rewriting artifacts under \code{results/term_rewrite/},
-    \item completion case-study artifacts under \code{results/case_studies/},
-    \item diagram assets under \texttt{results/diagrams/},
-    \item reduction 2-complex / elementary holonomy artifacts under \code{results/two_complex/},
-    \item freeze artifacts under \texttt{results/freeze/}.
+    \item Finite abstract rewriting systems: the curated examples are in \code{data/examples/}; the exhaustive enumeration, the counterexample search, and the cycle-proxy comparison are in \code{results/audits/}; peak and filler records are in \code{results/peaks/} and \code{results/plaquettes/}.
+    \item String and term rewriting: explored systems are in \code{results/string_rewrite/} and \code{results/term_rewrite/}, and critical-pair analyses, including the lists of reachable critical-pair instances, are in \code{results/critical_pairs/} and \code{results/term_rewrite/}.
+    \item Reduction 2-complexes: records of $0$-cells, $1$-cells, and generating branchings, with filled or open status, join witnesses, and closed boundary walks, are in \code{results/two_complex/}; Graphviz diagram sources are in \code{results/diagrams/}.
+    \item Completion pairs: the string pair is recorded as a case study in \code{results/case_studies/}; the term pair is recorded through its two explored systems in \code{results/term_rewrite/} and its branchings in \code{results/two_complex/}.
+    \item Summary records: the claim-status matrix and the final experiment summary are in \code{results/freeze/}; \code{results/index.json} and \code{results/summary.csv} index all records and are the recommended starting point.
+    \item Verification: \code{review/} contains the independent Warshall check, the Lean axiom report, and the record of the last full regression run.
 \end{itemize}
 
-\subsection{Section-to-artifact map}
+\subsection{Sections and records}
 
-The manuscript uses these artifact families in a disciplined way. The bare-graph falsification section relies on the naive graph audit and finite-ARS artifacts. The reduction 2-complex section relies on the two-complex artifacts. The critical-pair section relies on the critical-pair, string, and term-rewriting artifacts. The completion section relies on the case-study and two-complex layers. The final boundary-setting section relies on the freeze summary and the claim-support matrix. This section-to-artifact mapping is also recorded in machine-readable form under \code{paper/notes/section_map.yaml}.
-
-\subsection{Figure and table source map}
-
-The kept figure and table slots are backed by specific artifact families rather than ad hoc manuscript data. Their intended source mapping is recorded in \code{paper/notes/figure_table_plan.yaml}. This makes it possible to reconstruct the provenance of every figure and table used in the paper without re-running the full implementation workflow manually.
-
-\subsection{Using the results ledger}
-
-The stable entry points for the artifact layer are \code{results/index.json} and \code{results/summary.csv}. These files index the non-ignored result artifacts, record stable artifact identifiers, and expose the major logical collections used throughout the project. They are the recommended first stop for anyone tracing a statement in the manuscript back to its computational or structural evidence.
+\Cref{sec:bare-graph-not-enough} uses the cycle-proxy comparison and the counterexample search. \Cref{sec:reduction-two-complex} uses the reduction 2-complex records. \Cref{sec:critical-pairs-curvature} and \Cref{subsec:curated-string-systems,subsec:curated-trs-bridge} use the string, term, and critical-pair records. \Cref{subsec:exhaustive-finite-ars-audit,subsec:boundary-search} use the enumeration and counterexample records and the independent check. \Cref{sec:completion-holonomy} uses the completion and reduction 2-complex records. Earlier planning maps from sections and from table and figure slots to records are kept in \code{paper/notes/}; they predate some of the present tables and figures. The figures of this paper are drawn directly in its LaTeX sources from the examples they depict.

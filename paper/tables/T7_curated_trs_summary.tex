@@ -1,18 +1,18 @@
 \begin{table}[t]
-\caption{Curated left-linear term-rewriting bridge. The table reports explored graph size, reachable critical-pair counts, reachable defect counts, normal forms, and confluence status for $TRS001$--$TRS004$.}
+\caption{Curated left-linear term examples, each explored completely from its start term. Columns as in \Cref{tab:curated-string-summary}. The start terms are $\mathit{add}(s(z),s(z))$ for $TRS001$, $f(a,b)$ for $TRS002$, and $f(g(a))$ for $TRS003$ and $TRS004$.}
 \label{tab:curated-trs-summary}
 \centering
 \smallskip
 \small
-\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\linewidth}{@{}L{0.12\linewidth} *{2}{>{\centering\arraybackslash}p{0.07\linewidth}} *{2}{>{\centering\arraybackslash}p{0.10\linewidth}} Y >{\centering\arraybackslash}p{0.11\linewidth}@{}}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lccccll@{}}
 \toprule
-Example & States & Edges & \shortstack{Reach.\\CPs} & \shortstack{Defective\\CPs} & Normal forms & Confluent? \\
+Example & States & Edges & \shortstack{Reachable\\instances} & \shortstack{Non-\\joinable} & \shortstack{Normal\\forms} & Confluent? \\
 \midrule
-$TRS001$ & 3 & 2 & 0 & 0 & \texttt{s(s(z))} & yes \\
-$TRS002$ & 3 & 2 & 1 & 1 & \texttt{g(b)}, \texttt{h(a)} & no \\
-$TRS003$ & 3 & 2 & 1 & 1 & \texttt{f(b)}, \texttt{p(a)} & no \\
-$TRS004$ & 3 & 3 & 1 & 0 & \texttt{p(a)} & yes \\
+$TRS001$ (Peano addition) & 3 & 2 & 0 & 0 & $s(s(z))$ & yes \\
+$TRS002$ (root overlap) & 3 & 2 & 1 & 1 & $g(b)$, $h(a)$ & no \\
+$TRS003$ (nested overlap) & 3 & 2 & 1 & 1 & $f(b)$, $p(a)$ & no \\
+$TRS004$ ($TRS003$ $+$ $f(b){\to}p(a)$) & 3 & 3 & 1 & 0 & $p(a)$ & yes \\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{table}

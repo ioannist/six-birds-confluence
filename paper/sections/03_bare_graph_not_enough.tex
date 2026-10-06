@@ -1,64 +1,63 @@
-\section{Why the Bare Graph Is Not Enough}
+\section{Why Graph Cycles Are the Wrong Test}
 \label{sec:bare-graph-not-enough}
 
-The most tempting geometric reading of confluence is also the wrong one: one tries to attach ``flatness'' directly to the bare reduction graph and then hopes that graph-theoretic path information will recover order-independence of reduction. The computational evidence in this project shows that this move fails for a structural reason. A graph records a $1$-skeleton. Confluence, however, is tested on specific local branchings, and those branchings are inherently $2$-dimensional data \cite{Huet1980,Terese2003,Mimram2023,GuiraudMalbos2012}. The reduction graph therefore remembers too little: it records paths, but not which pairs of paths are the elementary local comparisons whose agreement matters.
-
-Two especially tempting graph-only surrogates were stress-tested in the finite-ARS regime.
+For a finite abstract rewriting system the reduction graph \emph{is} the system: its vertices are the states and its directed edges are the one-step rewrites. Every property in \Cref{def:basic-notions}, confluence included, is therefore a property of that directed graph, and an algorithm can decide it from the graph by computing reachability. The question of this section is narrower. Graph theory and discrete geometry offer ready-made notions of flatness built from \emph{cycles}, and one may hope that one of them captures confluence. We show that the two most natural ones do not.
 
 \begin{enumerate}
-    \item A \emph{directed-loop flatness} surrogate, which declares a system ``flat'' whenever the directed reduction graph has no directed cycle.
-    \item An \emph{undirected cycle-rank} surrogate, which measures only the cycle-space rank of the underlying simple undirected graph.
+    \item \emph{Directed-cycle flatness} calls the reduction graph flat when it has no directed cycle.
+    \item \emph{Undirected cycle rank} measures the dimension of the cycle space of the underlying simple undirected graph, i.e.\ the number of independent undirected cycles; rank zero means the graph is a forest.
 \end{enumerate}
 
-Neither surrogate captures confluence. The first is too weak, because in terminating examples it collapses to a vacuous acyclicity test. The second is pointed at the wrong object, because ordinary graph cycles do not encode the local branching cells on which joinability is decided.
-
 \begin{figure}[t]
-    \centering
-    \fbox{%
-        \parbox{0.72\linewidth}{%
-            \centering
-            \[
-            A \to B,\qquad A \to C,\qquad B \to D
-            \]
-            \[
-            C \text{ terminal},\qquad D \text{ terminal}
-            \]
-            \medskip
-            Local peak at $A$ with branches $B$ and $C$ is defective.
-        }%
-    }
-    \caption{A nonconfluent finite ARS whose directed reduction graph is acyclic. The obstruction lives on the local branching cell at the common source, not on an ordinary graph loop, which is why graph-only flatness surrogates miss it.}
-    \label{fig:bare-graph-failure}
+\centering
+\begin{tikzpicture}
+  \begin{scope}
+    \node[st] (A) at (0,0) {$A$};
+    \node[st] (B) at (-0.9,-1.0) {$B$};
+    \node[st] (C) at (0.9,-1.0) {$C$};
+    \node[st] (D) at (0,-2.0) {$D$};
+    \draw[rw] (A)--(B); \draw[rw] (A)--(C); \draw[rw] (B)--(D); \draw[rw] (C)--(D);
+    \node[font=\small, align=center] at (0,-2.9) {(a) diamond $E001$};
+    \node[font=\scriptsize, align=center] at (0,-3.6) {acyclic, cycle rank $1$\\ confluent};
+  \end{scope}
+  \begin{scope}[xshift=4.6cm]
+    \node[st] (A) at (0,0) {$A$};
+    \node[st] (B) at (-0.9,-1.0) {$B$};
+    \node[nf] (C) at (0.9,-1.0) {$C$};
+    \node[nf] (D) at (-0.9,-2.0) {$D$};
+    \draw[rw] (A)--(B); \draw[rw] (A)--(C); \draw[rw] (B)--(D);
+    \draw[defect] (D) .. controls (0.3,-2.2) and (0.9,-1.8) .. (C);
+    \node[font=\small, align=center] at (0,-2.9) {(b) fork $E002$};
+    \node[font=\scriptsize, align=center] at (0,-3.6) {acyclic, cycle rank $0$\\ not confluent};
+  \end{scope}
+  \begin{scope}[xshift=9.2cm]
+    \node[st, minimum size=14pt] (s) at (0,-1.2) {$s$};
+    \draw[rw] (s.north east) .. controls (0.9,0.2) and (-0.9,0.2) .. (s.north west);
+    \node[font=\small, align=center] at (0,-2.9) {(c) one self-loop};
+    \node[font=\scriptsize, align=center] at (0,-3.6) {directed cycle\\ confluent};
+  \end{scope}
+\end{tikzpicture}
+\caption{Cycle structure says nothing about confluence. (a) The diamond is confluent and has an undirected cycle. (b) The fork has no cycles of either kind but is not confluent: its two normal forms $C$ and $D$ (boxed) have no common descendant, as indicated by the dotted line. (c) A single state with a self-loop is confluent, since every state reachable from $s$ is $s$ itself, yet it has a directed cycle.}
+\label{fig:bare-graph-failure}
 \end{figure}
 
 \begin{table}[t]
-    \caption{Curated finite-ARS comparison between graph-only surrogates and rewriting-relevant defect signals. All four examples are naively flat under the directed-loop surrogate, yet $E002$ and $E004$ are nonconfluent; meanwhile $E001$ and $E003$ are confluent despite positive undirected cycle rank.}
+    \caption{Cycle-based proxies on the curated finite systems $E001$--$E004$. All four graphs are acyclic, so directed-cycle flatness calls all of them flat, yet $E002$ and $E004$ are not confluent. Undirected cycle rank is positive on the confluent systems $E001$ and $E003$ and zero on the nonconfluent ones. The column of nonjoinable peaks is the local quantity that does track confluence (\Cref{sec:core-theorem}).}
     \label{tab:bare-graph-flatness-mismatch}
     \centering
     \smallskip
     \input{tables/T2_bare_graph_flatness_mismatch}
 \end{table}
 
-The finite-ARS audits make the failure precise.
-
-\begin{proposition}[Bare graph surrogates are not diagnostic for confluence]
+\begin{proposition}[Cycle-based proxies do not detect confluence]
 \label{prop:bare-graph-not-diagnostic}
-The graph-only surrogates above do not diagnose confluence, even in the small terminating finite-ARS regime explored in this paper.
+Among finite abstract rewriting systems, neither directed-cycle flatness nor vanishing undirected cycle rank implies confluence, and neither is implied by confluence. Directed-cycle flatness fails to imply confluence even among terminating systems, where it holds by definition.
 \end{proposition}
 
-\begin{proof}[Audit summary]
-The curated finite-ARS examples already exhibit the mismatch clearly. In the examples $E001$--$E004$, all four reduction graphs are terminating and therefore acyclic as directed graphs, so the naive directed-loop criterion declares all four ``flat.'' Yet $E002$ and $E004$ are nonconfluent and have nonzero local defects. Thus directed-loop flatness produces false positives.
-
-The undirected cycle-rank surrogate fails in the opposite way. The example $E004$ is nonconfluent while having undirected cycle rank zero, so graph-loop absence does not imply confluence. Conversely, the examples $E001$ and $E003$ are confluent while having positive undirected cycle rank, so graph-loop presence does not imply nonconfluence. The graph cycle structure is therefore not the right local obstruction carrier.
-
-These curated mismatches are consistent with the exhaustive finite-ARS audit on all labeled systems up to four states in the terminating regime: the computational relationships that survive there are the rewriting-theoretic local/global ones, not the graph-only flatness surrogates. In particular, the exhaustive audit supports the local peak picture rather than a bare graph-loop picture.
+\begin{proof}
+All four claims are witnessed by the systems in \Cref{fig:bare-graph-failure}. The fork (b), with edges $A \to B$, $A \to C$, $B \to D$, has no directed cycle and its undirected graph is a tree, yet $C$ and $D$ are distinct normal forms reachable from $A$, so it is not confluent. The self-loop (c) has a directed cycle and is confluent. The diamond (a) has undirected cycle rank $1$ and is confluent, so confluence does not force rank zero. Finally, every terminating finite system is acyclic and hence directed-cycle flat, while the fork is terminating and not confluent.
 \end{proof}
 
-The lesson is not that path-independence language should be abandoned. The lesson is that it must be attached to the correct object. Confluence is not a statement about arbitrary loops in the $1$-skeleton; it is a statement about the agreement of specific local branchings. Those branchings become visible only after the missing $2$-cells are restored. This is the motivation for the reduction 2-complex introduced in \Cref{sec:reduction-two-complex}.
+The exhaustive search of \Cref{subsec:boundary-search} finds these witnesses automatically: the smallest system on which directed-cycle flatness holds without confluence is the three-state fork $s_0 \to s_1$, $s_0 \to s_2$, and the smallest confluent system with a directed cycle is the one-state self-loop.
 
-Stated differently: the failure of the bare graph does not weaken the bridge to geometry. It sharpens it. The experiments show exactly where the geometric data must live. Elementary flatness cannot be read from the graph alone because the relevant local obstruction is not an ordinary graph loop. It is an elementary branching cell with two boundary routes and, when joinable, a filler to a common witness. That corrected local picture is what the next section makes precise.
-
-\begin{remark}[From graph loops to branching cells]
-\label{rem:graph-loops-to-branching-cells}
-The negative result of this section is therefore a positive design constraint for the rest of the paper. Any viable confluence-as-flatness statement must be formulated on a structure that remembers local branching cells. In the present paper, that structure is the reduction 2-complex. The local obstructions of interest are then carried by generating $2$-cells, not by graph loops in the bare reduction graph.
-\end{remark}
+Why do cycle-based notions miss confluence? Because confluence compares pairs of rewrite sequences out of a common state, and locally, for instance in terminating systems where local confluence suffices, it is tested on \emph{peaks}, pairs of one-step rewrites $b \leftarrow a \to c$. A divergence need not contain a cycle, and the existence of a cycle does not determine whether its branches are joinable. In the fork the peak at $A$ cannot be joined, but nothing in the graph closes up around it; in the diamond the peak can be joined, and only then does it become part of a closed walk $A \to B \to D \leftarrow C \leftarrow A$. Cycles that do exist in a reduction graph may have nothing to do with peaks, as in the self-loop. A notion of flatness adapted to confluence must therefore first say \emph{which pairs of paths are being compared}. The reduction graph contains all the information needed to answer the question, but it does not single out the peaks as the objects on which the comparison takes place. The next section makes that comparison data explicit.

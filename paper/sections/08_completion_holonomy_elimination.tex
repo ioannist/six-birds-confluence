@@ -1,113 +1,88 @@
 \section{Completion as Holonomy Elimination}
 \label{sec:completion-holonomy}
 
-The preceding sections identify the local generators and show that their defect status aligns with observed confluence behavior. This section packages that local picture into the paper's most operational reading: in explicit before/after examples, a hand-specified completion step removes a local obstruction, and the corresponding elementary holonomy disappears. In this sense, completion can be read as \emph{holonomy elimination}.
-
-The point is deliberately modest. The paper is not claiming an algorithmic completion theorem in geometric language \cite{KnuthBendix1970}. It is claiming that, in explicit finite examples, the addition of the right rule changes a previously nontrivial generating $2$-cell into a trivial one. The local defect disappears, and the global behavior changes with it.
-
-\subsection{String before/after pair}
-\label{subsec:string-completion-holonomy}
-
-The string pair $E007$--$E008$ is the cleanest instance of this pattern. Before the added rule, the system has the two rules
-\[
-ab \to x,
-\qquad
-ab \to y.
-\]
-From the chosen start word \texttt{ab}, the explored reduction graph has one local peak, one reachable critical pair, and two normal forms, namely \texttt{x} and \texttt{y}. The corresponding generating $2$-cell has nontrivial elementary holonomy: there is no filler to a common witness, the local peak is defective, and the explored system is nonconfluent.
-
-After the additional rule
-\[
-x \to y
-\]
-is added, the local branching source and branch words remain exactly the same. The generating $2$-cell is not removed; it is \emph{resolved}. The branch \texttt{x} now reduces to \texttt{y}, so the local branching admits a filler with join witness \texttt{y}. The elementary holonomy of the corresponding $2$-cell becomes trivial, the local defect counts drop to zero, and the explored system becomes confluent with unique normal form \texttt{y}.
+Knuth--Bendix completion repairs a nonconfluent system by orienting nonjoinable critical pairs into new rules, and, in its general form, also simplifies or removes existing rules \cite{KnuthBendix1970,DershowitzJouannaud1990,BaaderNipkow1998}. We consider only the simplest kind of step, the addition of one rule. In the two rule-addition steps studied here, the overlap that produced the branching is still present after the new rule is added, so the branching remains; what changes is that it acquires a filler. We illustrate this with one string example and one term example, in each case adding a single rule by hand.
 
 \begin{figure}[t]
-    \centering
-    \fbox{%
-        \parbox{0.82\linewidth}{%
-            \centering
-            \begin{tabular}{c@{\qquad}c}
-            \textbf{Before} & \textbf{After} \\
-            $\texttt{ab} \to \texttt{x}$ & $\texttt{ab} \to \texttt{x} \to \texttt{y}$ \\
-            $\texttt{ab} \to \texttt{y}$ & $\texttt{ab} \to \texttt{y}$
-            \end{tabular}
-            \medskip
-            The generator persists while the filler $\texttt{x} \to \texttt{y}$ becomes available.
-        }%
-    }
-    \caption{Before/after string completion pair. The generator at $ab$ with branches $x$ and $y$ is nontrivial before the added rule and trivial after it, with join witness $y$ in the resolved case.}
-    \label{fig:string-completion-before-after}
+\centering
+\begin{tikzpicture}
+  % string before
+  \begin{scope}
+    \node[st] (s) at (0,0) {$ab$};
+    \node[nf] (x) at (-0.8,-1.1) {$x$};
+    \node[nf] (y) at (0.8,-1.1) {$y$};
+    \draw[rw] (s)--(x); \draw[rw] (s)--(y);
+    \draw[defect] (x) .. controls (-0.3,-1.7) and (0.3,-1.7) .. (y);
+    \node[font=\small] at (0,-2.3) {$E007$: before};
+  \end{scope}
+  \begin{scope}[xshift=2.9cm]
+    \node[st] (s) at (0,0) {$ab$};
+    \node[st] (x) at (-0.8,-1.1) {$x$};
+    \node[nf] (y) at (0.8,-1.1) {$y$};
+    \begin{scope}[on background layer]\fill[cellfill] (s.center)--(x.center)--(y.center)--cycle;\end{scope}
+    \draw[rw] (s)--(x); \draw[rw] (s)--(y);
+    \draw[rw, blue!60!black] (x)--node[below, font=\scriptsize]{new} (y);
+    \node[font=\small] at (0,-2.3) {$E008$: after};
+  \end{scope}
+  % term before
+  \begin{scope}[xshift=6.6cm]
+    \node[st] (s) at (0,0) {$f(g(a))$};
+    \node[nf] (l) at (-0.9,-1.1) {$f(b)$};
+    \node[nf] (r) at (0.9,-1.1) {$p(a)$};
+    \draw[rw] (s)--(l); \draw[rw] (s)--(r);
+    \draw[defect] (l) .. controls (-0.3,-1.7) and (0.3,-1.7) .. (r);
+    \node[font=\small] at (0,-2.3) {$TRS003$: before};
+  \end{scope}
+  \begin{scope}[xshift=9.9cm]
+    \node[st] (s) at (0,0) {$f(g(a))$};
+    \node[st] (l) at (-0.9,-1.1) {$f(b)$};
+    \node[nf] (r) at (0.9,-1.1) {$p(a)$};
+    \begin{scope}[on background layer]\fill[cellfill] (s.center)--(l.center)--(r.center)--cycle;\end{scope}
+    \draw[rw] (s)--(l); \draw[rw] (s)--(r);
+    \draw[rw, blue!60!black] (l)--node[below, font=\scriptsize]{new} (r);
+    \node[font=\small] at (0,-2.3) {$TRS004$: after};
+  \end{scope}
+\end{tikzpicture}
+\caption{Completion as holonomy elimination. Left: the string rules $ab \to x$ and $ab \to y$ produce an open branching with distinct normal forms $x$ and $y$; adding $x \to y$ fills it with join witness $y$. Right: the term rules $f(g(x)) \to p(x)$ and $g(a) \to b$ produce an open branching at $f(g(a))$; adding $f(b) \to p(a)$ fills it with join witness $p(a)$. In both cases the source and the two branches are unchanged.}
+\label{fig:string-completion-before-after}
+\label{fig:trs-completion-before-after}
 \end{figure}
 
-\subsection{Term-rewriting before/after pair}
+\subsection{The two examples}
+\label{subsec:string-completion-holonomy}
 \label{subsec:trs-completion-holonomy}
 
-The same operational pattern appears in the left-linear term-rewriting bridge. In $TRS003$, the nested overlap between
-\[
-f(g(x)) \to p(x)
-\qquad\text{and}\qquad
-g(a) \to b
-\]
-produces a reachable critical pair with source term $f(g(a))$ and branch terms $p(a)$ and $f(b)$. In the chosen explored closure, this local branching is defective: there is no filler to a common witness, the associated generating $2$-cell has nontrivial elementary holonomy, and the explored system is nonconfluent from the chosen start term.
+The string system $E007$ has the rules $ab \to x$ and $ab \to y$, whose left-hand sides coincide. From the start word $ab$ there is one branching, $x \leftarrow ab \to y$, and two normal forms, so the branching has nontrivial holonomy and the system is not confluent from $ab$. The system $E008$ adds the rule $x \to y$. The branching is still there, with the same source and branches, but now $x \to y$ provides a filler with join witness $y$. Its holonomy is trivial, and $y$ is the unique normal form.
 
-In $TRS004$, the additional rule
-\[
-f(b) \to p(a)
-\]
-resolves the same local branching. The critical-pair source and branch terms remain the same as in $TRS003$, but the branch $f(b)$ now reduces to $p(a)$. The corresponding generating $2$-cell therefore acquires a filler with join witness $p(a)$. Its elementary holonomy becomes trivial, its defect disappears, and the explored system becomes confluent from the chosen start term.
-
-\begin{figure}[t]
-    \centering
-    \fbox{%
-        \parbox{0.84\linewidth}{%
-            \centering
-            \begin{tabular}{c@{\qquad}c}
-            \textbf{Before} & \textbf{After} \\
-            $f(g(a)) \to p(a)$ & $f(g(a)) \to p(a)$ \\
-            $f(g(a)) \to f(b)$ & $f(g(a)) \to f(b) \to p(a)$
-            \end{tabular}
-            \medskip
-            The generator remains, but the added rule $f(b) \to p(a)$ supplies a filler.
-        }%
-    }
-    \caption{Before/after term-rewriting completion pair. The generator at $f(g(a))$ with branches $f(b)$ and $p(a)$ is nontrivial before the added rule and trivial after it, with join witness $p(a)$ in the resolved case.}
-    \label{fig:trs-completion-before-after}
-\end{figure}
+The term system $TRS003$ has the rules $f(g(x)) \to p(x)$ and $g(a) \to b$, which overlap below the root. From the start term $f(g(a))$ there is one branching, $p(a) \leftarrow f(g(a)) \to f(b)$, whose branches are distinct normal forms. The system $TRS004$ adds the rule $f(b) \to p(a)$, which provides a filler with join witness $p(a)$.
 
 \begin{table}[t]
-    \caption{Before/after deltas for the explicit completion pairs. In both the string and term-rewriting cases, the generating cell persists while its defect count drops to zero and confluence is restored.}
+    \caption{Before and after the added rule. The number of branchings does not change; the number of nonjoinable ones drops to zero, and confluence from the start term is restored.}
     \label{tab:holonomy-elimination-deltas}
     \centering
     \smallskip
     \input{tables/T8_holonomy_elimination_deltas}
 \end{table}
 
+\begin{observation}[Completion as holonomy elimination]
+\label{prop:completion-as-holonomy-elimination}
+In the string pair $E007$--$E008$ and the term pair $TRS003$--$TRS004$, explored completely from their start terms, the added rule
+\begin{enumerate}
+    \item leaves the reachable critical-pair instance in place, with the same source and branches;
+    \item changes its elementary holonomy from nontrivial to trivial;
+    \item reduces the number of nonjoinable reachable instances from one to zero; and
+    \item makes the system confluent from its start term.
+\end{enumerate}
+\end{observation}
+
+In both pairs the ``after'' system consists of exactly the ``before'' rules plus the one added rule, with the same start term, so that the comparison is between a system and a one-rule extension of it. For the string pair this is checked automatically as part of the completion computation; for the term pair it can be read off the two rule sets.
+
 \subsection{What is eliminated}
 \label{subsec:what-is-eliminated}
 
-The key point in both pairs is that completion does not eliminate the local generator itself. The branching source remains, and the local comparison remains. What changes is the existence of a filler. In the language of this paper, the generating $2$-cell remains present while its elementary holonomy changes from nontrivial to trivial.
+The examples separate two quantities that are easily conflated: the number of generating branchings and the number of nontrivial ones. Completion reduces the second while leaving the first unchanged. In the reduction 2-complex, the effect of the new rule is to add a $1$-cell along which a $2$-cell can now be attached; the branching that was open becomes the boundary of a filled cell.
 
-This is exactly why the phrase \emph{holonomy elimination} is the right operational reading. The local generator survives as a $2$-cell in the reduction complex, but the route mismatch disappears. Measured in the computational artifacts, the count of generating cells does not have to drop; the count of \emph{defective} generating cells drops to zero.
-
-\begin{proposition}[Completion as holonomy elimination in the explicit before/after pairs]
-\label{prop:completion-as-holonomy-elimination}
-In the explicit string pair $E007$--$E008$ and the explicit term-rewriting pair $TRS003$--$TRS004$, the added rule leaves the local generator intact while eliminating its defect. In both cases:
-\begin{enumerate}
-    \item the relevant local branching source persists;
-    \item the generating $2$-cell changes from nontrivial elementary holonomy to trivial elementary holonomy;
-    \item the local defect counts drop to zero;
-    \item the explored system changes from nonconfluent to confluent.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}[Audit summary]
-For the string pair, the source word \texttt{ab} and the branch words \texttt{x} and \texttt{y} occur both before and after the added rule. The before-system has one reachable critical pair, one defective local peak, one nontrivial generating $2$-cell, and nonconfluence. The after-system has the same reachable critical-pair source and branch words, but the branch \texttt{x} now reaches \texttt{y}. The corresponding generating $2$-cell is therefore fillable, its elementary holonomy becomes trivial, the local defect counts vanish, and the system is confluent.
-
-For the term-rewriting pair, the source term $f(g(a))$ and the branch terms $p(a)$ and $f(b)$ likewise occur both before and after the added rule. In $TRS003$, the reachable critical pair is defective and the corresponding generating $2$-cell has nontrivial elementary holonomy. In $TRS004$, the additional rule $f(b) \to p(a)$ supplies a filler with witness $p(a)$. The local defect vanishes, the elementary holonomy becomes trivial, and the explored system becomes confluent from the chosen start term. Thus the local generator persists while its defect is eliminated in both before/after pairs.
-\end{proof}
-
-\begin{remark}[Boundary of the claim]
+\begin{remark}[Scope]
 \label{rem:completion-boundary}
-Nothing in this section is meant to identify completion in full generality with a geometric algorithm on reduction complexes. The claim is narrower. In the explicit case studies implemented here, the added rule removes a local route mismatch carried by a generating $2$-cell, and that removal coincides with restoration of confluence in the explored system. This is enough to justify the operational reading of completion as holonomy elimination, and no stronger algorithmic statement is needed for the paper.
+The two examples are hand-built single steps, chosen so that one added rule suffices. They illustrate a reading of completion; they are not a geometric formulation of the completion procedure. In general, an added rule can create new critical pairs, completion may fail or fail to terminate, and orienting an equation requires a reduction ordering \cite{KnuthBendix1970,BaaderNipkow1998}. None of this is addressed here.
 \end{remark}

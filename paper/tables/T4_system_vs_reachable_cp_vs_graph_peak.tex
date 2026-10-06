@@ -1,15 +1,15 @@
 \small
-\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\linewidth}{@{}L{0.22\linewidth} L{0.11\linewidth} *{4}{>{\centering\arraybackslash}p{0.08\linewidth}} >{\centering\arraybackslash}p{0.11\linewidth}@{}}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}llccccc@{}}
 \toprule
-Example & Domain & \shortstack{System\\CPs} & \shortstack{Reach.\\CPs} & \shortstack{Graph\\peaks} & \shortstack{Defective\\CPs} & Confluent? \\
+Example & Domain & \shortstack{System\\CPs} & \shortstack{Reachable\\instances} & \shortstack{Graph\\peaks} & \shortstack{Nonjoinable\\instances} & Confluent? \\
 \midrule
-$E005$ (sort)          & string    & 1 & 1 & 1 & 0 & yes \\
-$E006$ (overlap)       & string    & 2 & 1 & 1 & 1 & no \\
-$E007$ (before)        & string    & 1 & 1 & 1 & 1 & no \\
-$E008$ (after)         & string    & 1 & 1 & 1 & 0 & yes \\
-$TRS002$ (root)        & term rew. & 1 & 1 & 1 & 1 & no \\
-$TRS003$ (nested)      & term rew. & 1 & 1 & 1 & 1 & no \\
-$TRS004$ (resolved)    & term rew. & 1 & 1 & 1 & 0 & yes \\
+$E005$ (sort)          & string & 1 & 1 & 1 & 0 & yes \\
+$E006$ (overlap)       & string & 2 & 1 & 1 & 1 & no \\
+$E007$ (before)        & string & 1 & 1 & 1 & 1 & no \\
+$E008$ (after)         & string & 1 & 1 & 1 & 0 & yes \\
+$TRS002$ (root)        & term   & 1 & 1 & 1 & 1 & no \\
+$TRS003$ (nested)      & term   & 1 & 1 & 1 & 1 & no \\
+$TRS004$ (resolved)    & term   & 1 & 1 & 1 & 0 & yes \\
 \bottomrule
-\end{tabularx}
+\end{tabular}

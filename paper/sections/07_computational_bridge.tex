@@ -1,68 +1,63 @@
-\section{Computational Bridge and Stress Tests}
+\section{Computational Evidence}
 \label{sec:computational-bridge}
 
-The preceding sections isolate the corrected geometric object and the theorem-level local core. This section records how that picture survives the implemented stress tests. The evidence comes in three layers:
-\begin{enumerate}
-    \item an exhaustive audit of all labeled finite abstract rewriting systems on up to four states in the terminating regime;
-    \item curated bounded string-rewriting examples;
-    \item a curated left-linear term-rewriting bridge with genuine nonroot overlap.
-\end{enumerate}
-The role of this section is not to replace theorem-writing. Its role is to show that once the object and the local generators are chosen correctly, the expected local/global relationships remain stable across every computational regime implemented in the repository.
+The computations serve two purposes. For finite abstract rewriting systems, where the results of \Cref{sec:core-theorem} are theorems, they check the implementation against the theorems and locate the smallest systems showing that each hypothesis is needed. For string and term rewriting, they test the start-relative critical-pair picture of \Cref{sec:critical-pairs-curvature} on curated examples. The implementation, the generated records, and the regression tests are described in \Cref{app:computational-protocol,app:artifact-guide}.
 
-\subsection{Exhaustive finite-ARS audit}
+\subsection{Exhaustive enumeration of small systems}
 \label{subsec:exhaustive-finite-ars-audit}
 
-The cleanest stress test is the exhaustive finite-ARS audit. The search space contains every labeled directed rewriting relation on $n$ states for $n \leq 4$, including self-loops. This yields
+We enumerate every rewriting relation on $n$ labeled states for $1 \leq n \leq 4$, self-loops included. There are $2^{n^2}$ such relations, giving
 \[
-2^1 + 2^4 + 2^9 + 2^{16} = 66066
+2^{1} + 2^{4} + 2^{9} + 2^{16} = 66{,}066
 \]
-systems in total. Of these, $572$ are terminating.
+systems in all. A finite system is terminating exactly when its graph has no directed cycle, so the terminating systems are the labeled directed acyclic graphs; there are $1$, $3$, $25$, and $543$ of them for $n = 1,\dots,4$, in agreement with the known count of labeled acyclic digraphs, for $572$ in total. Of these, $1$, $3$, $22$, and $401$ are confluent.
 
-\begin{proposition}[Exhaustive finite-ARS stress test]
-\label{prop:exhaustive-finite-ars-stress-test}
-Within the terminating finite-ARS search space on up to four states, the four target discrepancy classes tracked in the repository are empty.
-\end{proposition}
-
-\begin{proof}[Audit summary]
-The search checks $2$, $16$, $512$, and $65536$ labeled systems at sizes $1$, $2$, $3$, and $4$ respectively, for a total of $66066$. The terminating counts are $1$, $3$, $25$, and $543$, for a total of $572$ terminating systems. On this terminating subset, the discrepancy counts
-\[
-\begin{aligned}
-&\texttt{local\_flatness\_vs\_local\_confluence},\\
-&\texttt{terminating\_local\_flatness\_not\_confluent},\\
-&\texttt{terminating\_confluent\_not\_unique\_reachable\_normal\_forms},\\
-&\texttt{terminating\_unique\_reachable\_normal\_forms\_not\_confluent}
-\end{aligned}
-\]
-are all zero. Equivalently, on the terminating finite-ARS regime explored here, the local peak picture survives every system in the search space while the naive graph-only flatness surrogates do not.
-\end{proof}
+For each terminating system we compute elementary flatness from the nonjoinable peaks, and independently compute local confluence, confluence, and uniqueness of reachable normal forms. \Cref{thm:elementary-flatness-iff-local-confluence}, \Cref{cor:terminating-confluence-iff-flat}, and \Cref{thm:normalizing-confluence-iff-unf} predict that these four properties agree on every terminating system. They do: all four discrepancy counts in \Cref{tab:exhaustive-finite-ars-summary} are zero. Since the statements are proved, the value of this computation is as a test of the implementation, which the string and term computations reuse. As a further check, an independent implementation based on Boolean-matrix transitive closure recomputes termination, local confluence, confluence, and unique normal forms for all $66{,}066$ systems, cyclic ones included, and agrees with the main implementation on every one.
 
 \input{tables/T5_exhaustive_finite_ars_summary}
 
-The same finite-ARS infrastructure was also used outside the safe theorem hypotheses. Within the same small search bound, the boundary-counterexample search found explicit witnesses to the weakened claims obtained by dropping termination or replacing joinability-based local flatness with naive graph or normal-form surrogates. The positive finite-ARS results are therefore not an artifact of an impoverished search space; they are specific to the correct hypotheses.
+\subsection{Smallest counterexamples}
+\label{subsec:boundary-search}
+
+The same enumeration, now over all $66{,}066$ systems rather than only the terminating ones, searches for systems that refute plausible strengthenings of the results. For each statement it reports a smallest witness, first by number of states and then by number of edges. All six statements in \Cref{tab:boundary-counterexamples} are refuted. Together they show that the hypotheses of \Cref{sec:core-theorem} cannot be dropped and that the shortcuts of \Cref{sec:bare-graph-not-enough} fail.
+
+\input{tables/T10_boundary_counterexamples}
+
+The first witness is worth drawing (\Cref{fig:newman-needs-termination}). It is locally confluent, and in fact every state reaches a normal form, but the cycle between $s_0$ and $s_1$ lets the system drift toward either of two distinct normal forms. It is the classical example showing that Newman's lemma needs termination \cite{Huet1980,BaaderNipkow1998}.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+  \node[st] (s0) at (0,0) {$s_0$};
+  \node[st] (s1) at (2.0,0) {$s_1$};
+  \node[nf] (s3) at (-1.8,0) {$s_3$};
+  \node[nf] (s2) at (3.8,0) {$s_2$};
+  \draw[rw] (s0) to[bend left=30] (s1);
+  \draw[rw] (s1) to[bend left=30] (s0);
+  \draw[rw] (s0)--(s3);
+  \draw[rw] (s1)--(s2);
+\end{tikzpicture}
+\caption{A smallest locally confluent system that is not confluent. Both peaks are joinable: $s_3 \leftarrow s_0 \to s_1$ is joined at $s_3$ via $s_1 \to s_0 \to s_3$, and $s_2 \leftarrow s_1 \to s_0$ is joined at $s_2$ via $s_0 \to s_1 \to s_2$. Yet $s_0$ reaches the distinct normal forms $s_2$ and $s_3$. The system is not terminating, so Newman's lemma does not apply.}
+\label{fig:newman-needs-termination}
+\end{figure}
 
 \subsection{Curated string systems}
 \label{subsec:curated-string-systems}
 
-The string layer provides the first structured rewriting bridge. All four curated string examples explored completely under their chosen bounds, and all four exhibit the expected relation between global confluence, local peak defects, and reachable critical-pair defects.
+The four string examples were chosen to exercise the start-relative critical-pair picture: a confluent sorting system ($E005$), a nonconfluent overlap with an irrelevant second critical pair ($E006$), and a before/after completion pair ($E007$, $E008$). Each was explored from its start word until no new words appeared, so the explored graph is the complete set $X_S$ of reachable words. \Cref{tab:curated-string-summary} reports the results. In every case the number of nonjoinable reachable critical-pair instances is zero exactly when the system is confluent from its start word.
 
 \input{tables/T6_curated_string_summary}
 
-The sorting example $E005$ explores completely to a six-state, six-edge reduction graph with one local peak, one reachable critical pair, zero local defects, zero reachable critical-pair defects, and unique normal form \texttt{abc}. The overlap example $E006$ explores completely to a four-state, three-edge reduction graph with one local peak, two system critical pairs, one reachable critical pair, and normal forms \texttt{a} and \texttt{aa}; its local peak defect counts and reachable critical-pair defect counts are both nonzero, and the explored system is nonconfluent. The completion-before example $E007$ explores completely to a three-state, two-edge reduction graph with normal forms \texttt{x} and \texttt{y}; it has one local peak, one reachable critical pair, nonzero local defects, nonzero reachable critical-pair defects, and nonconfluence. The completion-after example $E008$ explores completely to a three-state, three-edge reduction graph with unique normal form \texttt{y}; it has one local peak, one reachable critical pair, zero local defects, zero reachable critical-pair defects, and confluence.
-
-Taken together, the string examples do not merely show that some nonconfluent systems have bad critical pairs. They show the tighter statement needed for the paper: on the curated examples, the reachable critical-pair defect layer and the observed graph-peak defect layer agree exactly, and both align with the global confluence behavior of the explored system.
-
-\subsection{Curated left-linear term-rewriting bridge}
+\subsection{Curated left-linear term systems}
 \label{subsec:curated-trs-bridge}
 
-The left-linear term-rewriting prototype extends the same local/global pattern to a genuine first-order setting. All four curated examples explore completely under their chosen bounds.
+The four term examples are a small Peano-addition system with no critical pairs ($TRS001$), a root overlap ($TRS002$), and the nested-overlap pair $TRS003$--$TRS004$, whose overlap lies below the root. All rules are left-linear, which the critical-pair generator requires. All four were explored completely. The pattern of \Cref{tab:curated-trs-summary} matches the string case: confluence from the start term holds exactly when every reachable critical-pair instance is joinable.
 
 \input{tables/T7_curated_trs_summary}
 
-The Peano-addition smoke test $TRS001$ explores completely to a three-state, two-edge reduction graph with unique normal form \texttt{s(s(z))} and no critical pairs. The root-overlap example $TRS002$ explores completely to a three-state, two-edge reduction graph with one reachable critical pair, one graph peak, normal forms \texttt{g(b)} and \texttt{h(a)}, and a nontrivial reachable defect. The nested-overlap nonconfluent example $TRS003$ explores completely to a three-state, two-edge reduction graph with one reachable critical pair, one graph peak, normal forms \texttt{f(b)} and \texttt{p(a)}, and a nontrivial reachable defect. The nested-overlap resolved example $TRS004$ explores completely to a three-state, three-edge reduction graph with one reachable critical pair, one graph peak, unique normal form \texttt{p(a)}, and zero reachable defects.
+\subsection{When a computation certifies a verdict}
+\label{subsec:certification}
 
-The term-rewriting bridge therefore reproduces the same operational pattern seen in the string layer. The local generator persists, but its defect status changes. In the defective case the explored system is nonconfluent from the chosen start term; in the resolved case the explored system is confluent. Moreover, the reachability cross-check between critical-pair signatures and graph-peak signatures is exact on all curated TRS examples.
+Exploring a string or term rewriting system from a start term may not terminate, so the explorer works under explicit bounds on depth, number of states, and term size. Absence of a common descendant within the bounds does not prove that none exists. A truncated exploration of the diamond $a \to b$, $a \to c$, $b \to d$, $c \to d$ that stops after one step, for instance, sees $b$ and $c$ but not $d$. The implementation therefore separates two kinds of output. Diagnostics computed on an explored graph, such as its peaks and their joinability within the graph, are always available but are labeled as properties of the explored graph and are marked as certified for the reachable system only when the exploration was complete. The critical-pair, holonomy, and completion analyses on which the tables of this paper rest refuse to run on an incomplete exploration and report the bounds as inconclusive instead; where they also compute critical pairs from the rules, they require that computation to be complete as well. Completeness here refers to the reachable set $X_S$, not to all words or terms. All curated examples above meet this requirement.
 
-\begin{remark}[What the computational bridge does and does not establish]
-\label{rem:computational-bridge-scope}
-The computational evidence in this section is strong enough to fix the correct local geometric picture. It is not, by itself, the final theorem package for finite terminating left-linear term rewriting systems in full generality. What it does establish is that the corrected local/global story survives every implemented stress test: exhaustive finite ARS search in the terminating regime, curated string overlaps and completion pairs, and curated left-linear term-rewriting examples with genuine nonroot overlap.
-\end{remark}
+The inputs are also validated before analysis. For term rewriting, a rule may not have a variable as its left-hand side or introduce variables on its right-hand side that do not occur on its left, function symbols must be used with consistent arities, and the critical-pair generator accepts only left-linear rules. One-step rewriting itself supports non-left-linear matching.

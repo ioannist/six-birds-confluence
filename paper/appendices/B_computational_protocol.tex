@@ -1,29 +1,32 @@
 \section{Computational Protocol}
 \label{app:computational-protocol}
 
-This appendix summarizes the computational protocol used to generate the evidence layers cited throughout the paper. The purpose of the protocol is reproducibility and claim discipline rather than algorithmic novelty.
-The implementation repository for the experiments and code is \url{https://github.com/ioannist/six-birds-confluence}.
+The computations are implemented in Python; the code, data, and generated records are available at \url{https://github.com/ioannist/six-birds-confluence}. This appendix summarizes the procedures behind \Cref{sec:bare-graph-not-enough,sec:computational-bridge,sec:completion-holonomy}.
 
-\subsection{Finite-ARS exhaustive protocol}
+\subsection{Finite abstract rewriting systems}
 
-The finite-ARS audit enumerates every labeled directed rewriting relation on $n$ states for $n \leq 4$, including self-loops. This yields a total search space of
-\[
-2^1 + 2^4 + 2^9 + 2^{16} = 66066
-\]
-systems. Terminating systems are identified by directed-acyclicity of the finite reduction graph. For each terminating system, the repository computes local peak counts, nonjoinability defect counts, normal-form mismatch counts, local confluence, confluence, and uniqueness of reachable normal forms. The resulting summary and row-level artifacts are stored under \texttt{results/audits/}.
+The exhaustive enumeration ranges over all subsets of $\{s_0,\dots,s_{n-1}\}^2$ for $1 \le n \le 4$, self-loops included. Termination is decided by a topological sort. For each terminating system, every elementary peak is classified as joinable or not by computing descendant sets, and local confluence, confluence, and uniqueness of reachable normal forms are computed separately; the four discrepancy counts of \Cref{tab:exhaustive-finite-ars-summary} compare these. The counterexample search of \Cref{tab:boundary-counterexamples} evaluates the same predicates, together with normalization and the cycle-based proxies, on all $66{,}066$ systems and keeps, for each refuted statement, the witness with fewest states, then fewest edges, then smallest identifier in enumeration order.
 
-\subsection{Bounded string-rewriting protocol}
+An independent check recomputes termination, local confluence, confluence, and uniqueness of reachable normal forms for all $66{,}066$ systems using Warshall's transitive-closure algorithm on Boolean adjacency matrices, and compares the results with the main implementation, which uses breadth-first search. The two agree on every system, cyclic ones included, and on every terminating system the three properties local confluence, confluence, and unique normal forms coincide.
 
-The string-rewriting examples are explored from designated start words under explicit depth, state-count, and word-length bounds. The exploration records a completeness flag so that the paper can distinguish complete explored closures from genuinely truncated ones. In the curated examples used here, the chosen bounds are sufficient for complete exploration. The repository computes graph-level local peaks, system critical pairs, reachable critical pairs relative to the designated starts, and the corresponding defect counts and signature comparisons.
+\subsection{String and term rewriting}
 
-\subsection{Bounded term-rewriting protocol}
+String and term systems are explored from their start terms by breadth-first search under explicit bounds on depth, number of states, and word length or term size. A start term that already exceeds the bounds is rejected rather than silently admitted. The empty word is a valid state, so length-reducing string rules may delete a word entirely.
 
-The term-rewriting bridge uses a bounded first-order rewriting prototype with explicit start terms and exploration bounds. The critical-pair generator supports the left-linear overlap regime needed for the curated examples, including nonroot nonvariable-position overlaps. As in the string layer, the repository compares reachable critical-pair signatures with graph-peak signatures in the explored reduction graph and records whether the comparison is exact.
+\paragraph{Critical pairs from the rules.} For strings, critical pairs are computed from suffix--prefix overlaps and inclusions of left-hand sides. For terms, a left-hand side is unified with each non-variable subterm of a renamed copy of another left-hand side, including the same rule at a proper subterm; overlaps of a rule with itself at the root are discarded. Unification uses a full occurs check, so that equations such as $f(x,y) = f(g(y),g(x))$ are correctly reported as having no unifier. Substitutions are applied simultaneously: a variable is replaced once, and the replacement is not substituted into again. Critical pairs that differ only by a renaming of variables are identified. The term-rewriting critical-pair generator accepts only left-linear rules; inputs with a variable left-hand side, with right-hand-side variables absent from the left-hand side, or with inconsistent function arities are rejected.
 
-\subsection{Deterministic witness and filler selection}
+\paragraph{Reachable instances.} Independently of the critical pairs computed from the rules, every explored term is scanned for pairs of redexes forming a critical overlap: overlapping occurrences for strings, and for terms, two redexes one of which lies at a non-variable position of the other's left-hand side. Each such pair, recorded with its rules and positions, is a reachable critical-pair instance in the sense of \Cref{def:reachable-cp-instance}. Disjoint redexes and redexes inside variable instances are not recorded as instances. The comparison with graph peaks of \Cref{tab:system-vs-reachable-cp-vs-graph-peak} uses the signature consisting of the source and the unordered pair of branches.
 
-Across the plaquette, critical-pair, and two-complex layers, witnesses and filler paths are selected deterministically. The policy is: minimize total branch-to-witness distance, break ties lexicographically on the witness, and then choose lexicographically smallest shortest paths from each branch to the chosen witness. This policy ensures that the machine-readable artifacts are stable across runs and that the resulting local generators can be compared reliably across domains.
+\paragraph{Certification.} An exploration is complete when it has reached every term reachable from the starts and found no further successors within the bounds. Graph-level diagnostics are computed for any exploration, scoped to the explored graph and flagged as certified for the reachable system only when the exploration is complete. The critical-pair, reachable-instance, holonomy, and completion analyses reject incomplete explorations, and incomplete computations of critical pairs from the rules, with an explicit message that the bounds are inconclusive (\Cref{subsec:certification}).
 
-\subsection{Regression and artifact generation}
+\subsection{Holonomy records and fillers}
 
-The repository includes a regression harness that runs the unit tests, the curated finite-ARS checks, the curated structured rewriting checks, the small exhaustive audit, the diagram-generation step, and the results-ledger refresh. The frozen evidence boundary used in this paper is recorded by the final experiment summary, the claim-support matrix, and the central results ledger under \code{results/index.json} and \code{results/summary.csv}.
+A branching is recorded as filled exactly when its branches are joinable; comparison of reachable normal-form sets is stored separately as a diagnostic and is computed only when the explored system is terminating (\Cref{rem:holonomy-vs-formal-core}). For filled branchings, the join witness is chosen to minimize the total length of the two joining paths, with ties broken by the lexicographically smallest witness, and each joining path is a shortest path found by breadth-first search with successors visited in sorted order. Filled branchings are exported together with the closed boundary walk through the witness; open branchings are exported without one.
+
+\subsection{Completion pairs}
+
+For the string pair $E007$--$E008$, the completion computation checks that the ``after'' system has exactly the rules of the ``before'' system plus the declared new rule, and the same start word, before comparing the two. The term pair $TRS003$--$TRS004$ is compared directly from its two explored systems.
+
+\subsection{Regression}
+
+A regression harness runs the unit test suite (126 tests, including dedicated tests for the edge cases mentioned above), regenerates the curated finite, string, term, completion, reduction 2-complex, and diagram records and the results index, and runs a reduced exhaustive enumeration over $1 \le n \le 3$ states. It fails on a failing test, on a discrepancy found by the reduced enumeration, or on any step that raises an error or exits unsuccessfully. The full enumeration over $1 \le n \le 4$ states, the counterexample search, the independent Warshall check, the Lean build and axiom report, and the summary records are produced separately.

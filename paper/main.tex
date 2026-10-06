@@ -7,7 +7,7 @@ Critical Pairs, Holonomy, and Confluence\\
 in Rewriting Systems}
 \newcommand{\orcidauthorA}{0009-0009-7659-5964}
 \author{Ioannis Tsiokos\,\orcidA{}}
-\date{17 March 2026}
+\date{v1: 17 March 2026\qquad v2: 1 October 2026}
 
 \begin{document}
 
@@ -16,15 +16,7 @@ in Rewriting Systems}
 
 \begin{abstract}
 \noindent
-Confluence is usually read as order-independence of reduction, while flatness is usually read as path-independence of transport.
-This paper argues that their local cores coincide once rewriting is equipped with its missing two-dimensional cells.
-The relevant object is not the bare reduction graph but a reduction 2-complex whose $0$-cells are states, whose $1$-cells are one-step rewrites, and whose generating $2$-cells are local peaks or, in structured rewriting settings, reachable critical pairs.
-In that setting, elementary flatness is exactly local confluence.
-We prove this core equivalence and record the supporting fact that confluence plus normalization yields a unique normal form from a chosen start state.
-We then show computationally that the corrected local/global picture survives exhaustive finite-ARS stress tests in the terminating regime, curated string-rewriting examples, and a curated left-linear term-rewriting bridge with genuine nonroot overlap.
-These experiments also show that bare graph-flatness surrogates fail, while reachable critical-pair defects align with the observed local obstruction layer.
-Finally, explicit before/after examples show that completion can be read as holonomy elimination: the local generator persists while its defect disappears.
-The full finite terminating left-linear TRS theorem package remains to be written in full generality, but the correct object, local generators, and evidence boundary are now fixed.
+Confluence says that the order in which rewrite steps are applied does not matter in the end; flatness says that, locally, transport does not depend on the route taken. This paper makes the analogy precise at the local level and tests it computationally. The natural carrier is not the cycle structure of the reduction graph, and we show by small counterexamples that cycle-based notions of graph flatness neither imply nor are implied by confluence. Instead, we record each branching of two one-step rewrites out of a common state, the configuration tested by local confluence. A branching has trivial \emph{elementary holonomy} when its two branches can be completed to a common descendant, so that its boundary closes up, and nontrivial holonomy when they cannot. With this definition, elementary flatness is exactly local confluence. Under termination, Newman's lemma turns the local statement into a global one: confluence, elementary flatness, and uniqueness of normal forms coincide. These results hold for arbitrary abstract rewriting systems and are checked in Lean~4 without finiteness assumptions. In string and term rewriting, the branchings that can fail are the rule overlaps recorded by critical pairs; we work with the concrete critical-pair instances that occur in terms reachable from chosen start terms. An exhaustive enumeration of all $66{,}066$ rewriting relations on one to four labeled states agrees with the theorems and yields smallest counterexamples showing that each hypothesis is needed. Curated string and left-linear term-rewriting examples, including an overlap below the root, show reachable critical-pair defects coinciding with the observed obstructions. Finally, two before-and-after examples read a completion step as holonomy elimination: the added rule leaves the branching in place but supplies the missing filler.
 \end{abstract}
 
 \input{sections/01_introduction}
@@ -39,10 +31,13 @@ The full finite terminating left-linear TRS theorem package remains to be writte
 \input{sections/10_conclusion}
 
 \appendix
+\crefalias{section}{appendix}
+\crefalias{subsection}{subappendix}
 
 \input{appendices/A_lean_formal_core}
 \input{appendices/B_computational_protocol}
 \input{appendices/C_artifact_guide}
+\input{appendices/D_version_history}
 
 \bibliographystyle{plain}
 \bibliography{references}

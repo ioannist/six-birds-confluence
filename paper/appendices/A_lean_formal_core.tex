@@ -1,55 +1,39 @@
-\section{Lean Formal Core}
+\section{Lean Formalization}
 \label{app:lean-formal-core}
 
-The repository contains a small Lean development whose purpose is to secure the paper's formal core, not to formalize the entire computational bridge. The Lean package is rooted at \texttt{ConfluenceFlat} and currently consists of two substantive files: \code{ConfluenceFlat/Core.lean} and \code{ConfluenceFlat/UniqueNormalForm.lean}.
+The results of \Cref{sec:core-theorem} are formalized in Lean~4 (version 4.28.0) in the package \texttt{ConfluenceFlat}, which has no external dependencies. The development covers abstract rewriting only; the string and term-rewriting computations are not formalized.
 
-\subsection{Formalized definitions}
+\subsection{Setting}
 
-The file \code{ConfluenceFlat/Core.lean} formalizes the abstract rewriting notions used in \Cref{sec:core-theorem}. These include:
-\begin{itemize}
-    \item finite abstract rewriting systems,
-    \item reflexive-transitive reachability,
-    \item joinability,
-    \item normal forms,
-    \item local confluence,
-    \item elementary peaks,
-    \item elementary flatness.
-\end{itemize}
+The basic structure is a rewriting system on an arbitrary type, given by a single relation \texttt{step}. There is no finiteness assumption, and every definition and theorem below quantifies over such systems. A separate structure for finite systems extends it with a finite list of states containing every state that occurs in a step; it is provided for representing concrete examples and is not used by any theorem. Reachability is the inductively defined reflexive--transitive closure of \texttt{step}. Joinability, normal forms, local confluence, elementary peaks (with distinct branches), elementary flatness, confluence, normalization, and unique reachable normal forms are defined exactly as in \Cref{def:basic-notions,def:elementary-peak-flatness,def:elementary-holonomy-status}. Termination is well-foundedness of the relation ``$b$ is a one-step successor of $a$'', so that well-founded induction proceeds along rewrite steps. Uniqueness of reachable normal forms means ``at most one''; existence and uniqueness together is a separate predicate.
 
-The file \code{ConfluenceFlat/UniqueNormalForm.lean} adds the supporting global notions used later in \Cref{sec:core-theorem}, including:
-\begin{itemize}
-    \item confluence,
-    \item normalization,
-    \item uniqueness of normal form from a chosen start state,
-    \item existence and uniqueness of normal form under confluence and normalization.
-\end{itemize}
+\subsection{Correspondence}
 
-\subsection{Formalized theorem layer}
+\Cref{tab:lean-correspondence} lists the Lean theorem corresponding to each result. All names are in the namespace \texttt{ConfluenceFlat.FiniteARS}, a name retained for continuity although the theorems are not restricted to finite systems.
 
-The formal core currently proves the following results by name.
-\begin{sloppypar}
-\begin{itemize}[leftmargin=1.5em]
-    \item In \code{ConfluenceFlat/Core.lean}:
-    \begin{itemize}[leftmargin=1.5em]
-        \item \code{ConfluenceFlat.FiniteARS.joinable_refl},
-        \item \code{ConfluenceFlat.FiniteARS.elementaryFlat_of_localConfluent},
-        \item \code{ConfluenceFlat.FiniteARS.localConfluent_of_elementaryFlat},
-        \item \code{ConfluenceFlat.FiniteARS.elementaryFlat_iff_localConfluent}.
-    \end{itemize}
-    \item In \code{ConfluenceFlat/UniqueNormalForm.lean}:
-    \begin{itemize}[leftmargin=1.5em]
-        \item \code{ConfluenceFlat.FiniteARS.reachable_eq_of_normalForm},
-        \item \code{ConfluenceFlat.FiniteARS.eq_of_joinable_normalForms},
-        \item \code{ConfluenceFlat.FiniteARS.uniqueNormalFormFrom_of_confluent},
-        \item \mbox{\texttt{ConfluenceFlat.FiniteARS.existsUnique}}\penalty0\texttt{NormalFormFrom\_of\_confluent\_normalizing}.
-    \end{itemize}
-\end{itemize}
-\end{sloppypar}
+\begin{table}[h]
+\caption{Results of \Cref{sec:core-theorem} and their Lean counterparts.}
+\label{tab:lean-correspondence}
+\centering
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+Result & Lean theorem \\
+\midrule
+\Cref{lem:joinable-refl} & \texttt{joinable\_refl} \\
+\Cref{thm:elementary-flatness-iff-local-confluence} & \texttt{elementaryFlat\_iff\_localConfluent} \\
+\Cref{prop:confluence-normalization-unique-normal-form} & \texttt{existsUniqueNormalFormFrom\_of\_confluent\_normalizing} \\
+\Cref{lem:terminating-normalizing} & \texttt{normalizing\_of\_terminating} \\
+\Cref{thm:newman} & \texttt{confluent\_of\_terminating\_localConfluent} \\
+\Cref{cor:terminating-confluence-iff-flat} & \texttt{confluent\_iff\_elementaryFlat\_of\_terminating} \\
+\Cref{thm:normalizing-confluence-iff-unf} & \texttt{confluent\_iff\_uniqueNormalForms\_of\_normalizing} \\
+\Cref{cor:terminating-flat-unique-nf} & \texttt{existsUniqueNormalFormFrom\_of\_terminating\_elementaryFlat} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\subsection{Correspondence to the main text}
+Supporting lemmas include \texttt{reachable\_eq\_of\_normalForm} (a normal form reaches only itself), \texttt{eq\_of\_joinable\_normalForms}, and \texttt{uniqueNormalFormFrom\_of\_confluent}. The two directions of \Cref{thm:elementary-flatness-iff-local-confluence} are \texttt{elementaryFlat\_of\_localConfluent} and \texttt{localConfluent\_of\_elementaryFlat}.
 
-These Lean theorems mirror the theorem-level commitments made in the main text. The equivalence
-\[
-\text{elementary flatness} \iff \text{local confluence}
-\]
-is the formal counterpart of \Cref{thm:elementary-flatness-iff-local-confluence}. The existence-and-uniqueness result under confluence and normalization is the formal counterpart of \Cref{prop:confluence-normalization-unique-normal-form}. The Lean layer therefore secures the paper's proved core while leaving the computational bridge, artifact layer, and full deferred TRS theorem package outside the scope of formalization.
+\subsection{Axioms}
+
+There are no \texttt{sorry} placeholders and no custom axioms. According to Lean's \texttt{\#print axioms}, the formal versions of \Cref{prop:confluence-normalization-unique-normal-form}, \Cref{thm:newman}, and \Cref{thm:normalizing-confluence-iff-unf}, as well as the supporting lemma that confluence gives unique reachable normal forms, depend on no axioms at all. The formal versions of \Cref{thm:elementary-flatness-iff-local-confluence}, \Cref{lem:terminating-normalizing}, \Cref{cor:terminating-confluence-iff-flat}, and \Cref{cor:terminating-flat-unique-nf} depend only on Lean's standard axioms \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, which enter through classical case distinctions, such as whether two states are equal or whether a state has a successor.

@@ -1,23 +1,58 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Confluence is rewriting theory's cleanest order-independence principle: if a state reduces in two different ways, the divergence should be joinable \cite{BaaderNipkow1998,Huet1980,DershowitzJouannaud1990,Terese2003}. Discrete transport geometry packages the same intuition in a different language: transport should be independent of route, and the obstruction is holonomy \cite{Meneses2021,BaezMuniain1994}. This paper argues that their local cores coincide once rewriting is given its missing two-dimensional cells. The relevant object is not the bare reduction graph. It is a reduction 2-complex whose $0$-cells are states, whose $1$-cells are one-step rewrites, and whose generating $2$-cells are local peaks or, in structured rewriting settings, reachable critical pairs \cite{Mimram2023,GuiraudMalbos2018,GuiraudMalbos2012}.
+A rewriting system is \emph{confluent} when the choices made during reduction do not matter in the end: whenever a term can be rewritten in two ways, the two results can be rewritten further to a common term \cite{BaaderNipkow1998,Huet1980,DershowitzJouannaud1990,Terese2003}. Discrete geometry has a principle with the same flavor. A connection is \emph{flat} when transport around every small, contractible loop returns what it started with, so that transport between two points is unchanged when the route is deformed with its endpoints fixed; the failure of flatness is measured by holonomy around such small loops \cite{Meneses2021,BaezMuniain1994}. Flatness is thus a local form of route independence; around loops that cannot be contracted, a flat connection may still have nontrivial holonomy. The resemblance between ``order does not matter'' and ``route does not matter'' is easy to state and easy to overstate. This paper asks what the resemblance amounts to when it is made exact.
 
-The first temptation is also the first mistake. If one tries to read flatness directly from the bare reduction graph, one obtains surrogates that are vacuous or misleading in the terminating settings studied here. \Cref{sec:bare-graph-not-enough} shows this explicitly: directed-loop flatness collapses to acyclicity on the curated terminating examples, while ordinary undirected graph cycle structure is not diagnostic for confluence. The negative result is therefore constructive. It tells us where the geometric data must live: not on graph loops alone, but on elementary branching cells.
+The answer depends on choosing the right object. A first guess is to look for flatness in the reduction graph itself, by asking whether the graph has cycles or how many independent undirected cycles it contains. \Cref{sec:bare-graph-not-enough} shows that this fails in both directions: there are acyclic graphs that are not confluent and cyclic graphs that are. The reason is simple. Confluence compares pairs of rewrite sequences leaving the same state, and its local form, local confluence, compares pairs of one-step rewrites; by Newman's lemma, the local form suffices for terminating systems. Such a pair of one-step rewrites, a \emph{peak}, is not a cycle. It becomes the boundary of a closed region only once the two branches have been brought back together.
 
-Once those missing $2$-cells are restored, the local theorem-level core becomes clean. \Cref{sec:core-theorem} proves that elementary flatness is equivalent to local confluence. The paper then shows computationally that the corrected local/global picture survives exhaustive finite-ARS stress tests in the terminating regime, curated bounded string-rewriting examples, and a curated left-linear term-rewriting bridge with genuine nonroot overlap. In those structured settings, the relevant local generators are reachable critical pairs, and the before/after completion examples show that defect elimination can be read as holonomy elimination.
+This suggests recording the peaks explicitly. Following the higher-dimensional view of rewriting \cite{Mimram2023,GuiraudMalbos2018,GuiraudMalbos2012,Squier1987}, we treat states as vertices, one-step rewrites as edges, and each peak as a candidate two-dimensional cell. When the two branches of a peak have a common descendant, the peak and its joining paths form a closed boundary and the cell can be filled; we then say that the peak has trivial \emph{elementary holonomy}. When no common descendant exists, the boundary stays open and the holonomy is nontrivial (\Cref{fig:intro-filled-open}). The resulting structure, which we call a reduction 2-complex, is the object on which the flatness reading of confluence becomes literal.
 
-This paper is also a mathematics-facing contribution to the Six Birds line of work. The general closure vocabulary comes from \cite{Tsiokos2026SixBirdsFoundations}, while the treatment of route mismatch as a disciplined mathematical defect was developed earlier in \cite{Tsiokos2026CountStone}. The present paper does not repeat that general background. Instead, it uses that vocabulary to isolate a specific claim about rewriting: the local obstructions to confluence are carried by the generating $2$-cells on which elementary holonomy is tested.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=12mm and 14mm]
+  % filled branching
+  \begin{scope}
+    \node[st] (a) at (0,0) {$a$};
+    \node[st] (b) at (-1.3,-1.2) {$b$};
+    \node[st] (c) at (1.3,-1.2) {$c$};
+    \node[st] (d) at (0,-2.4) {$d$};
+    \begin{scope}[on background layer]
+      \fill[cellfill] (a.center) -- (b.center) -- (d.center) -- (c.center) -- cycle;
+    \end{scope}
+    \draw[rw] (a) -- (b);
+    \draw[rw] (a) -- (c);
+    \draw[rws] (b) -- node[left, font=\scriptsize, pos=0.4] {$*$} (d);
+    \draw[rws] (c) -- node[right, font=\scriptsize, pos=0.4] {$*$} (d);
+    \node[font=\small, align=center] at (0,-3.25) {trivial holonomy:\\ the boundary closes};
+  \end{scope}
+  % open branching
+  \begin{scope}[xshift=6cm]
+    \node[st] (a2) at (0,0) {$a$};
+    \node[st] (b2) at (-1.3,-1.2) {$b$};
+    \node[st] (c2) at (1.3,-1.2) {$c$};
+    \draw[rw] (a2) -- (b2);
+    \draw[rw] (a2) -- (c2);
+    \draw[defect] (b2) .. controls (-0.5,-2.2) and (0.5,-2.2) .. (c2);
+    \node[font=\scriptsize, text=red!70!black] at (0,-2.35) {no common descendant};
+    \node[font=\small, align=center] at (0,-3.25) {nontrivial holonomy:\\ the boundary stays open};
+  \end{scope}
+\end{tikzpicture}
+\caption{The local picture behind the paper. A peak $b \leftarrow a \to c$ is a pair of one-step rewrites out of a common state. If both branches reduce to a common state $d$ (dashed arrows denote rewrite sequences), the peak and the joining paths bound a closed region that can be filled by a $2$-cell. If no such $d$ exists, there is nothing to fill. Local confluence is the statement that every peak is of the first kind.}
+\label{fig:intro-filled-open}
+\end{figure}
 
-The paper is organized around three levels of claim. First, there is a proved core: elementary flatness is equivalent to local confluence, and confluence plus normalization yields a unique normal form from a chosen start state. Second, there is a strong computational and structural bridge: exhaustive finite-ARS audits, curated string and term-rewriting examples, and explicit reduction 2-complex artifacts all support the corrected local geometric picture. Third, there is a deferred theorem package: the full finite terminating left-linear term-rewriting formulation in the exact target form remains to be written as a general theorem rather than a curated bridge. \Cref{sec:proved-supported-deferred} makes this boundary explicit.
+With these definitions the local correspondence is exact: a system is \emph{elementarily flat}, meaning that every peak has trivial holonomy, if and only if it is locally confluent (\Cref{thm:elementary-flatness-iff-local-confluence}). The proof is short because the definitions are designed to match. Its value lies less in its difficulty than in fixing a precise dictionary. That dictionary becomes more informative when combined with termination. By Newman's lemma, a terminating system that is elementarily flat is confluent, and, for a terminating system, confluence, elementary flatness, and uniqueness of reachable normal forms are equivalent (\Cref{sec:core-theorem}). We prove these statements for arbitrary abstract rewriting systems and check them in Lean~4 (\Cref{app:lean-formal-core}).
+
+Concrete rewriting formalisms add one further layer. In string and term rewriting, most peaks are harmless: two rewrites at disjoint positions commute, and a rewrite inside the substituted part of another redex can be absorbed. The only peaks that can fail to be joinable come from genuine overlaps of left-hand sides, which are recorded by \emph{critical pairs} \cite{KnuthBendix1970,Huet1980,BaaderNipkow1998}. Critical pairs therefore generate the nontrivial part of the holonomy question (\Cref{sec:critical-pairs-curvature}). In computations we work relative to chosen start terms and use the \emph{reachable} critical-pair instances: concrete overlaps, possibly inside a larger context and under a substitution, that occur in terms reachable from the starts.
 
 \paragraph{Contributions.}
-This paper makes four contributions.
 \begin{enumerate}
-    \item It identifies the correct geometric object for rewriting: a reduction 2-complex rather than a bare reduction graph.
-    \item It proves the local formal core that elementary flatness is exactly local confluence (\Cref{thm:elementary-flatness-iff-local-confluence}), together with the supporting uniqueness-of-normal-form fact under confluence and normalization (\Cref{prop:confluence-normalization-unique-normal-form}).
-    \item It shows computationally that the corrected local/global picture survives exhaustive finite-ARS stress tests and curated string and left-linear term-rewriting examples, while graph-only flatness surrogates fail (\Cref{sec:bare-graph-not-enough,sec:computational-bridge}).
-    \item It gives an explicit operational reading of completion as holonomy elimination in before/after string and term-rewriting pairs (\Cref{sec:completion-holonomy}).
+    \item We show by explicit small counterexamples that the two natural cycle-based notions of flatness for reduction graphs are unrelated to confluence (\Cref{prop:bare-graph-not-diagnostic}), and we explain why: peaks are not cycles.
+    \item We define reduction 2-complexes and elementary holonomy as a fillability status of peaks, and prove that elementary flatness is equivalent to local confluence (\Cref{thm:elementary-flatness-iff-local-confluence}). Under termination we obtain the global form: confluence, elementary flatness, and unique normal forms coincide (\Cref{cor:terminating-confluence-iff-flat}, \Cref{thm:normalizing-confluence-iff-unf}). All results are mechanized in Lean~4 for arbitrary rewriting relations.
+    \item We place critical pairs in this picture as the generators of the nontrivial holonomy obligations in string and term rewriting, and distinguish them from peaks that are joinable for structural reasons (\Cref{sec:critical-pairs-curvature}).
+    \item We test the picture computationally: an exhaustive enumeration of all rewriting relations on one to four labeled states, smallest counterexamples for each dropped hypothesis, and curated string and left-linear term-rewriting examples, including an overlap below the root (\Cref{sec:computational-bridge}).
+    \item We read two explicit completion steps, one for strings and one for terms, as holonomy elimination: the branching survives, its filler appears, and confluence is restored (\Cref{sec:completion-holonomy}).
 \end{enumerate}
 
-The rest of the paper proceeds as follows. \Cref{sec:preliminaries-scope} fixes the paper's scope and its minimal Six Birds placement. \Cref{sec:bare-graph-not-enough} rules out the wrong graph-only formulation. \Cref{sec:reduction-two-complex} introduces the reduction 2-complex and elementary holonomy language, and \Cref{sec:core-theorem} proves the theorem-level core. \Cref{sec:critical-pairs-curvature} identifies reachable critical pairs as the structured rewriting generators of local curvature, \Cref{sec:computational-bridge} records the finite-ARS, string, and term-rewriting evidence base, and \Cref{sec:completion-holonomy} packages the before/after examples as holonomy-elimination case studies. \Cref{sec:proved-supported-deferred} then states explicitly what is proved, what is strongly supported, and what remains final theorem-writing work.
+\paragraph{Organization.}
+\Cref{sec:preliminaries-scope} fixes notation and places the paper within the Six Birds program. \Cref{sec:bare-graph-not-enough} disposes of the cycle-based reading. \Cref{sec:reduction-two-complex} introduces reduction 2-complexes and elementary holonomy, and \Cref{sec:core-theorem} proves the main results. \Cref{sec:critical-pairs-curvature} treats critical pairs, \Cref{sec:computational-bridge} reports the computations, and \Cref{sec:completion-holonomy} discusses completion. \Cref{sec:proved-supported-deferred} separates what is proved from what is computed and what remains open.

@@ -8,6 +8,8 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,backgrounds,decorations.pathmorphing}
 \newcommand{\orcidicon}{\includegraphics[width=0.32cm]{logo-orcid.pdf}}
 \newcommand{\orcidA}{\href{https://orcid.org/\orcidauthorA}{\orcidicon}}
 \usepackage[dvipsnames]{xcolor}
@@ -44,17 +46,54 @@
 
 \fancypagestyle{firstpage}{%
   \fancyhf{}
-  \fancyfoot[C]{\fontsize{7.5}{8}\selectfont Automorph Inc., Wilmington, DE, USA \;\texttt{ioannis@automorph.io}\; \mbox{Zenodo DOI: 10.5281/zenodo.19061345}\; \textcopyright\ 2026\; \mbox{CC-BY 4.0}}
+  \fancyfoot[C]{\fontsize{7.5}{8}\selectfont Automorph Inc., Wilmington, DE, USA \;\texttt{ioannis@automorph.io}\; \mbox{Zenodo DOI: 10.5281/zenodo.23088991}\; \textcopyright\ 2026\; \mbox{CC-BY 4.0}}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
 }
 
+\usepackage{aliascnt}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
+\crefname{theorem}{Theorem}{Theorems}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\crefname{proposition}{Proposition}{Propositions}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\crefname{lemma}{Lemma}{Lemmas}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\crefname{corollary}{Corollary}{Corollarys}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\crefname{definition}{Definition}{Definitions}
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+\crefname{example}{Example}{Examples}
+\newaliascnt{observation}{theorem}
+\newtheorem{observation}[observation]{Observation}
+\aliascntresetthe{observation}
+\crefname{observation}{Observation}{Observations}
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\crefname{remark}{Remark}{Remarks}
+
+% Reduction-diagram styles
+\tikzset{
+  st/.style={inner sep=1.2pt, font=\small, fill=white, rounded corners=2pt},
+  rw/.style={-{Stealth[length=5pt]}, thick},
+  rws/.style={-{Stealth[length=5pt]}, thick, densely dashed},
+  cellfill/.style={fill=blue!10, draw=none},
+  defect/.style={draw=red!70!black, very thick, densely dotted},
+  nf/.style={inner sep=1.5pt, font=\small, draw, fill=white, rounded corners=2pt},
+}
+\newcommand{\rto}{\to}
+\newcommand{\rtos}{\mathrel{\to^{*}}}
+\newcommand{\joinable}{\mathrel{\downarrow}}

@@ -1,0 +1,115 @@
+{
+  "title": "To Flatten a Stone with Six Birds: Critical Pairs, Holonomy, and Confluence in Rewriting Systems",
+  "description": "<p>Confluence says that the order in which rewrite steps are applied does not matter in the end; flatness says that, locally, transport does not depend on the route taken. This paper makes the analogy precise at the local level and tests it computationally. The natural carrier is not the cycle structure of the reduction graph, and we show by small counterexamples that cycle-based notions of graph flatness neither imply nor are implied by confluence. Instead, we record each branching of two one-step rewrites out of a common state, the configuration tested by local confluence. A branching has trivial <em>elementary holonomy</em> when its two branches can be completed to a common descendant, so that its boundary closes up, and nontrivial holonomy when they cannot. With this definition, elementary flatness is exactly local confluence. Under termination, Newman's lemma turns the local statement into a global one: confluence, elementary flatness, and uniqueness of normal forms coincide. These results hold for arbitrary abstract rewriting systems and are checked in Lean&nbsp;4 without finiteness assumptions.</p>\n<p>In string and term rewriting, the branchings that can fail are the rule overlaps recorded by critical pairs; we work with the concrete critical-pair instances that occur in terms reachable from chosen start terms. An exhaustive enumeration of all 66,066 rewriting relations on one to four labeled states agrees with the theorems and yields smallest counterexamples showing that each hypothesis is needed. Curated string and left-linear term-rewriting examples, including an overlap below the root, show reachable critical-pair defects coinciding with the observed obstructions. Finally, two before-and-after examples read a completion step as holonomy elimination: the added rule leaves the branching in place but supplies the missing filler.</p>\n<p>Code, data, and Lean sources: <a href=\"https://github.com/ioannist/six-birds-confluence\">https://github.com/ioannist/six-birds-confluence</a></p>",
+  "publication_date": "2026-10-01",
+  "version": "v2.0",
+  "keywords": [
+    "rewriting systems",
+    "confluence",
+    "local confluence",
+    "critical pairs",
+    "holonomy",
+    "elementary holonomy",
+    "Newman's lemma",
+    "completion",
+    "reduction 2-complexes",
+    "string rewriting",
+    "term rewriting",
+    "Lean 4",
+    "emergence calculus",
+    "Six Birds Theory"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.48550/arXiv.2602.00134",
+      "relation": "cites",
+      "resource_type": "publication-preprint",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.18402004",
+      "relation": "cites",
+      "resource_type": "publication-preprint",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.20944/preprints202602.1699.v1",
+      "relation": "cites",
+      "resource_type": "publication-preprint",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1017/CBO9781139172752",
+      "relation": "cites",
+      "resource_type": "publication-book",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1145/322217.322230",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1016/B978-0-08-012975-4.50028-X",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1007/3-540-17220-3_7",
+      "relation": "cites",
+      "resource_type": "publication-conferencepaper",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1017/S0960129516000220",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.4230/LIPIcs.FSCD.2023.16",
+      "relation": "cites",
+      "resource_type": "publication-conferencepaper",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1090/conm/775/15594",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1016/B978-0-444-88074-1.50011-1",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "978-0-521-39115-3",
+      "relation": "cites",
+      "resource_type": "publication-book",
+      "scheme": "isbn"
+    },
+    {
+      "identifier": "10.1016/0022-4049(87)90129-0",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1016/j.aim.2012.05.010",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1142/2324",
+      "relation": "cites",
+      "resource_type": "publication-book",
+      "scheme": "doi"
+    }
+  ],
+  "notes": "Version 2. The Lean development now covers arbitrary rewriting relations and adds termination, Newman's lemma, confluence iff elementary flatness under termination, and confluence iff unique normal forms under normalization. The graph-flatness result is stated for the two cycle-based proxies; elementary holonomy is defined by joinability alone; critical pairs are treated as generators of the nontrivial branchings, with concrete reachable instances; the computational pipeline was corrected (self-overlaps, occurs check, simultaneous substitution, input validation, no certification from incomplete searches). Curated counts and verdicts are unchanged. New figures and a rewritten exposition."
+}

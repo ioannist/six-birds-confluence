@@ -1,49 +1,9 @@
-\section{Core Theorem: Elementary Flatness and Local Confluence}
+\section{Elementary Flatness, Local Confluence, and Termination}
 \label{sec:core-theorem}
 
-We now state and prove the rigorous core used throughout the paper. The setting for this section is an abstract rewriting system $(X,\to)$, and $\to^*$ denotes the reflexive-transitive closure of $\to$. The theorem is intentionally local: it identifies the exact formal content of the slogan that ``flatness'' is the absence of elementary route mismatch.
+Throughout this section $(X,\to)$ is an arbitrary abstract rewriting system. No finiteness is assumed, and every result has a Lean counterpart listed in \Cref{app:lean-formal-core}.
 
-\subsection{Joinability, local confluence, and elementary flatness}
-
-\begin{definition}[Joinability]
-\label{def:joinability}
-Two states $b,c \in X$ are \emph{joinable} if there exists some $d \in X$ such that
-\[
-b \to^* d
-\qquad\text{and}\qquad
-c \to^* d.
-\]
-\end{definition}
-
-\begin{definition}[Normal forms]
-\label{def:normal-form}
-A state $n \in X$ is a \emph{normal form} if there is no state $m \in X$ such that $n \to m$.
-\end{definition}
-
-\begin{definition}[Local confluence]
-\label{def:local-confluence}
-The rewriting system $(X,\to)$ is \emph{locally confluent} if for all $a,b,c \in X$,
-\[
-a \to b
-\quad\text{and}\quad
-a \to c
-\quad\Longrightarrow\quad
-b \text{ and } c \text{ are joinable.}
-\]
-\end{definition}
-
-\begin{definition}[Elementary peaks and elementary flatness]
-\label{def:elementary-peak-flatness}
-An \emph{elementary peak} is a triple $(a,b,c)$ such that
-\[
-a \to b,
-\qquad
-a \to c,
-\qquad
-b \neq c.
-\]
-The rewriting system $(X,\to)$ is \emph{elementarily flat} if every elementary peak is joinable.
-\end{definition}
+\subsection{The local equivalence}
 
 \begin{lemma}[Reflexive joinability]
 \label{lem:joinable-refl}
@@ -51,75 +11,117 @@ Every state is joinable with itself.
 \end{lemma}
 
 \begin{proof}
-Let $x \in X$. Since $\to^*$ is reflexive, we have $x \to^* x$. Taking $d=x$ in \Cref{def:joinability}, we conclude that $x$ is joinable with itself.
+Take $d = x$ and use $x \to^{*} x$ twice.
 \end{proof}
 
-\begin{theorem}[Elementary flatness iff local confluence]
+\begin{theorem}[Elementary flatness is local confluence]
 \label{thm:elementary-flatness-iff-local-confluence}
-A rewriting system is elementarily flat if and only if it is locally confluent.
+An abstract rewriting system is elementarily flat if and only if it is locally confluent.
 \end{theorem}
 
 \begin{proof}
-Assume first that $(X,\to)$ is locally confluent. Let $(a,b,c)$ be an elementary peak. By \Cref{def:elementary-peak-flatness}, we have $a \to b$ and $a \to c$. By local confluence, $b$ and $c$ are joinable. Hence every elementary peak is joinable, so the system is elementarily flat.
+Suppose the system is locally confluent and let $(a,b,c)$ be an elementary peak. Then $a \to b$ and $a \to c$, so $b \joinable c$ by local confluence. Hence every elementary peak has a filler.
 
-Conversely, assume that $(X,\to)$ is elementarily flat. To prove local confluence, let $a,b,c \in X$ satisfy $a \to b$ and $a \to c$. There are two cases.
-
-If $b=c$, then $b$ and $c$ are joinable by \Cref{lem:joinable-refl}.
-
-If $b \neq c$, then $(a,b,c)$ is an elementary peak. By elementary flatness, $b$ and $c$ are joinable.
-
-In both cases, the two one-step descendants of $a$ are joinable. Therefore the system is locally confluent.
+Conversely, suppose the system is elementarily flat and let $a \to b$ and $a \to c$. If $b = c$, then $b \joinable c$ by \Cref{lem:joinable-refl}. If $b \neq c$, then $(a,b,c)$ is an elementary peak, which has a filler by assumption, so again $b \joinable c$.
 \end{proof}
 
-\begin{remark}[What the theorem does and does not say]
+\begin{remark}[What the theorem says]
 \label{rem:core-theorem-scope}
-\Cref{thm:elementary-flatness-iff-local-confluence} is the formal core of the paper. It does not yet identify which local branchings generate the relevant $2$-cells in a given rewriting formalism; that is the role of critical pairs in \Cref{sec:critical-pairs-curvature}. Nor does it by itself supply a local-to-global theorem such as Newman-style termination plus local confluence \cite{Huet1980,BaaderNipkow1998,DershowitzJouannaud1990,Terese2003}. Its point is narrower and more precise: once the correct elementary branchings have been identified, ``flatness'' at that level is exactly local confluence.
+Elementary flatness is local confluence restricted to peaks with distinct branches, so the theorem is close to a restatement; its only extra content is the trivial case $b = c$. We state it as a theorem because it is the exact form of the dictionary between the two vocabularies: ``every elementary branching has trivial holonomy'' and ``every one-step divergence can be rejoined'' are the same condition. The theorem says nothing about which peaks need to be checked in a structured formalism; that is the role of critical pairs (\Cref{sec:critical-pairs-curvature}). Nor is it, by itself, a local-to-global statement. Termination supplies the global step.
 \end{remark}
 
-\subsection{A supporting global normal-form fact}
+\subsection{From local to global under termination}
 
-The local theorem above is the main formal statement needed for the paper's geometric bridge. We also record the standard supporting fact that confluence plus normalization yields a unique normal form from any chosen start state.
-
-\begin{definition}[Confluence and normalization]
-\label{def:confluence-normalization}
-The rewriting system $(X,\to)$ is \emph{confluent} if for all $a,b,c \in X$,
-\[
-a \to^* b
-\quad\text{and}\quad
-a \to^* c
-\quad\Longrightarrow\quad
-b \text{ and } c \text{ are joinable.}
-\]
-It is \emph{normalizing} if for every $a \in X$ there exists some normal form $n$ such that
-\[
-a \to^* n.
-\]
-\end{definition}
+The remaining results relate the local condition to confluence and to normal forms. The first is standard.
 
 \begin{proposition}[Confluence and normalization give a unique normal form]
 \label{prop:confluence-normalization-unique-normal-form}
-Assume that $(X,\to)$ is confluent and normalizing. Then for every $a \in X$ there exists a unique normal form $n$ such that $a \to^* n$.
+If $(X,\to)$ is confluent and normalizing, then every $a \in X$ reaches exactly one normal form.
 \end{proposition}
 
 \begin{proof}
-Fix $a \in X$. Since the system is normalizing, there exists at least one normal form $n$ with $a \to^* n$.
-
-To prove uniqueness, suppose that $n$ and $m$ are both normal forms and that
-\[
-a \to^* n,
-\qquad
-a \to^* m.
-\]
-By confluence, $n$ and $m$ are joinable. Hence there exists some $d$ such that
-\[
-n \to^* d
-\qquad\text{and}\qquad
-m \to^* d.
-\]
-But $n$ is a normal form, so the only state reachable from $n$ is $n$ itself; therefore $d=n$. Likewise, since $m$ is a normal form, we must have $d=m$. Hence $n=m$.
+Normalization gives a normal form $n$ with $a \to^{*} n$. If also $a \to^{*} m$ with $m$ a normal form, confluence gives a $d$ with $n \to^{*} d$ and $m \to^{*} d$. A normal form has no descendants other than itself, so $d = n$ and $d = m$; hence $n = m$.
 \end{proof}
 
-\begin{remark}[Lean formal core]
+Uniqueness alone, the ``at most one'' half of this argument, uses only confluence. The next lemma is the familiar fact that termination yields normal forms. We use the formulation of termination as well-foundedness: every nonempty set of states contains an element with no one-step successor inside the set. This permits induction along $\to$, in which a property may be assumed for all one-step successors of $a$ when proving it for $a$.
+
+\begin{lemma}[Termination implies normalization]
+\label{lem:terminating-normalizing}
+A terminating abstract rewriting system is normalizing.
+\end{lemma}
+
+\begin{proof}
+By well-founded induction along $\to$. If $a$ is a normal form, it reaches itself. Otherwise $a \to b$ for some $b$; by the induction hypothesis $b$ reaches a normal form $n$, and so $a \to b \to^{*} n$.
+\end{proof}
+
+\begin{theorem}[Newman's lemma]
+\label{thm:newman}
+A terminating, locally confluent abstract rewriting system is confluent.
+\end{theorem}
+
+\begin{proof}
+We prove by well-founded induction along $\to$ that every $a$ satisfies: whenever $a \to^{*} b$ and $a \to^{*} c$, we have $b \joinable c$. If either sequence is empty, say $a = b$, then $c$ itself is a common descendant of $b$ and $c$. Otherwise both sequences begin with a step, $a \to b_1 \to^{*} b$ and $a \to c_1 \to^{*} c$. By local confluence there is a $d$ with $b_1 \to^{*} d$ and $c_1 \to^{*} d$. Since $a \to c_1$, the induction hypothesis applies at $c_1$; it joins $c$ and $d$ at some $v$. Since $a \to b_1$ and $b_1 \to^{*} d \to^{*} v$, the induction hypothesis applies at $b_1$; it joins $b$ and $v$ at some $w$. Then $b \to^{*} w$ and $c \to^{*} v \to^{*} w$.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm]
+  \node[st] (a) at (0,0) {$a$};
+  \node[st] (b1) at (-1.2,-1.0) {$b_1$};
+  \node[st] (c1) at (1.2,-1.0) {$c_1$};
+  \node[st] (d) at (0,-2.0) {$d$};
+  \node[st] (b) at (-2.6,-2.2) {$b$};
+  \node[st] (c) at (2.6,-2.2) {$c$};
+  \node[st] (v) at (1.3,-3.2) {$v$};
+  \node[st] (w) at (-0.4,-4.3) {$w$};
+  \begin{scope}[on background layer]
+    \fill[cellfill] (a.center)--(b1.center)--(d.center)--(c1.center)--cycle;
+    \fill[blue!5] (c1.center)--(d.center)--(v.center)--(c.center)--cycle;
+    \fill[blue!16] (b1.center)--(b.center)--(w.center)--(v.center)--(d.center)--cycle;
+  \end{scope}
+  \draw[rw] (a)--(b1); \draw[rw] (a)--(c1);
+  \draw[rws] (b1)--(b); \draw[rws] (c1)--(c);
+  \draw[rws] (b1)--(d); \draw[rws] (c1)--(d);
+  \draw[rws] (d)--(v); \draw[rws] (c)--(v);
+  \draw[rws] (b)--(w); \draw[rws] (v)--(w);
+  \node[font=\scriptsize] at (0,-1.0) {LC};
+  \node[font=\scriptsize] at (1.3,-2.2) {IH at $c_1$};
+  \node[font=\scriptsize] at (-1.0,-2.9) {IH at $b_1$};
+\end{tikzpicture}
+\caption{The tiling in the proof of Newman's lemma. Local confluence (LC) fills the elementary peak at $a$; the induction hypothesis (IH), available because $b_1$ and $c_1$ are one step below $a$, fills the two larger regions. Termination is what makes the induction well founded.}
+\label{fig:newman-tiling}
+\end{figure}
+
+\Cref{fig:newman-tiling} displays the proof as a tiling: one elementary $2$-cell and two cells supplied by induction. This is the precise sense in which, for terminating systems, global flatness is assembled from elementary flatness. Combining \Cref{thm:newman} with \Cref{thm:elementary-flatness-iff-local-confluence}, and noting that confluence trivially implies local confluence, we obtain the global form of the dictionary.
+
+\begin{corollary}[Confluence is elementary flatness under termination]
+\label{cor:terminating-confluence-iff-flat}
+A terminating abstract rewriting system is confluent if and only if it is elementarily flat.
+\end{corollary}
+
+The relation between confluence and normal forms needs less than termination.
+
+\begin{theorem}[Confluence and unique normal forms]
+\label{thm:normalizing-confluence-iff-unf}
+Let $(X,\to)$ be normalizing. Then $(X,\to)$ is confluent if and only if every state has unique reachable normal forms.
+\end{theorem}
+
+\begin{proof}
+If the system is confluent, two normal forms reachable from the same state are joinable and hence equal, as in the proof of \Cref{prop:confluence-normalization-unique-normal-form}. Conversely, suppose every state has unique reachable normal forms, and let $a \to^{*} b$ and $a \to^{*} c$. By normalization, $b \to^{*} n$ and $c \to^{*} m$ for normal forms $n$ and $m$. Both are reachable from $a$, so $n = m$, and this common normal form joins $b$ and $c$.
+\end{proof}
+
+\begin{corollary}[Existence and uniqueness of normal forms]
+\label{cor:terminating-flat-unique-nf}
+In a terminating, elementarily flat abstract rewriting system, every state reaches exactly one normal form.
+\end{corollary}
+
+\begin{proof}
+By \Cref{cor:terminating-confluence-iff-flat} the system is confluent, by \Cref{lem:terminating-normalizing} it is normalizing, and \Cref{prop:confluence-normalization-unique-normal-form} applies.
+\end{proof}
+
+For terminating systems, then, four conditions coincide: elementary flatness, local confluence, confluence, and uniqueness of reachable normal forms. Each hypothesis used along the way is needed. \Cref{subsec:boundary-search} exhibits smallest finite witnesses: a four-state system that is locally confluent but not confluent, for which termination fails (\Cref{fig:newman-needs-termination}); a one-state system that is confluent but not normalizing; and a three-state system in which every state has unique reachable normal forms but which is not confluent, for which normalization fails.
+
+\begin{remark}[Mechanization]
 \label{rem:lean-formal-core-crossref}
-The definitions and baseline equivalences used in this section are mirrored in the Lean development summarized in Appendix~\ref{app:lean-formal-core}. In particular, the formal core contains the elementary-flatness/local-confluence equivalence together with the corresponding uniqueness-of-normal-form statement under confluence and normalization.
+All results in this section are proved in Lean~4 for an arbitrary relation on an arbitrary type, with no finiteness assumption and with termination stated as well-foundedness of the reduction relation in the direction of rewriting. The proofs use no axioms beyond Lean's standard ones (propositional extensionality, quotient soundness, and choice), and several use none. \Cref{app:lean-formal-core} gives the correspondence.
 \end{remark}

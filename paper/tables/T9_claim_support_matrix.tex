@@ -1,16 +1,20 @@
 \small
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.15}
-\begin{tabularx}{\linewidth}{@{}Y Y l@{}}
+\begin{tabularx}{\linewidth}{@{}Y L{0.30\linewidth} l@{}}
 \toprule
-Claim family & Evidence type & Status \\
+Claim & Evidence & Status \\
 \midrule
-Elementary flatness $\leftrightarrow$ local confluence & Lean formal core + paper proof & proved \\[3pt]
-Confluence + normalization $\Rightarrow$ unique normal form from a start & Lean formal core + paper proof & proved \\[3pt]
-Bare graph flatness is not diagnostic for confluence & exhaustive computational + curated finite ARS & emp.\ supported \\[3pt]
-Reachable CP defects capture observed local obstruction set in curated strings & curated term level + structural artifact & emp.\ supported \\[3pt]
-Reachable CP defects capture observed local obstruction set in curated left-linear TRSs & curated term level + structural artifact & emp.\ supported \\[3pt]
-Completion acts as holonomy elimination in explicit before/after pairs & curated term level + structural artifact & emp.\ supported \\[3pt]
-Full finite terminating left-linear TRS confluence-as-flatness theorem & theorem package not yet written & deferred \\
+Elementary flatness $\iff$ local confluence (\Cref{thm:elementary-flatness-iff-local-confluence}) & paper proof; Lean & proved \\
+Confluence and normalization give a unique normal form (\Cref{prop:confluence-normalization-unique-normal-form}) & paper proof; Lean & proved \\
+Newman's lemma; under termination, confluence $\iff$ elementary flatness (\Cref{thm:newman}, \Cref{cor:terminating-confluence-iff-flat}) & paper proof; Lean & proved \\
+Under normalization, confluence $\iff$ unique reachable normal forms (\Cref{thm:normalizing-confluence-iff-unf}) & paper proof; Lean & proved \\
+Cycle-based graph flatness does not detect confluence (\Cref{prop:bare-graph-not-diagnostic}) & explicit counterexamples & proved \\
+Critical-pair lemma and its holonomy form (\Cref{thm:critical-pair-lemma}, \Cref{cor:cp-flatness}) & literature \cite{KnuthBendix1970,Huet1980} & cited \\
+Theorems agree with all terminating systems on $1$--$4$ states; each hypothesis needed (\Cref{tab:exhaustive-finite-ars-summary,tab:boundary-counterexamples}) & exhaustive enumeration & computed \\
+Reachable critical-pair instances match the observed obstructions in the curated string and term examples (\Cref{prop:reachable-critical-pairs-capture-string-obstructions,prop:trs-critical-pairs-as-curvature-generators}) & complete exploration of curated examples & computed \\
+A single added rule fills the open branching in two curated pairs (\Cref{prop:completion-as-holonomy-elimination}) & complete exploration of curated examples & computed \\
+Mechanized critical-pair lemma for left-linear term rewriting in 2-complex form & --- & open \\
+Group-valued or connection-based holonomy theory of confluence & --- & open \\
 \bottomrule
 \end{tabularx}

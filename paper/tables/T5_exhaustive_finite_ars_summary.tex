@@ -1,15 +1,20 @@
 \begin{table}[t]
-\caption{Exhaustive finite-ARS audit on all labeled systems up to four states. On the terminating subset, all four discrepancy classes vanish.}
+\caption{Exhaustive enumeration of rewriting relations on $n = 1,\dots,4$ labeled states. On every terminating system, elementary flatness (EF), local confluence (LC), confluence (Conf), and unique reachable normal forms (UNF) agree, as \Cref{sec:core-theorem} predicts; the last four columns count disagreements.}
 \label{tab:exhaustive-finite-ars-summary}
 \centering
 \smallskip
 \small
 \setlength{\tabcolsep}{5pt}
-\begin{tabularx}{0.96\linewidth}{L{0.14\linewidth} *{6}{>{\centering\arraybackslash}X}}
+\begin{tabular}{@{}ccccccccc@{}}
 \toprule
-Scope & \shortstack{Total\\systems} & \shortstack{Terminating} & LF$\neq$LC & \shortstack{LF \&\\$\neg$Conf} & \shortstack{Conf \&\\$\neg$UNF} & \shortstack{UNF \&\\$\neg$Conf} \\
+$n$ & Systems & Terminating & \shortstack{Confluent\\terminating} & EF $\neq$ LC & \shortstack{EF \&\\$\neg$Conf} & \shortstack{Conf \&\\$\neg$UNF} & \shortstack{UNF \&\\$\neg$Conf} \\
 \midrule
-$n \leq 4$ & 66\,066 & 572 & 0 & 0 & 0 & 0 \\
+1 & 2 & 1 & 1 & 0 & 0 & 0 & 0 \\
+2 & 16 & 3 & 3 & 0 & 0 & 0 & 0 \\
+3 & 512 & 25 & 22 & 0 & 0 & 0 & 0 \\
+4 & 65\,536 & 543 & 401 & 0 & 0 & 0 & 0 \\
+\midrule
+total & 66\,066 & 572 & 427 & 0 & 0 & 0 & 0 \\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{table}

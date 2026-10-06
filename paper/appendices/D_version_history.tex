@@ -1,0 +1,14 @@
+\section{Version History}
+\label{app:version-history}
+
+\paragraph{Version 1 (17 March 2026).} First release, DOI \href{https://doi.org/10.5281/zenodo.19061345}{10.5281/zenodo.19061345}.
+
+\paragraph{Version 2 (1 October 2026).} DOI \href{https://doi.org/10.5281/zenodo.23088991}{10.5281/zenodo.23088991}.
+\begin{itemize}
+    \item The Lean development now covers arbitrary rewriting relations without finiteness assumptions, and adds termination, Newman's lemma, the equivalence of confluence and elementary flatness under termination, and the equivalence of confluence and unique normal forms under normalization (\Cref{sec:core-theorem}).
+    \item The negative result on graph flatness is stated for the two cycle-based proxies; the reduction graph of a finite system does determine its confluence (\Cref{sec:bare-graph-not-enough}).
+    \item Elementary holonomy is defined by joinability alone, and $2$-cells are attached only to filled branchings (\Cref{sec:reduction-two-complex}).
+    \item Critical pairs are presented as generators of the nontrivial branchings rather than of all peaks, and the computations use concrete reachable critical-pair instances, including instances in context and under substitution (\Cref{sec:critical-pairs-curvature}).
+    \item The computational pipeline was corrected: self-overlaps of term rules are included, unification performs a full occurs check, substitution is simultaneous, invalid rules are rejected, and the critical-pair and holonomy analyses refuse to certify verdicts from incomplete explorations (\Cref{app:computational-protocol}). All curated counts and verdicts are unchanged.
+    \item New and redrawn figures, a table of smallest counterexamples, and a rewritten exposition.
+\end{itemize}
