@@ -23,3 +23,44 @@ paper/build/
 *.out
 *.run.xml
 *.toc
+
+# Editor / tool noise
+.VSCodeCounter/
+.DS_Store
+*.swp
+*.swo
+
+# Local repo-snapshot archives (scripts/package_repo_snapshot.sh output)
+*_snapshot_v*.zip
+
+# Local secrets and credentials (keep only an explicit example file)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.pypirc
+credentials*.json
+*secret*
+*token*.txt
+
+# Local agent, prompt, transcript and session state (any depth)
+**/.codex/
+**/.claude/
+**/.cursor/
+**/.aider*
+**/.continue/
+**/.specstory/
+**/.windsurf/
+/memory/
+/prompts/
+/skills/
+**/transcripts/
+**/rollout-*.jsonl
+**/*.transcript*
+**/CLAUDE.local.md
+**/.claude.json
+**/.codex_thread_id*
